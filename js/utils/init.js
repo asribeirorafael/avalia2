@@ -26,7 +26,7 @@ window.fbAsyncInit = function() {
 
 function LoginFacebookParse(){
     if(!Parse.User.current()){
-        var permissions = "public_profile,user_friends,email";
+        var permissions = "public_profile,email";
         Parse.FacebookUtils.logIn(permissions, {
             success: function(user) {
                 FB.api('/me', function(response) {
