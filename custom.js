@@ -25,7 +25,7 @@
 		function init_maps(){
 			
 			if(typeof($.fn.gmap3 ) == "undefined"){
-				console.log('Error - Maps script is not included!');
+				//console.log('Error - Maps script is not included!');
 				return false;
 			}
 		
@@ -63,7 +63,7 @@
 		
 		function init_sortable(){
 			if(typeof($.fn.sortable) == "undefined"){
-				console.log('Error - Sortable script is not included!');
+				//console.log('Error - Sortable script is not included!');
 				return false;
 			}
 		
@@ -103,7 +103,7 @@
 		function init_toggles(){
 		
 			if(typeof(window.Toggles) == "undefined"){
-				console.log('Error - Toggles script is not included!');
+				//console.log('Error - Toggles script is not included!');
 				return false;
 			}
 			
@@ -118,7 +118,7 @@
 		function init_scrollbar(){
 		
 			if(window.mCustomScrollbar != true){
-				console.log('Error - Scrollbar script is not included! ['+window.mCustomScrollbar+']');
+				//console.log('Error - Scrollbar script is not included! ['+window.mCustomScrollbar+']');
 				return false;
 			}
 		
@@ -234,7 +234,7 @@
 				$('#wrapper').addClass('sidebar');
 			}
 			
-			console.log('Expand sidebar');
+			//console.log('Expand sidebar');
 			return false;
 		});
 		
@@ -306,7 +306,7 @@
 		
 		}
 		else{
-			console.log('Error - Nestables script not included!');
+			//console.log('Error - Nestables script not included!');
 		}
 		
 	}
@@ -330,7 +330,7 @@
 			$('input.prettyradio').prettyCheckable();
 			}
 			else{
-				console.log('Error - prettyCheckable script not included!');
+				//console.log('Error - prettyCheckable script not included!');
 			}
 	}
 	
@@ -339,7 +339,7 @@
 			var container = document.querySelector('#wrapper-gallery');
 			msnry = new Masonry( container, { gutter: 10, columnWidth: 200, itemSelector: '.item' });
 		}else{
-			console.log('Error - Masonry script not included!');
+			//console.log('Error - Masonry script not included!');
 		}
 	}
 	
@@ -358,7 +358,7 @@
 		$('.tipsy').tipsy({gravity: 'n'});
 		
 		}else {
-			console.log('Error - Tipsy script is not included!')
+			//console.log('Error - Tipsy script is not included!')
 		}
 		
 		
@@ -366,11 +366,11 @@
 	 
 	function init_easypiechart () {
 		if (typeof($.fn.easyPieChart) != "function"){ 
-			console.log('Error - easyPieChart script is not included!')
+			//console.log('Error - easyPieChart script is not included!')
 			return false; 
 		}
 		
-		console.log('Piechart running: '+$('.chart').length);
+		//console.log('Piechart running: '+$('.chart').length);
 		
 		
 		$('.chart').each(function(){
@@ -406,7 +406,7 @@
 	function init_sliders() {
 
 		if (typeof($.fn.slider) != "function"){ 
-			console.log('Error - Slider script is not included!')
+			//console.log('Error - Slider script is not included!')
 			return false; 
 		}
 		
@@ -558,7 +558,7 @@
 		  ],
 		  formatter: function (x) { return x + "%"}
 		}).on('click', function(i, row){
-		  console.log(i, row);
+		  ////console.log(i, row);
 		});
 		
 
