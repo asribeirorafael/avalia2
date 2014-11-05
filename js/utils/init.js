@@ -39,7 +39,6 @@ function LoginFacebookParse(){
                             usuario.set("urlPicture", "https://graph.facebook.com/"+response.id+"/picture");
                             usuario.set("nomeCompleto", response.name);
                             usuario.set("urlFacebook", response.link);
-                            usuario.set("habilitado", false);
                             usuario.save(null, {
                                 success: function(res){
                                     if(!usuario.get("habilitado")){
