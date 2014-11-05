@@ -1,0 +1,93 @@
+<div class="container-content">
+    <div class="container-content margem-inferior">
+        <div class="container-step">
+            <ul class="nav nav-pills">
+                <li class="icone active" id="pessoa1">
+                    <a ng-click="reload(0)" role="tab" data-toggle="pill">
+                        <label class="label-step">Cadastro Professor</label>
+                    </a>
+                </li>
+
+                <li class="icone" id="pessoa2">
+                    <a ng-click="reload(1)" role="tab" data-toggle="pill">
+                        <label class="label-step">Cadastro Aluno</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="limpar"></div>
+    </div>
+    <hr>
+
+    <div ng-if="pagina === 0">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Nome do Professor</label>
+                <input type="text" ng-model="objetoProfessor.nome" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Data de Nascimento</label>
+                <input type="text" mask="data" ng-model="objetoProfessor.dataNascimento" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Entre com o RD</label>
+                <input type="text" mask="RD" ng-model="objetoProfessor.rd" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+        </div>
+
+        <div ng-if="cadastroEscolhido !== -1" class=" btns">
+            <button type="button" ng-click="editarProfessor(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Editar</button>
+            <button type="button" ng-click="deletarProfessor(objetoProfessor.id)" class="btn btn-primary alinhar-esquerda"><span class="glyphicon glyphicon-remove"></span> Deletar</button>
+        </div>
+
+        <div ng-if="cadastroEscolhido === -1">
+            <button type="button" ng-click="cadastrarProfessor(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Cadastrar</button>
+        </div>
+    </div>
+
+    <div ng-if="pagina === 1">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Nome do Aluno</label>
+                <input type="text" ng-model="objetoAluno.nome
+                " class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Data de Nascimento</label>
+                <input type="text" mask="data" ng-model="objetoAluno.dataNascimento" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Digito do RA</label>
+                <input type="text" mask="digitoRA" ng-model="objetoAluno.digito_RA" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Numero do RA</label>
+                <input type="text" mask="nuemroRA" ng-model="objetoAluno.numero_RA" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+        </div>
+
+        <div ng-if="cadastroEscolhido !== -1" class=" btns">
+            <button type="button" ng-click="editarAluno(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Editar</button>
+            <button type="button" ng-click="deletarAluno(objetoAluno.id)" class="btn btn-primary alinhar-esquerda"><span class="glyphicon glyphicon-remove"></span> Deletar</button>
+        </div>
+
+        <div ng-if="cadastroEscolhido === -1">
+            <button type="button" ng-click="cadastrarAluno(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Cadastrar</button>
+        </div>
+    </div>
+</div>

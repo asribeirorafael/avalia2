@@ -1,0 +1,19 @@
+<div class="container-content ng-scope">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 has-feedback">
+            <input type="text" placeholder="Filtrar pelo nome da escola..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 margem-superior-4">
+            <button class="btn btn-primary btnAuto alinhar-direita" ng-click="alterarPagina('cadastroEscola', '#container-cadastro'); habilitarCadastro()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Cadastrar Escola
+            </button>
+        </div>
+    </div>
+    <hr>
+    <ul class="template-buscarPessoas">
+        <li class="ng-scope" ng-repeat="escola in escolas" ng-click="selecionarEscola(escola)" ><label class="nomeTabela">{{escola.nomeEscola}}</label></li>
+    </ul>
+
+
+</div>

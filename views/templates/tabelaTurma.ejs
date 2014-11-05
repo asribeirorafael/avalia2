@@ -1,0 +1,37 @@
+<div class="container-content ng-scope">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 has-feedback">
+            <select class="form-control input-lg margem-inferior">
+                <option value="0">2013</option>
+                <option value="1">2014</option>
+                <option value="2">2015</option>
+            </select>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9 margem-superior-4">
+            <button class="btn btn-primary btnAuto alinhar-direita" ng-click="alterarPagina('cadastroTurma', '#container-cadastro'); habilitarCadastro()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Cadastrar Turma
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 has-feedback">
+            <input type="text" placeholder="Filtrar por série..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 has-feedback">
+            <input type="text" placeholder="Filtrar por turma..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-6 has-feedback">
+            <input type="text" placeholder="Filtrar por escola..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        </div>
+    </div>
+    <hr>
+    <ul class="template-buscarPessoas">
+        <li class="ng-scope" ng-repeat="turma in turmas" ng-click="selecionarTurma(turma)">
+            <label class="nomeTabela">{{turma.serie}}</label>
+            <label class="direitaTabela">Ano:{{turma.ano}}</label>
+        </li>
+    </ul>
+</div>

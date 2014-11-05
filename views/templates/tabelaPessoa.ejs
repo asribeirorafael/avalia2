@@ -1,0 +1,44 @@
+<div class="container-content">
+    <div class="container-content margem-inferior row">
+        <div class="container-step col-xs-12 col-sm-6 col-md-9 col-lg-9 margem-superior-4">
+            <ul class="nav nav-pills">
+                <li class="icone active" id="pessoa1">
+                    <a ng-click="reload(0)" role="tab" data-toggle="pill">
+                        <label class="label-step">Professor</label>
+                    </a>
+                </li>
+
+                <li class="icone" id="pessoa2">
+                    <a ng-click="reload(1)" role="tab" data-toggle="pill">
+                        <label class="label-step">Aluno</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <button class="btn btn-primary btnAuto alinhar-direita" ng-click="alterarPagina('cadastroPessoa', '#container-cadastro'); habilitarCadastro()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Cadastrar Pessoa
+            </button>
+        </div>
+        <div class="limpar"></div>
+    </div>
+
+    <div ng-if="pagina === 0">
+        <input type="text" placeholder="Pesquisar professor..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        <hr>
+        <ul class="template-buscarPessoas">
+            <li class="ng-scope" ng-repeat="prof in professor" ng-click="selecionarProf(prof)"><label class="nomeTabela">{{prof.nome}}</label><label class="direitaTabela">{{prof.rd}}</label></li>
+        </ul>
+    </div>
+
+    <div ng-if="pagina === 1">
+        <input type="text" placeholder="Pesquisar aluno..." class="form-control input-lg margem-inferior ng-pristine ng-valid"/>
+        <hr>
+        <ul class="template-buscarPessoas">
+            <li class="ng-scope" ng-repeat="aluno in alunos" ng-click="selecionarAluno(aluno); reload(1)"><label class="nomeTabela">{{aluno.nome}}</label><label class="direitaTabela">{{aluno.numero_RA}}-{{aluno.digito_RA}}</label></li>
+        </ul>
+    </div>
+
+</div>

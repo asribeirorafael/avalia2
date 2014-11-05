@@ -1,0 +1,59 @@
+<div class="container-content">
+    <div>
+        <h3 class="alinhar-esquerda">Cadastrar Escola</h3>
+        <div class="limpar"></div>
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Nome Completo</label>
+                <input type="text" ng-model="objetoEscola.nomeEscola" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Nome Curto</label>
+                <input type="text" ng-model="objetoEscola.nomeCurtoEscola" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Rua</label>
+                <input type="text" ng-model="objetoEscola.Endereco.logradouro" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Numero</label>
+                <input type="text" ng-model="objetoEscola.Endereco.numero" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Estado</label>
+                <select ng-model="objetoEscola.Endereco.estado" ng-options="estado.Value for estado in listaEstadosCidades" class="form-control input-lg margem-inferior" ></select>
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Cidade</label>
+                <select ng-model="objetoEscola.Endereco.cidade" ng-options="cidade.Value for cidade in objetoEscola.Endereco.estado.Cidades" class="form-control input-lg margem-inferior" ></select>
+                <hr>
+            </div>
+        </div>
+
+        <div ng-if="cadastroEscolhido !== -1" class=" btns">
+            <button type="button" ng-click="editarEscola(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Editar</button>
+            <button type="button" ng-click="deletarEscola(objetoEscola)" class="btn btn-primary alinhar-esquerda"><span class="glyphicon glyphicon-remove"></span> Deletar</button>
+        </div>
+
+        <div ng-if="cadastroEscolhido === -1">
+            <button type="button" ng-click="cadastrarEscola(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Cadastrar</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+    "name": "avalia",
+    "author": {
+        "name": "Exla"
+    },
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "description": "",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-contrib-jade": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-preprocess": "*",
+        "grunt-mocha-test": "*",
+        "grunt-jslint": "*",
+        "grunt-shell": "*",
+        "grunt-exec": "*",
+        "grunt-contrib-htmlmin": "*"
+    },
+    "engines": {
+        "node": "~0.10.x",
+        "npm": "~1.x.x"
+    }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="mg-versao" content="<!-- @echo versao -->">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Acesso não Autorizado</title>
+
+    <script src="js/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="js/plugins/toastr/2.0.1/toastr.js"></script>
+
+    <link href="css/style.default.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        .loginbox {
+            box-shadow: none;
+            width: auto;
+            padding: 0;
+        }
+
+        .loginboxinner {
+            background: none;
+            padding: 9px;
+        }
+
+        .loginbox .logo p {
+            font-weight: bold;
+            color: #000;
+            font-style: normal;
+            letter-spacing: 2px;
+            font-size: 18px;
+        }
+
+        .footer {
+            font-size: 0.95em;
+            text-align: center;
+            color: #888888;
+            height: 30px;
+            width: 100%;
+            background-color: white;
+        }
+
+        .footer A {
+            color: #888888;
+            text-decoration: underline;
+            background-color: white;
+        }
+
+        .right {
+            width: 235px;
+            float: right;
+            padding: 10px 15px;
+            margin: 0;
+            background-color: white;
+            margin-top: 50px;
+        }
+
+        .left {
+            width: 630px;
+            float: left;
+            padding: 0px 15px;
+            text-align: justify;
+            background-color: white;
+        }
+
+        .body_resize {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .body {
+            width: 960px;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        p.clr, .clr {
+            clear: both;
+            padding: 0;
+            margin: 0;
+            background-color: white;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+            background-color: white;
+        }
+
+        #table {
+            width: 100%;
+            height: 94%;
+            position: static;
+            display: table;
+            *overflow: hidden; /* hack para o IE6 e IE7 */
+            *position: relative; /* hack para o IE6 e IE7 */
+            background-color: white;
+        }
+
+        #cell {
+            vertical-align: middle;
+            display: table-cell;
+            position: static;
+            *top: 50%; /* hack para o IE6 e IE7 */
+            *position: absolute; /* hack para o IE6 e IE7 */
+            background-color: white;
+        }
+
+        .footer a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #FB9337;
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="table">
+
+    <div id="cell">
+
+        <div class="loginpage">
+
+            <div class="body_resize">
+
+                <div class="body">
+
+                    <div class="left" style="width: 450px; padding: 0">
+                        <img src="images/unauthorized.jpg" />
+                    </div>
+
+                    <div class="right" style="width: 450px">
+                        <div class="loginbox">
+                            <div class="loginboxinner">
+                                <div class="logo" style="width: 500px">
+                                    <h1 style="border-bottom: 2px solid #FB9337; font-size: 52px; text-align: center"><span>Acesso não Autorizado</span></h1>
+                                    <br>
+                                    <p id="unauthorizeTxt" style="text-align: justify"></p>
+                                    <br>
+                                    <p style="text-align: justify">Caso o erro persista entre em contato com um administrador.</p>
+                                    <br>
+                                </div>
+                                <!--logo-->
+                                <br clear="all" />
+                                <br />
+
+                            </div>
+                            <!--loginboxinner-->
+                        </div>
+                        <!--loginbox-->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

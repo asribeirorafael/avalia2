@@ -1,0 +1,54 @@
+<div class="container-content">
+    <div>
+        <h3 class="alinhar-esquerda">Cadastrar Turma</h3>
+        <div class="limpar"></div>
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Código PRODESP</label>
+                <input type="text" ng-model="objetoTurma.codigoProdesp" class="form-control input-lg margem-inferior"/>
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Ano</label>
+                <input type="text" mask="ano" ng-model="objetoTurma.ano" class="form-control input-lg margem-inferior" />
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Curso</label>
+                <select ng-model="objetoTurma.curso" ng-options="Curso.Value for Curso in listaCursos" class="form-control input-lg margem-inferior" name="item1"></select>
+                <hr>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Série</label>
+                <select ng-model="objetoTurma.serie" ng-options="listaSerie.Value for listaSerie in objetoTurma.curso.Serie" class="form-control input-lg margem-inferior" name="item2"></select>
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Turno</label>
+                <select ng-model="objetoTurma.turno" ng-options="listaPeriodo.Key as listaPeriodo.Value for listaPeriodo in listaPeriodo" class="form-control input-lg margem-inferior" name="item3">                </select>
+                <hr>
+            </div>
+        </div>
+
+        <div ng-if="cadastroEscolhido !== -1" class=" btns">
+            <button type="button" ng-click="editarTurma(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Editar</button>
+            <button type="button" ng-click="deletarTurma(objetoTurma.id)" class="btn btn-primary alinhar-esquerda"><span class="glyphicon glyphicon-remove"></span> Deletar</button>
+        </div>
+
+        <div ng-if="cadastroEscolhido === -1">
+            <button type="button" ng-click="cadastrarTurma(null)" class="btn btn-primary alinhar-direita"><span class="glyphicon glyphicon-search"></span> Cadastrar</button>
+        </div>
+    </div>
+</div>
