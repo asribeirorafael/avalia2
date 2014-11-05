@@ -6,11 +6,11 @@ Parse.initialize("Y9INXMkrMANGt2B8ttXcDLPiRfvNTOMVmHekxXDx", "mSFT9RRrXvwMopXmiP
 
 window.fbAsyncInit = function() {
     Parse.FacebookUtils.init({
-        appId      : '329100020607924',
+        appId      : '1383839455240707',
         status     : true, // check Facebook Login status
         cookie     : true, // enable cookies to allow Parse to access the session
         xfbml      : true,
-        version    : 'v2.1'
+        version    : 'v2.2'
     });
 
     // Run code after the Facebook SDK is loaded.
