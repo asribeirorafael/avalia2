@@ -50,7 +50,7 @@
     font-family: 'RobotoCondensed';
     src: url('Roboto-Condensed-webfont.eot');
     src: url('Roboto-Condensed-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Roboto-Condensed-webfont.woff') format('woff'),
+         /*url('Roboto-Condensed-webfont.woff') format('woff'),*/
          url('Roboto-Condensed-webfont.ttf') format('truetype'),
          url('Roboto-Condensed-webfont.svg#RobotoCondensed') format('svg');
     font-weight: normal;
