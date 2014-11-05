@@ -10,7 +10,7 @@ window.fbAsyncInit = function() {
         status     : true, // check Facebook Login status
         cookie     : true, // enable cookies to allow Parse to access the session
         xfbml      : true,
-        version    : 'v2.2'
+        version    : 'v2.1'
     });
 
     // Run code after the Facebook SDK is loaded.
