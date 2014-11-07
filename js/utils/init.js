@@ -32,7 +32,7 @@ function LoginFacebookParse(){
                 FB.api('/me', function(response) {
                     var user = Parse.User.current();
                     var query = new Parse.Query("User");
-                    query.equalTo("idFacebook", response.id);
+                    query.equalTo("username", user.get("username"));
                     query.first({
                         success: function (usuario) {
                             usuario.set("email", response.email);
