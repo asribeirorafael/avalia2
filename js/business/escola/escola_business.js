@@ -14,7 +14,7 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
         postEscola: function(object, callback){
             var EscolaTable = Parse.Object.extend("escola");
 
-            EscolaBusiness.postEndereco(object.Endereco, function(res){
+            EnderecoBusiness.postEndereco(object.Endereco, function(res){
                 object.Endereco = EnderecoContract.setEnderecoFront(res);
                 var escolaSend = EscolaContract.setEscolaBase(new EscolaTable(), object);
 
