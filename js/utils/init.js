@@ -69,6 +69,7 @@ function LoginFacebookParse(){
         var user = Parse.User.current()
         var query = new Parse.Query("User");
         query.equalTo("idFacebook", user.get("authData").facebook.id);
+        query.include("idPessoa");
         query.first({
             success: function(usuario) {
                 if(!usuario.get("habilitado")){
