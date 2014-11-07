@@ -93,15 +93,17 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.turmas = [];
     escopoGlobal.aluno = [];
     escopoGlobal.professores = [];
+    escopoGlobal.escola = new Objetos.Escola();
+    escopoGlobal.turma = new Objetos.Turma();
+    escopoGlobal.aluno = new Objetos.Aluno();
+    escopoGlobal.professor = new Objetos.Professor();
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;
     };
-
     escopoGlobal.reload = function (numeroPag) {
         escopoGlobal.pagina = numeroPag;
     };
-
     escopoGlobal.alterarPagina = function (url, container) {
         var htmlTemplate = jQuery('#template_' + url);
         if (htmlTemplate) {
@@ -110,7 +112,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
             jQuery(container).html(htmlTemplate);
         }
     };
-
     escopoGlobal.habilitarCadastro = function () {
         if (escopoGlobal.cadastroEscolhido === -1) {
             escopoGlobal.cadastroEscolhido = null;
@@ -118,7 +119,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
             escopoGlobal.cadastroEscolhido = -1;
         }
     };
-
     escopoGlobal.limparTemplate = function (endereco) {
         escopoGlobal.objetoEscola = new Objetos.Escola();
         escopoGlobal.objetoTurma = new Objetos.Turma();
@@ -129,20 +129,23 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---------------------------------------------------------------------*/
 
-    /*---CADASTRAR---*/
+    //EVENTOS DA ESCOLA
 
-    escopoGlobal.cadastrarEscola = function () {
-        var cadEscola = Utils.Clonar(escopoGlobal.objetoEscola);
-        cadEscola.Endereco.estado = cadEscola.Endereco.estado.Key;
-        cadEscola.Endereco.cidade = cadEscola.Endereco.cidade.Key;
-        postEscola(cadEscola, function(resposta){
-            cadEscola.id = resposta.id;
-            escopoGlobal.escolas.push(cadEscola);
-            escopoGlobal.alterarPagina("tabelaEscola", '#container-cadastro');
-            atualizar(escopoGlobal);
-            console.log(resposta);
-        })
-    };
+    escopoGlobal.ESCOLA.cadastrar = EscolaBusiness.eventoCadastrarEscola(escopoGlobal);
+    escopoGlobal.ESCOLA.retornar = EscolaBusiness.retornoEscola(escopoGlobal);
+    escopoGlobal.ESCOLA.retornarRede = EscolaBusiness.retornoEscolasRede(escopoGlobal);
+    escopoGlobal.ESCOLA.selecionar = EscolaBusiness.eventoSelecionarEscola(escolaSelecionada, escopoGlobal);
+    escopoGlobal.ESCOLA.editar = EscolaBusiness.eventoEditarEscola(escopoGlobal);
+    escopoGlobal.ESCOLA.deletar = EscolaBusiness.eventoDeletetarEscola(idEscola);
+
+    //EVENTOS DE PESSOA
+
+    //escopoGlobal.PESSOA.cadastrar = eventoCadastrarPessoa(escopoGlobal);
+    //escopoGlobal.PESSOA.retornar = retornoPessoa(escopoGlobal);
+    //escopoGlobal.PESSOA.editar = eventoEditarPessoa(escopoGlobal);
+    //escopoGlobal.PESSOA.deletar = eventoDeletetarPessoa(idEscola);
+
+    /*---CADASTRAR---*/
 
     escopoGlobal.cadastrarTurma = function () {
         var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
@@ -157,7 +160,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
             console.log(resposta);
         })
     };
-
     escopoGlobal.cadastrarAluno = function () {
         var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
         postAluno(cadAluno, function(resposta){
@@ -168,7 +170,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
             console.log(resposta);
         })
     };
-
     escopoGlobal.cadastrarProfessor = function () {
         var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
         postProfessor(cadProf, function(resposta){})
@@ -180,25 +181,17 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---GET---*/
 
-    getEscolasRede(function(data){
-        var escolas = data;
-        escopoGlobal.escolas = escolas;
-        console.log(escolas)
-    });
-
-    getAlunosRede(function(data){
+    PessoaBusiness.getAlunosRede(function(data){
         var aluno = data;
         escopoGlobal.alunos = aluno;
         console.log(aluno)
     });
-
-    getProfessoresRede(function(data){
+    PessoaBusiness.getProfessoresRede(function(data){
         var professores = data;
         escopoGlobal.professor = professores;
         console.log(professores)
     });
-
-    getTurmasRede(function(data){
+    TurmaBusiness.getTurmasRede(function(data){
         var turmas = data;
         escopoGlobal.turmas = turmas;
         console.log(turmas)
@@ -210,21 +203,14 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---SELECIONAR---*/
 
-    escopoGlobal.selecionarEscola = function (escolaSelecionada) {
-        escopoGlobal.objetoEscola = escolaSelecionada;
-        escopoGlobal.alterarPagina('cadastroEscola', '#container-cadastro');
-    };
-
     escopoGlobal.selecionarTurma = function (turmaSelecionada) {
         escopoGlobal.objetoTurma = turmaSelecionada;
         escopoGlobal.alterarPagina('cadastroTurma', '#container-cadastro');
     };
-
     escopoGlobal.selecionarAluno = function (alunoSelecionada) {
         escopoGlobal.objetoAluno = alunoSelecionada;
         escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
     };
-
     escopoGlobal.selecionarProf = function (profSelecionada) {
         escopoGlobal.objetoProfessor = profSelecionada;
         escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
@@ -236,13 +222,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---EDITAR---*/
 
-    escopoGlobal.editarEscola = function () {
-        var cadEscola = Utils.Clonar(escopoGlobal.objetoEscola);
-        cadEscola.Endereco.estado = cadEscola.Endereco.estado.Key;
-        cadEscola.Endereco.cidade = cadEscola.Endereco.cidade.Key;
-        putEscola(cadEscola, function(resposta){})
-    };
-
     escopoGlobal.editarTurma = function () {
         var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
         cadTurma.curso = cadTurma.curso.Value;
@@ -250,12 +229,10 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
         cadTurma.turno = cadTurma.turno.Value;
         putTurma(cadTurma, function(resposta){})
     };
-
     escopoGlobal.editarAluno = function () {
         var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
         putAluno(cadAluno, function(resposta){})
     };
-
     escopoGlobal.editarProfessor = function () {
         var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
         putProfessor(cadProf, function(resposta){})
@@ -267,18 +244,12 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---DELETAR---*/
 
-    escopoGlobal.deletarEscola = function (idEscola) {
-        deleteEscola(idEscola, function(resposta){})
-    };
-
     escopoGlobal.deletarTurma = function (idTurma) {
         deleteTurma(idTurma, function(resposta){})
     };
-
     escopoGlobal.deletarAluno = function (idAluno) {
         deleteAluno(idAluno, function(resposta){})
     };
-
     escopoGlobal.deletarProfessor = function (idProf) {
         deleteProfessor(idProf, function(resposta){})
     };
@@ -296,8 +267,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
         return ArrayCidades;
     }*/
 }]);
-
-
 
 
 
