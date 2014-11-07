@@ -117,7 +117,7 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
             var cadEscola = Utils.Clonar(escopoGlobal.objetoEscola);
             cadEscola.Endereco.estado = cadEscola.Endereco.estado.Key;
             cadEscola.Endereco.cidade = cadEscola.Endereco.cidade.Key;
-            postEscola(cadEscola, function(resposta){
+            EscolaBusiness.postEscola(cadEscola, function(resposta){
                 cadEscola.id = resposta.id;
                 escopoGlobal.escolas.push(cadEscola);
                 escopoGlobal.alterarPagina("tabelaEscola", '#container-cadastro');
