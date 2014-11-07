@@ -32,7 +32,7 @@ function LoginFacebookParse(){
                 FB.api('/me', function(response) {
                     var user = Parse.User.current();
                     var query = new Parse.Query("User");
-                    query.equalTo("username", "facebook: "+user.get("authData.facebook.id"));
+                    query.equalTo("authData", "facebook: "+user.get("authData").facebook.id);
                     query.first({
                         success: function (usuario) {
                             usuario.set("email", response.email);
@@ -67,7 +67,7 @@ function LoginFacebookParse(){
     }else{
         var user = Parse.User.current()
         var query = new Parse.Query("User");
-        query.equalTo("username", "facebook: "+user.get("authData.facebook.id"));
+        query.equalTo("authData", "facebook: "+user.get("authData").facebook.id);
         query.first({
             success: function(usuario) {
                 if(!usuario.get("habilitado")){
