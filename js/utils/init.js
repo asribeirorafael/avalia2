@@ -32,13 +32,14 @@ function LoginFacebookParse(){
                 FB.api('/me', function(response) {
                     var user = Parse.User.current();
                     var query = new Parse.Query("User");
-                    query.equalTo("authData", "facebook: "+user.get("authData").facebook.id);
+                    query.equalTo("authData", "Facebook: "+user.get("authData").facebook.id);
                     query.first({
                         success: function (usuario) {
                             usuario.set("email", response.email);
                             usuario.set("urlPicture", "https://graph.facebook.com/"+response.id+"/picture");
                             usuario.set("nomeCompleto", response.name);
                             usuario.set("urlFacebook", response.link);
+                            usuario.set("idFacebook", response.id);
                             usuario.save(null, {
                                 success: function(res){
                                     if(!usuario.get("habilitado")){
