@@ -1,7 +1,7 @@
 /**
  * Created by rafae_000 on 03/11/2014.
  */
-var UsuarioContract = (function(Objetos) {
+var UsuarioContract = (function(Objetos, PessoaContract) {
 
     return{
 
@@ -25,4 +25,4 @@ var UsuarioContract = (function(Objetos) {
         }
 
     }
-})(Objetos);
+})(Objetos, PessoaContract);
