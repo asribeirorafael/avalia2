@@ -99,6 +99,8 @@ var Objetos = (function() {
         this.perfil = "";
         this.urlPicture = "";
         this.urlFacebook = "";
+        this.Pessoa = new Objetos.Professor();
+        this.idFacebook = "";
     }
 
     return {

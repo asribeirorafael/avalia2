@@ -14,6 +14,12 @@ var UsuarioContract = (function(Objetos) {
             objetoFront.perfil = objetoBase.get("perfil");
             objetoFront.urlPicture = objetoBase.get("urlPicture");
             objetoFront.urlFacebook = objetoBase.get("urlFacebook");
+            objetoFront.idFacebook = objetoBase.get("idFacebook");
+            if(objetoBase.get("idPessoa")) {
+                objetoFront.Pessoa = PessoaContract.setProfessorFront(objetoBase.get("idPessoa"));
+            }else{
+                objetoFront.Pessoa = new Objetos.Professor();
+            }
 
             return objetoFront;
         }
