@@ -126,8 +126,7 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
             })
         },
 
-        eventoSelecionarEscola: function (escolaSelecionada, escopoGlobal) {
-            escopoGlobal.objetoEscola = escolaSelecionada;
+        eventoSelecionarEscola: function (escopoGlobal) {
             escopoGlobal.alterarPagina('cadastroEscola', '#container-cadastro');
         },
 
@@ -138,8 +137,8 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
             EscolaBusiness.putEscola(cadEscola, function(resposta){})
         },
 
-        eventoDeletetarEscola: function (idEscola) {
-            EscolaBusiness.deleteEscola(idEscola, function(resposta){})
+        eventoDeletetarEscola: function (escopoGlobal) {
+            EscolaBusiness.deleteEscola(escopoGlobal.idEscola, function(resposta){})
         },
 
         retornoEscolasRede: function (escopoGlobal){

@@ -97,6 +97,16 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.turma = new Objetos.Turma();
     escopoGlobal.aluno = new Objetos.Aluno();
     escopoGlobal.professor = new Objetos.Professor();
+    escopoGlobal.idEscola = ""
+    escopoGlobal.escolaSelecionada = ""
+    escopoGlobal.ESCOLA = new function(){
+        this.cadastrar = EscolaBusiness.eventoCadastrarEscola(escopoGlobal);
+        this.retornar = EscolaBusiness.retornoEscola(escopoGlobal);
+        this.retornarRede = EscolaBusiness.retornoEscolasRede(escopoGlobal);
+        this.selecionar = EscolaBusiness.eventoSelecionarEscola(escopoGlobal);
+        this.editar = EscolaBusiness.eventoEditarEscola(escopoGlobal);
+        this.deletar = EscolaBusiness.eventoDeletetarEscola(escopoGlobal);
+    }
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;
@@ -131,12 +141,12 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     //EVENTOS DA ESCOLA
 
-    escopoGlobal.ESCOLA.cadastrar = EscolaBusiness.eventoCadastrarEscola(escopoGlobal);
-    escopoGlobal.ESCOLA.retornar = EscolaBusiness.retornoEscola(escopoGlobal);
-    escopoGlobal.ESCOLA.retornarRede = EscolaBusiness.retornoEscolasRede(escopoGlobal);
-    escopoGlobal.ESCOLA.selecionar = EscolaBusiness.eventoSelecionarEscola(escolaSelecionada, escopoGlobal);
-    escopoGlobal.ESCOLA.editar = EscolaBusiness.eventoEditarEscola(escopoGlobal);
-    escopoGlobal.ESCOLA.deletar = EscolaBusiness.eventoDeletetarEscola(idEscola);
+    //escopoGlobal.ESCOLA.cadastrar = EscolaBusiness.eventoCadastrarEscola(escopoGlobal);
+    //escopoGlobal.ESCOLA.retornar = EscolaBusiness.retornoEscola(escopoGlobal);
+    //escopoGlobal.ESCOLA.retornarRede = EscolaBusiness.retornoEscolasRede(escopoGlobal);
+    //escopoGlobal.ESCOLA.selecionar = EscolaBusiness.eventoSelecionarEscola(escolaSelecionada, escopoGlobal);
+    //escopoGlobal.ESCOLA.editar = EscolaBusiness.eventoEditarEscola(escopoGlobal);
+    //escopoGlobal.ESCOLA.deletar = EscolaBusiness.eventoDeletetarEscola(idEscola);
 
     //EVENTOS DE PESSOA
 
@@ -181,6 +191,7 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     /*---GET---*/
 
+    escopoGlobal.ESCOLA.retornarRede();
     PessoaBusiness.getAlunosRede(function(data){
         var aluno = data;
         escopoGlobal.alunos = aluno;
