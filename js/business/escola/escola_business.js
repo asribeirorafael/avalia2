@@ -144,6 +144,7 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
         retornoEscolasRede: function (escopoGlobal){
             EscolaBusiness.getEscolasRede(function(data){
                 escopoGlobal.escolas = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         },
@@ -151,6 +152,7 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
         retornoEscola: function (idEscola, escopoGlobal){
             EscolaBusiness.getEscola(idEscola, function(data){
                 escopoGlobal.escola = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         }

@@ -38,9 +38,14 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
 
         getTurmasProfessor: function (id, callback){
             var query = new Parse.Query("turma");
-            query.equalTo("idProf","id");
+            query.equalTo("idProf", {
+                __type: "Pointer",
+                className: "pessoaProf",
+                objectId: id
+            });
             query.include("idProf");
             query.include("idEscola");
+            query.ascending("serie");
             query.find({
                 success: function(turmaRes) {
                     var arrayTurmas = new Array();
@@ -58,9 +63,14 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
 
         getTurmasEscola: function (id, callback){
             var query = new Parse.Query("turma");
-            query.equalTo("idEscola","id");
+            query.equalTo("idEscola", {
+                __type: "Pointer",
+                className: "escola",
+                objectId: id
+            });
             query.include("idProf");
             query.include("idEscola");
+            query.ascending("serie");
             query.find({
                 success: function(turmaRes) {
                     var arrayTurmas = new Array();
@@ -81,6 +91,7 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             query.equalTo("idProjeto","mg00");
             query.include("idProf");
             query.include("idEscola");
+            query.ascending("serie");
             query.find({
                 success: function(turmaRes) {
                     var arrayTurmas = new Array();
@@ -148,10 +159,11 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
         },
 
         getTurmasProfessorPage: function(escopoGlobal){
-            var usuario = JSON.Parse(localStorage.getItem("User"));
+            var usuario = JSON.parse(localStorage.getItem("User"));
 
-            TurmaBusiness.getTurmasProfessor(usuario.Professor.id, function(data){
+            TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
                 escopoGlobal.turmas = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         },
@@ -159,12 +171,14 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
         getTurmasRedePage: function(escopoGlobal){
             TurmaBusiness.getTurmasRede(function(data){
                 escopoGlobal.escolas = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         },
 
         selecionarTurma: function (escopoGlobal) {
             escopoGlobal.alterarPagina('cadastroTurma', '#container-cadastro');
+            escopoGlobal.atualizarEscopo();
         },
 
         editarTurma: function (escopoGlobal) {

@@ -190,6 +190,7 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
         getAlunosRede: function(escopoGlobal){
             PessoaBusiness.getAlunosRede(function(data){
                 escopoGlobal.alunos = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         },
@@ -197,6 +198,7 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
         getProfessoresRede: function(escopoGlobal){
             PessoaBusiness.getProfessoresRede(function(data){
                 escopoGlobal.professores = data;
+                escopoGlobal.atualizarEscopo();
                 console.log(data)
             });
         },

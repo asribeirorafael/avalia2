@@ -10,7 +10,7 @@
 
     <script src="../../js/plugins/jquery/jquery-1.11.1.js"></script>
     <script src="../../js/plugins/jquery/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Raleway:100,200,300,400,500,600,700,800,900,200i,300i,400i,500i">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
     <link href="../../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" ng-click="alterarPagina('dashboard', '#Content')">
             <img src="../../images/logo.png" alt="" />
             <span id="sidebar-exp"></span>
         </a>
@@ -61,16 +61,6 @@
             </li>
         </ul>
 
-        <!--<ul class="header-notifications pull-right">-->
-        <!--<li><a href="#" class="clock"></a></li>-->
-        <!--<li><a href="#" class="task"></a></li>-->
-        <!--<li class="last">-->
-        <!--<a href="#" class="globe"></a>-->
-        <!--<span class="lbl">12</span>-->
-        <!--</li>-->
-        <!--</ul>-->
-
-
     </div><!-- /.navbar-collapse -->
 </nav>
 
@@ -82,48 +72,40 @@
 
         <ul class="drop-area">
             <li class="no-back">
-                <a href="index.html">Dashboard</a>
+                <a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a>
             </li>
             <li>
                 Tipos de Prova
                 <ul>
                     <li>
                         <span class="icn icon-145"></span>
-                        <a href="ui-sliders.html">Hipótese</a>
+                        <a ng-click="alterarPagina('listaTurmas', '#Content')">Hipótese</a>
                     </li>
                     <li>
                         <span class="icn icon-145"></span>
-                        <a href="buttons.html">Diagnóstica</a>
+                        <a ng-click="alterarPagina('dashboard', '#Content')">Diagnóstica</a>
                     </li>
                     <li>
                         <span class="icn icon-145"></span>
-                        <a href="buttons.html">FADA</a>
+                        <a ng-click="alterarPagina('dashboard', '#Content')">FADA</a>
                     </li>
                 </ul>
             </li>
             <li>
                 Turmas
                 <ul>
-                    <li>
+                    <li class="ng-scope" ng-repeat="turma in turmas" ng-click="alert('Objeto Slecionado: '+turma.serie+' '+turma.turma)">
                         <span class="icn icon-123"></span>
-                        <a href="ui-sliders.html">1º Ano A</a>
-                    </li>
-                    <li>
-                        <span class="icn icon-123"></span>
-                        <a href="buttons.html">2º Ano A</a>
+                        <a>{{turma.serie+' '+turma.turma}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 Alunos
                 <ul>
-                    <li>
+                    <li class="ng-scope" ng-repeat="turma in turmas" ng-click="alert('Objeto Slecionado: '+turma.serie+' '+turma.turma)">
                         <span class="icn icon-123"></span>
-                        <a href="ui-sliders.html">1º Ano A</a>
-                    </li>
-                    <li>
-                        <span class="icn icon-123"></span>
-                        <a href="buttons.html">2º Ano A</a>
+                        <a>{{turma.serie+' '+turma.turma}}</a>
                     </li>
                 </ul>
             </li>
@@ -131,23 +113,23 @@
                 Administrativo
                 <ul>
                     <li style="display: block" id="noPermissionM">
-                        <a href="ui-sliders.html">Não possui permissão para essa área.</a>
+                        <a>Não possui permissão para essa área.</a>
                     </li>
                     <li style="display: none" id="cadEscola">
                         <span class="icn icon-190"></span>
-                        <a href="ui-sliders.html">Cadastro de Escola</a>
+                        <a>Cadastro de Escola</a>
                     </li>
                     <li style="display: none" id="cadTurma">
                         <span class="icn icon-123"></span>
-                        <a href="buttons.html">Cadastro de Turma</a>
+                        <a>Cadastro de Turma</a>
                     </li>
                     <li style="display: none" id="cadAluno">
                         <span class="icn icon-124"></span>
-                        <a href="buttons.html">Cadastro de Aluno</a>
+                        <a>Cadastro de Aluno</a>
                     </li>
                     <li style="display: none" id="cadProfessor">
                         <span class="icn icon-124"></span>
-                        <a href="buttons.html">Cadastro de Professor</a>
+                        <a>Cadastro de Professor</a>
                     </li>
                 </ul>
             </li>
@@ -162,7 +144,7 @@
             <div class="wrapper-dashboard">
 
                 <div class="row">
-                    OI
+                    <div id="Content"></div>
                 </div>
             </div>
         </div>

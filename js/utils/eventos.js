@@ -105,7 +105,27 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.reload = function (numeroPag) {
         escopoGlobal.pagina = numeroPag;
     };
+    escopoGlobal.atualizarEscopo = function (funcao) {
+        if (escopoGlobal.$$phase || escopoGlobal.$root.$$phase) {
+            if (typeof funcao !== 'function') {
+                return;
+            }
+            funcao();
+        } else {
+            if (typeof funcao !== 'function') {
+                escopoGlobal.$apply();
+            } else {
+                escopoGlobal.$apply(funcao);
+            }
+        }
+    };
     escopoGlobal.alterarPagina = function (url, container) {
+        //Utils.SidebarClose();
+        if ($('#wrapper').hasClass('sidebar')){
+            $('#wrapper').removeClass('sidebar');
+            $('#body-overlay').fadeOut('160');
+        }
+
         var htmlTemplate = jQuery('#template_' + url);
         if (htmlTemplate) {
             htmlTemplate = htmlTemplate.html();

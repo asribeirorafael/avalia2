@@ -178,9 +178,9 @@ var Utils = (function() {
                 var exce = (estado == '01') || (estado == '02');
 
                 dig1 = (titulo.charCodeAt(0) - 48) * 9 + (titulo.charCodeAt(1) - 48) * 8 +
-                    (titulo.charCodeAt(2) - 48) * 7 + (titulo.charCodeAt(3) - 48) * 6 +
-                    (titulo.charCodeAt(4) - 48) * 5 + (titulo.charCodeAt(5) - 48) * 4 +
-                    (titulo.charCodeAt(6) - 48) * 3 + (titulo.charCodeAt(7) - 48) * 2;
+                (titulo.charCodeAt(2) - 48) * 7 + (titulo.charCodeAt(3) - 48) * 6 +
+                (titulo.charCodeAt(4) - 48) * 5 + (titulo.charCodeAt(5) - 48) * 4 +
+                (titulo.charCodeAt(6) - 48) * 3 + (titulo.charCodeAt(7) - 48) * 2;
                 var resto = (dig1 % 11);
                 if (resto == 0) {
                     if (exce) {
@@ -311,6 +311,23 @@ var Utils = (function() {
                 }
                 pis = vlrCNS.substring(0,11);
                 soma = (((Number(pis.substring(0,1))) * 15) +
+                ((Number(pis.substring(1,2))) * 14) +
+                ((Number(pis.substring(2,3))) * 13) +
+                ((Number(pis.substring(3,4))) * 12) +
+                ((Number(pis.substring(4,5))) * 11) +
+                ((Number(pis.substring(5,6))) * 10) +
+                ((Number(pis.substring(6,7))) * 9) +
+                ((Number(pis.substring(7,8))) * 8) +
+                ((Number(pis.substring(8,9))) * 7) +
+                ((Number(pis.substring(9,10))) * 6) +
+                ((Number(pis.substring(10,11))) * 5));
+                resto = soma % 11;
+                dv = 11 - resto;
+                if (dv == 11) {
+                    dv = 0;
+                }
+                if (dv == 10) {
+                    soma = (((Number(pis.substring(0,1))) * 15) +
                     ((Number(pis.substring(1,2))) * 14) +
                     ((Number(pis.substring(2,3))) * 13) +
                     ((Number(pis.substring(3,4))) * 12) +
@@ -320,24 +337,7 @@ var Utils = (function() {
                     ((Number(pis.substring(7,8))) * 8) +
                     ((Number(pis.substring(8,9))) * 7) +
                     ((Number(pis.substring(9,10))) * 6) +
-                    ((Number(pis.substring(10,11))) * 5));
-                resto = soma % 11;
-                dv = 11 - resto;
-                if (dv == 11) {
-                    dv = 0;
-                }
-                if (dv == 10) {
-                    soma = (((Number(pis.substring(0,1))) * 15) +
-                        ((Number(pis.substring(1,2))) * 14) +
-                        ((Number(pis.substring(2,3))) * 13) +
-                        ((Number(pis.substring(3,4))) * 12) +
-                        ((Number(pis.substring(4,5))) * 11) +
-                        ((Number(pis.substring(5,6))) * 10) +
-                        ((Number(pis.substring(6,7))) * 9) +
-                        ((Number(pis.substring(7,8))) * 8) +
-                        ((Number(pis.substring(8,9))) * 7) +
-                        ((Number(pis.substring(9,10))) * 6) +
-                        ((Number(pis.substring(10,11))) * 5) + 2);
+                    ((Number(pis.substring(10,11))) * 5) + 2);
                     resto = soma % 11;
                     dv = 11 - resto;
                     resultado = pis + "001" + String(dv);
@@ -376,20 +376,20 @@ var Utils = (function() {
                 }
 
                 soma = (   (parseInt(pis.substring( 0, 1),10)) * 15)
-                    + ((parseInt(pis.substring( 1, 2),10)) * 14)
-                    + ((parseInt(pis.substring( 2, 3),10)) * 13)
-                    + ((parseInt(pis.substring( 3, 4),10)) * 12)
-                    + ((parseInt(pis.substring( 4, 5),10)) * 11)
-                    + ((parseInt(pis.substring( 5, 6),10)) * 10)
-                    + ((parseInt(pis.substring( 6, 7),10)) * 9)
-                    + ((parseInt(pis.substring( 7, 8),10)) * 8)
-                    + ((parseInt(pis.substring( 8, 9),10)) * 7)
-                    + ((parseInt(pis.substring( 9,10),10)) * 6)
-                    + ((parseInt(pis.substring(10,11),10)) * 5)
-                    + ((parseInt(pis.substring(11,12),10)) * 4)
-                    + ((parseInt(pis.substring(12,13),10)) * 3)
-                    + ((parseInt(pis.substring(13,14),10)) * 2)
-                    + ((parseInt(pis.substring(14,15),10)) * 1);
+                + ((parseInt(pis.substring( 1, 2),10)) * 14)
+                + ((parseInt(pis.substring( 2, 3),10)) * 13)
+                + ((parseInt(pis.substring( 3, 4),10)) * 12)
+                + ((parseInt(pis.substring( 4, 5),10)) * 11)
+                + ((parseInt(pis.substring( 5, 6),10)) * 10)
+                + ((parseInt(pis.substring( 6, 7),10)) * 9)
+                + ((parseInt(pis.substring( 7, 8),10)) * 8)
+                + ((parseInt(pis.substring( 8, 9),10)) * 7)
+                + ((parseInt(pis.substring( 9,10),10)) * 6)
+                + ((parseInt(pis.substring(10,11),10)) * 5)
+                + ((parseInt(pis.substring(11,12),10)) * 4)
+                + ((parseInt(pis.substring(12,13),10)) * 3)
+                + ((parseInt(pis.substring(13,14),10)) * 2)
+                + ((parseInt(pis.substring(14,15),10)) * 1);
 
                 resto = soma % 11;
 
@@ -571,6 +571,17 @@ var Utils = (function() {
                 console.log(user);
                 Parse.User.logOut();
             }
+        },
+
+        SidebarClose: function(){
+            if ($('#wrapper').hasClass('sidebar')){
+                $('#wrapper').removeClass('sidebar');
+                $('#body-overlay').fadeOut('160');
+            }
+            //else{
+            //    $('#body-overlay').fadeIn('160');
+            //    $('#wrapper').addClass('sidebar');
+            //}
         }
     }
 })();

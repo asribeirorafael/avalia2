@@ -576,9 +576,9 @@ body.under-construction { background:#2C363F;position:Relative; }
 
 .separator { height:1px;background:#E6E7E9;margin:25px -25px 25px 0; }
 
-body { font-family: 'Raleway' !important; }
+body { font-family: 'Roboto' !important; }
 
-h1 , h2 , h3 , h4 , h5 , h6 { margin:0 0 20px 0;padding:0;/*font-weight:300 !important;*/font-family: 'Raleway' !important; }
+h1 , h2 , h3 , h4 , h5 , h6 { margin:0 0 20px 0;padding:0;/*font-weight:300 !important;*/font-family: 'Roboto' !important; }
 
 h2 { font-size:24px; }
 
@@ -1684,7 +1684,7 @@ body .container.dashboard #messages-wrapper li > h3 { padding-left:0 !important;
 #sidebar .search-block input { border:none;height:42px;border-bottom:1px solid #D5D7D9;float:left;width:218px;font-style:italic;font-size:15px;color:#b2b5b9; }
 
 #sidebar .drop-area { margin: 30px 0 0 0; }
-#sidebar .drop-area > li { margin:20px 0 0 0;font-size:18px;color:#3f4551;font-weight:400;font-family: 'Raleway' !important;padding:0 0 0 30px;background:url('../images/droparea-01.png') no-repeat 3px 0;cursor:pointer;transition:all 160ms; }
+#sidebar .drop-area > li { margin:20px 0 0 0;font-size:18px;color:#3f4551;font-weight:400;font-family: 'Roboto' !important;padding:0 0 0 30px;background:url('../images/droparea-01.png') no-repeat 3px 0;cursor:pointer;transition:all 160ms; }
 #sidebar .drop-area > li a:hover { color:#28a95f !important; }
 #sidebar .drop-area > li:hover { color:#28a95f !important; }
 #sidebar .drop-area > li a { transition:all 160ms; }
@@ -1822,7 +1822,7 @@ input.type-one { width:100%;border:1px solid #E5E5E5;border-radius:2px;height:43
 /* notice */
 
 .notice { padding:20px;margin:0 0 20px 0; }
-.notice span { font-size:18px;margin:0 0 15px 0;padding:0;display:block;color:rgba('111, 116, 121 , 0.6');line-height:13px;font-family: 'Raleway' !important;font-weight:300; }
+.notice span { font-size:18px;margin:0 0 15px 0;padding:0;display:block;color:rgba('111, 116, 121 , 0.6');line-height:13px;font-family: 'Roboto' !important;font-weight:300; }
 .notice p { font-size:15px;margin:0;padding:0;line-height:20px;line-height:17px; }
 
 .notice.success { background:#F5FFED;border-left:3px solid #86CEA5; }
@@ -2208,7 +2208,7 @@ table.search-developer a:hover i { color:#BCBCBC; }
     height: 200px;
     padding-left: 20px;
     width: 100%; 
-	font-family: 'Raleway' !important;
+	font-family: 'Roboto' !important;
 	padding-top:15px; 	
 	}
 
