@@ -36,6 +36,26 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             });
         },
 
+        getTurmasProfessor: function (id, callback){
+            var query = new Parse.Query("turma");
+            query.equalTo("idProf","id");
+            query.include("idProf");
+            query.include("idEscola");
+            query.find({
+                success: function(turmaRes) {
+                    var arrayTurmas = new Array();
+                    for(var i = 0, lenT = turmaRes.length; i < lenT; i++){
+                        var turma = TurmaContract.setTurmaFront(turmaRes[i]);
+                        arrayTurmas.push(turma);
+                    }
+                    callback(arrayTurmas);
+                },
+                error: function(res, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
         getTurmasEscola: function (id, callback){
             var query = new Parse.Query("turma");
             query.equalTo("idEscola","id");
@@ -125,6 +145,15 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
                 atualizar(escopoGlobal);
                 console.log(resposta);
             })
+        },
+
+        getTurmasProfessorPage: function(escopoGlobal){
+            var usuario = JSON.Parse(localStorage.getItem("User"));
+
+            TurmaBusiness.getTurmasProfessor(usuario.Professor.id, function(data){
+                escopoGlobal.turmas = data;
+                console.log(data)
+            });
         },
 
         getTurmasRedePage: function(escopoGlobal){

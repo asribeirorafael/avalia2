@@ -130,6 +130,10 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
     escopoGlobal.ESCOLA = EscolaBusiness;
     escopoGlobal.PESSOA = PessoaBusiness;
+    escopoGlobal.TURMA = TurmaBusiness;
+
+    escopoGlobal.TURMA.getTurmasProfessorPage(escopoGlobal);
+
     /*retornarCidade: function (Estado) {
         var ArrayCidades = new Array();
         var Cidades = Colecoes.Cidades();
