@@ -169,6 +169,62 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
                     console.log("Delete falhou. Erro: " + error.message);
                 }
             });
+        },
+
+        cadastrarAluno: function (escopoGlobal) {
+            var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
+            PessoaBusiness.postAluno(cadAluno, function(resposta){
+                cadAluno.id = resposta.id;
+                escopoGlobal.aluno.push(cadAluno);
+                escopoGlobal.alterarPagina("tabelaPessoa", '#container-cadastro');
+                atualizar(escopoGlobal);
+                console.log(resposta);
+            })
+        },
+
+        cadastrarProfessor: function (escopoGlobal) {
+            var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
+            PessoaBusiness.postProfessor(cadProf, function(resposta){})
+        },
+
+        getAlunosRede: function(escopoGlobal){
+            PessoaBusiness.getAlunosRede(function(data){
+                escopoGlobal.alunos = data;
+                console.log(data)
+            });
+        },
+
+        getProfessoresRede: function(escopoGlobal){
+            PessoaBusiness.getProfessoresRede(function(data){
+                escopoGlobal.professores = data;
+                console.log(data)
+            });
+        },
+
+        selecionarAluno: function (escopoGlobal) {
+            escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
+        },
+
+        selecionarProf: function (escopoGlobal) {
+            escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
+        },
+
+        editarAluno: function (escopoGlobal) {
+            var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
+            PessoaBusiness.putAluno(cadAluno, function(resposta){})
+        },
+
+        editarProfessor: function (escopoGlobal) {
+            var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
+            PessoaBusiness.putProfessor(cadProf, function(resposta){})
+        },
+
+        deletarAluno: function (idAluno) {
+            PessoaBusiness.deleteAluno(idAluno, function(resposta){})
+        },
+
+        deletarProfessor: function (idProf) {
+            PessoaBusiness.deleteProfessor(idProf, function(resposta){})
         }
 
     }

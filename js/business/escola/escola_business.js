@@ -143,13 +143,15 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
 
         retornoEscolasRede: function (escopoGlobal){
             EscolaBusiness.getEscolasRede(function(data){
-                escopoGlobal.escolas = data;console.log(data)
+                escopoGlobal.escolas = data;
+                console.log(data)
             });
         },
 
-        retornoEscola: function (escopoGlobal){
-            EscolaBusiness.getEscolasRede(function(data){
-                escopoGlobal.escola = data;console.log(data)
+        retornoEscola: function (idEscola, escopoGlobal){
+            EscolaBusiness.getEscola(idEscola, function(data){
+                escopoGlobal.escola = data;
+                console.log(data)
             });
         }
 

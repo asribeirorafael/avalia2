@@ -111,6 +111,43 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
                     console.log("Delete falhou. Erro: " + error.message);
                 }
             });
+        },
+
+        cadastrarTurma: function (escopoGlobal) {
+            var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
+            cadTurma.curso = cadTurma.curso.Value;
+            cadTurma.serie = cadTurma.serie.Value;
+            cadTurma.turno = cadTurma.turno.Value;
+            TurmaBusiness.postTurma(cadTurma, function(resposta){
+                cadTurma.id = resposta.id;
+                escopoGlobal.turmas.push(cadTurma);
+                escopoGlobal.alterarPagina("tabelaTurma", '#container-cadastro');
+                atualizar(escopoGlobal);
+                console.log(resposta);
+            })
+        },
+
+        getTurmasRedePage: function(escopoGlobal){
+            TurmaBusiness.getTurmasRede(function(data){
+                escopoGlobal.escolas = data;
+                console.log(data)
+            });
+        },
+
+        selecionarTurma: function (escopoGlobal) {
+            escopoGlobal.alterarPagina('cadastroTurma', '#container-cadastro');
+        },
+
+        editarTurma: function (escopoGlobal) {
+            var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
+            cadTurma.curso = cadTurma.curso.Value;
+            cadTurma.serie = cadTurma.serie.Value;
+            cadTurma.turno = cadTurma.turno.Value;
+            TurmaBusiness.putTurma(cadTurma, function(resposta){})
+        },
+
+        deletarTurma: function (idTurma) {
+            TurmaBusiness.deleteTurma(idTurma, function(resposta){})
         }
     }
 })(Objetos, TurmaContract);
