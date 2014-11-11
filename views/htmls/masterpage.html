@@ -13,11 +13,12 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel='stylesheet' href='../../scripts/jquery.prettycheckable/prettycheckable.css' type='text/css' media='screen' />
+    <link href="../../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href='../../scripts/jquery.prettycheckable/prettycheckable.css' rel='stylesheet' type='text/css' />
     <!--<link href='scripts/jquery.tipsy/tipsy.css' rel='stylesheet' type='text/css' />-->
     <link href='../../scripts/jquery.easypiechart/easypiechart.css' rel='stylesheet' type='text/css' />
+    <link href='../../scripts/jquery.toggles/toggles.css' rel='stylesheet' type='text/css' />
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en" ></script>
 
     <!-- Custom styles for this template -->
@@ -45,11 +46,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-        <ul class="nav navbar-nav navbar-right header-drop-right">
+        <ul class="nav navbar-nav navbar-right header-drop-right" style="margin-right: 0px;">
             <li class="dropdown user-dropdown-one">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    John
-                    <img src="../../images/user-img.png" alt="" class="img-user" />
+                    {{usuarioLogado.nome}}
+                    <img src="{{usuarioLogado.urlPicture}}" alt="" class="img-user" style="height: 58px;"/>
                     <b class="caret"></b>
                 </a>
 
@@ -79,7 +80,7 @@
                 <ul>
                     <li>
                         <span class="icn icon-145"></span>
-                        <a ng-click="alterarPagina('listaTurmas', '#Content')">Hipótese</a>
+                        <a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Hipótese</a>
                     </li>
                     <li>
                         <span class="icn icon-145"></span>
@@ -168,10 +169,12 @@
 <script type="text/javascript" src="../../js/plugins/toastr/2.0.1/toastr.js"></script>
 <script type="text/javascript" src="../../js/plugins/angular/angular.js"></script>
 <script type="text/javascript" src="../../js/utils/objetos.js"></script>
+<script type="text/javascript" src="../../js/contracts/avaliacao_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/endereco_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/escola_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/turma_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/pessoa_contract.js"></script>
+<script type="text/javascript" src="../../js/business/avaliacao/avaliacao_business.js"></script>
 <script type="text/javascript" src="../../js/business/endereco/endereco_business.js"></script>
 <script type="text/javascript" src="../../js/business/escola/escola_business.js"></script>
 <script type="text/javascript" src="../../js/business/turma/turma_business.js"></script>
@@ -183,13 +186,144 @@
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script>Parse.initialize("Y9INXMkrMANGt2B8ttXcDLPiRfvNTOMVmHekxXDx", "mSFT9RRrXvwMopXmiPZPCr2wOXnrbbBH8H7ZWBqF");</script>
 
+<script type="text/html" id="template_avaliacaoHipotese">
+<ol class="breadcrumb">
+    <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+    <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
+    <li><a ng-click="alterarPagina('listAvaliacoesHipotese', '#Content')">Avaliações</a></li>
+    <li class="active">{{'Avaliacao Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
+</ol>
+
+<div>
+    <div class="col-md-8">
+        <div><h1>Hipótese de Escrita</h1></div>
+        <div>
+            <ul class="wrap-check">
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Alfabético</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico-Alfabético</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico com Valor</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico sem Valor</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Pré-Silábico</h2></label>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="wrap-check">
+                <li>
+                    <input class="prettycheckbox" type="checkbox" />
+                    IT Engineering
+                </li>
+                <li>
+                    <input class="prettycheckbox" type="checkbox" />
+                    Programming
+                </li>
+                <li>
+                    <input class="prettycheckbox" type="checkbox" />
+                    Executive Editor
+                </li>
+                <li>
+                    <input class="prettycheckbox" type="checkbox" />
+                    Freelancer
+                </li>
+                <li>
+                    <input class="prettycheckbox" type="checkbox" />
+                    Web designer
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div><a href="#" class="btn btn-primary btn-lg btn-block blue large">Análise da Avaliação</a></div>
+        <div>
+            <div style="margin: 2% 0 2% 0">
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
+                <div style="border: 1px solid #cccccc; float: left; height: 65px; width: 71px; margin:0 2% 0 0"><h2 style="margin: 20px 0 0 8px;">1/10</h2></div>
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">></h2></a></div>
+                <div><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
+            </div>
+            <div style="border: 1px solid #cccccc">
+                <div style="padding: 5% 28%;">
+                    <img src="https://graph.facebook.com/364148693751840/picture" style="height: 150px; width: 150px">
+                </div>
+                <div>
+                    <div style="padding: 5% 0 3% 5%;"><b>Nome:</b> Usuario Teste</div>
+                    <div style="padding: 0 0 5% 5%;"><b>Data:</b> 00/00/0000</div>
+                </div>
+            </div>
+        </div>
+        <div style="border: 1px solid #cccccc; margin-top: 3%">
+            <div style="padding: 0 0 0% 28%;"><b>Observação do Aluno:</b></div>
+            <div style="border: 1px solid #cccccc; margin: 5%; height: 217px"></div>
+        </div>
+    </div>
+</div>
+</script>
+
 <script type="text/html" id="template_dashboard">
 
 </script>
 
-<script type="text/html" id="template_listaTurmas">
+<script type="text/html" id="template_listaAvaliacoesHipotese">
+<div ng-if="avaliacoes.length == 0">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
+        <li class="active">Avaliações</li>
+    </ol>
+    <h3>Não Existem Avaliações criadas para esta Turma.</h3>
+</div>
+<div ng-if="avaliacoes.length != 0">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
+        <li class="active">Avaliações</li>
+    </ol>
+    <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
+        <div class="panel easy panel-default drag" ng-click="AVALIACAO.selecionarAvaliacao(avaliacao)">
+            <div class="panel-heading">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+            <div class="panel-body">
+                {{turmaSelecionada.serie+" "+turmaSelecionada.turma}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</script>
+
+<script type="text/html" id="template_listaTurmasHipotese">
+<ol class="breadcrumb">
+    <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+    <li class="active">Turmas</li>
+</ol>
 <div class="col-md-4" ng-repeat="turma in turmas">
-    <div class="panel easy panel-default drag" ng-click="alterarPagina('listaTurmas', '#Content')">
+    <div class="panel easy panel-default drag" ng-click="TURMA.selecionarTurmaAvaliacaoHipotese(turma)">
         <div class="panel-heading">{{turma.serie+' '+turma.turma}}</div>
         <div class="panel-body">
             Aliquam vitae lectus aliquet, cursus nisi idornare, praesent in ultrices ipsum. Curabitur eget mauris semras in imperdiet tortor, sit amet pulvinar.

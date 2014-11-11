@@ -228,9 +228,9 @@
 			
 			if ($('#wrapper').hasClass('sidebar')){
 				$('#wrapper').removeClass('sidebar');
-				$('#body-overlay').fadeOut('160');
+				//$('#body-overlay').fadeOut('160');
 			}else{
-				$('#body-overlay').fadeIn('160');
+				//$('#body-overlay').fadeIn('160');
 				$('#wrapper').addClass('sidebar');
 			}
 			
@@ -240,7 +240,7 @@
 		
 		$("#sidebar .drop-area>li").click(function(){
 			$('#sidebar .selected').removeClass('selected');
-			
+
 			if ($('ul:visible', this).size()){
 				$('ul:visible', this).slideUp('fast').removeClass('active');
 			}else{

@@ -144,45 +144,55 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             });
         },
 
-        cadastrarTurma: function (escopoGlobal) {
-            var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
+        //EVENTOS PAGINA
+
+        cadastrarTurma: function () {
+            var cadTurma = Utils.Clonar(globalScope().objetoTurma);
             cadTurma.curso = cadTurma.curso.Value;
             cadTurma.serie = cadTurma.serie.Value;
             cadTurma.turno = cadTurma.turno.Value;
             TurmaBusiness.postTurma(cadTurma, function(resposta){
                 cadTurma.id = resposta.id;
-                escopoGlobal.turmas.push(cadTurma);
-                escopoGlobal.alterarPagina("tabelaTurma", '#container-cadastro');
-                atualizar(escopoGlobal);
+                globalScope().turmas.push(cadTurma);
+                globalScope().alterarPagina("tabelaTurma", '#container-cadastro');
+                atualizar(globalScope());
                 console.log(resposta);
             })
         },
 
-        getTurmasProfessorPage: function(escopoGlobal){
+        getTurmasProfessorPage: function(){
             var usuario = JSON.parse(localStorage.getItem("User"));
 
             TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
-                escopoGlobal.turmas = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().turmas = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         },
 
-        getTurmasRedePage: function(escopoGlobal){
+        getTurmasRedePage: function(){
             TurmaBusiness.getTurmasRede(function(data){
-                escopoGlobal.escolas = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().escolas = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         },
 
-        selecionarTurma: function (escopoGlobal) {
-            escopoGlobal.alterarPagina('cadastroTurma', '#container-cadastro');
-            escopoGlobal.atualizarEscopo();
+        selecionarTurma: function () {
+            globalScope().alterarPagina('cadastroTurma', '#container-cadastro');
+            globalScope().atualizarEscopo();
         },
 
-        editarTurma: function (escopoGlobal) {
-            var cadTurma = Utils.Clonar(escopoGlobal.objetoTurma);
+        selecionarTurmaAvaliacaoHipotese: function(turma){
+            globalScope().turmaSelecionada = turma;
+            AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
+                globalScope().alterarPagina('listaAvaliacoesHipotese', '#Content');
+                globalScope().atualizarEscopo();
+            });
+        },
+
+        editarTurma: function () {
+            var cadTurma = Utils.Clonar(globalScope().objetoTurma);
             cadTurma.curso = cadTurma.curso.Value;
             cadTurma.serie = cadTurma.serie.Value;
             cadTurma.turno = cadTurma.turno.Value;

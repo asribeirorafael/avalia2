@@ -113,46 +113,46 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
         },
 
         //EVENTOS PÁGINA
-        eventoCadastrarEscola: function (escopoGlobal) {
-            var cadEscola = Utils.Clonar(escopoGlobal.objetoEscola);
+        eventoCadastrarEscola: function () {
+            var cadEscola = Utils.Clonar(globalScope().objetoEscola);
             cadEscola.Endereco.estado = cadEscola.Endereco.estado.Key;
             cadEscola.Endereco.cidade = cadEscola.Endereco.cidade.Key;
             EscolaBusiness.postEscola(cadEscola, function(resposta){
                 cadEscola.id = resposta.id;
-                escopoGlobal.escolas.push(cadEscola);
-                escopoGlobal.alterarPagina("tabelaEscola", '#container-cadastro');
-                atualizar(escopoGlobal);
+                globalScope().escolas.push(cadEscola);
+                globalScope().alterarPagina("tabelaEscola", '#container-cadastro');
+                atualizar(globalScope());
                 console.log(resposta);
             })
         },
 
-        eventoSelecionarEscola: function (escopoGlobal) {
-            escopoGlobal.alterarPagina('cadastroEscola', '#container-cadastro');
+        eventoSelecionarEscola: function () {
+            globalScope().alterarPagina('cadastroEscola', '#container-cadastro');
         },
 
-        eventoEditarEscola: function (escopoGlobal) {
-            var cadEscola = Utils.Clonar(escopoGlobal.objetoEscola);
+        eventoEditarEscola: function () {
+            var cadEscola = Utils.Clonar(globalScope().objetoEscola);
             cadEscola.Endereco.estado = cadEscola.Endereco.estado.Key;
             cadEscola.Endereco.cidade = cadEscola.Endereco.cidade.Key;
             EscolaBusiness.putEscola(cadEscola, function(resposta){})
         },
 
-        eventoDeletetarEscola: function (escopoGlobal) {
-            EscolaBusiness.deleteEscola(escopoGlobal.idEscola, function(resposta){})
+        eventoDeletetarEscola: function () {
+            EscolaBusiness.deleteEscola(globalScope().idEscola, function(resposta){})
         },
 
-        retornoEscolasRede: function (escopoGlobal){
+        retornoEscolasRede: function (){
             EscolaBusiness.getEscolasRede(function(data){
-                escopoGlobal.escolas = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().escolas = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         },
 
-        retornoEscola: function (idEscola, escopoGlobal){
+        retornoEscola: function (idEscola){
             EscolaBusiness.getEscola(idEscola, function(data){
-                escopoGlobal.escola = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().escola = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         }

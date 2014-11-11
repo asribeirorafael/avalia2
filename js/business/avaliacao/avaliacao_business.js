@@ -35,6 +35,26 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             });
         },
 
+        getAvaliacaoTipoSerie: function(idTipo, idSerie, callback){
+            var query = new Parse.Query("avaliacao");
+            query.equalTo("tipoAvaliacao", idTipo);
+            query.equalTo("tipoSerie", idSerie);
+            query.ascending("periodo");
+            query.find({
+                success: function(avaliacaoRes) {
+                    var arrayAvaliacao = new Array();
+                    for(var i = 0, lenT = avaliacaoRes.length; i < lenT; i++){
+                        var avaliacao = AvaliacaoContract.setAvaliacaoFront(avaliacaoRes[i]);
+                        arrayAvaliacao.push(avaliacao);
+                    }
+                    callback(arrayAvaliacao);
+                },
+                error: function(object, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
         putAvaliacao: function(object, callback){
             var AvaliacaoTable = Parse.Object.extend("avaliacao");
             var avaliacaoBack = new AvaliacaoTable();
@@ -71,6 +91,22 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     console.log("Delete falhou. Erro: " + error.message);
                 }
             });
+        },
+
+        //EVENTOS PAGINA
+
+        retornoAvaliacaoTipoSerie: function(idTipo, turma, callback){
+            AvaliacaoBusiness.getAvaliacaoTipoSerie(idTipo, turma.serie, function(data){
+                globalScope().avaliacoes = data;
+                globalScope().atualizarEscopo();
+                callback(true);
+            });
+        },
+
+        selecionarAvaliacao: function(avaliacao){
+            globalScope().avaliacaoSelecionada = avaliacao;
+            globalScope().alterarPagina('avaliacaoHipotese', '#Content');
+            globalScope().atualizarEscopo();
         }
 
     }

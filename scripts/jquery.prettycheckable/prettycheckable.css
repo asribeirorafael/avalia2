@@ -28,7 +28,7 @@
 	margin-bottom:5px;
 }
 
-.prettyradio a { background: url('back-radio-disabled.png') no-repeat center center; }
+.prettyradio a { background: url('../../images/back-radio-disabled.png') no-repeat center center; }
 
 .prettycheckbox.green a,
 .prettyradio.green a{ }

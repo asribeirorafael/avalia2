@@ -13,11 +13,12 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel='stylesheet' href='../../scripts/jquery.prettycheckable/prettycheckable.css' type='text/css' media='screen' />
+    <link href="../../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href='../../scripts/jquery.prettycheckable/prettycheckable.css' rel='stylesheet' type='text/css' />
     <!--<link href='scripts/jquery.tipsy/tipsy.css' rel='stylesheet' type='text/css' />-->
     <link href='../../scripts/jquery.easypiechart/easypiechart.css' rel='stylesheet' type='text/css' />
+    <link href='../../scripts/jquery.toggles/toggles.css' rel='stylesheet' type='text/css' />
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en" ></script>
 
     <!-- Custom styles for this template -->
@@ -45,11 +46,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-        <ul class="nav navbar-nav navbar-right header-drop-right">
+        <ul class="nav navbar-nav navbar-right header-drop-right" style="margin-right: 0px;">
             <li class="dropdown user-dropdown-one">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    John
-                    <img src="../../images/user-img.png" alt="" class="img-user" />
+                    {{usuarioLogado.nome}}
+                    <img src="{{usuarioLogado.urlPicture}}" alt="" class="img-user" style="height: 58px;"/>
                     <b class="caret"></b>
                 </a>
 
@@ -79,7 +80,7 @@
                 <ul>
                     <li>
                         <span class="icn icon-145"></span>
-                        <a ng-click="alterarPagina('listaTurmas', '#Content')">Hipótese</a>
+                        <a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Hipótese</a>
                     </li>
                     <li>
                         <span class="icn icon-145"></span>
@@ -168,10 +169,12 @@
 <script type="text/javascript" src="../../js/plugins/toastr/2.0.1/toastr.js"></script>
 <script type="text/javascript" src="../../js/plugins/angular/angular.js"></script>
 <script type="text/javascript" src="../../js/utils/objetos.js"></script>
+<script type="text/javascript" src="../../js/contracts/avaliacao_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/endereco_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/escola_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/turma_contract.js"></script>
 <script type="text/javascript" src="../../js/contracts/pessoa_contract.js"></script>
+<script type="text/javascript" src="../../js/business/avaliacao/avaliacao_business.js"></script>
 <script type="text/javascript" src="../../js/business/endereco/endereco_business.js"></script>
 <script type="text/javascript" src="../../js/business/escola/escola_business.js"></script>
 <script type="text/javascript" src="../../js/business/turma/turma_business.js"></script>

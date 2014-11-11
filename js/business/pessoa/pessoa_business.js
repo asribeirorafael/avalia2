@@ -171,53 +171,53 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
             });
         },
 
-        cadastrarAluno: function (escopoGlobal) {
-            var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
+        cadastrarAluno: function () {
+            var cadAluno =  Utils.Clonar(globalScope().objetoAluno);
             PessoaBusiness.postAluno(cadAluno, function(resposta){
                 cadAluno.id = resposta.id;
-                escopoGlobal.aluno.push(cadAluno);
-                escopoGlobal.alterarPagina("tabelaPessoa", '#container-cadastro');
-                atualizar(escopoGlobal);
+                glob.aluno.push(cadAluno);
+                globalScope().alterarPagina("tabelaPessoa", '#container-cadastro');
+                atualizar(globalScope());
                 console.log(resposta);
             })
         },
 
-        cadastrarProfessor: function (escopoGlobal) {
-            var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
+        cadastrarProfessor: function () {
+            var cadProf =  Utils.Clonar(globalScope().objetoProfessor);
             PessoaBusiness.postProfessor(cadProf, function(resposta){})
         },
 
-        getAlunosRede: function(escopoGlobal){
+        getAlunosRede: function(){
             PessoaBusiness.getAlunosRede(function(data){
-                escopoGlobal.alunos = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().alunos = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         },
 
-        getProfessoresRede: function(escopoGlobal){
+        getProfessoresRede: function(){
             PessoaBusiness.getProfessoresRede(function(data){
-                escopoGlobal.professores = data;
-                escopoGlobal.atualizarEscopo();
+                globalScope().professores = data;
+                globalScope().atualizarEscopo();
                 console.log(data)
             });
         },
 
-        selecionarAluno: function (escopoGlobal) {
-            escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
+        selecionarAluno: function () {
+            globalScope().alterarPagina('cadastroPessoa', '#container-cadastro');
         },
 
-        selecionarProf: function (escopoGlobal) {
-            escopoGlobal.alterarPagina('cadastroPessoa', '#container-cadastro');
+        selecionarProf: function () {
+            globalScope().alterarPagina('cadastroPessoa', '#container-cadastro');
         },
 
-        editarAluno: function (escopoGlobal) {
-            var cadAluno =  Utils.Clonar(escopoGlobal.objetoAluno);
+        editarAluno: function () {
+            var cadAluno =  Utils.Clonar(globalScope().objetoAluno);
             PessoaBusiness.putAluno(cadAluno, function(resposta){})
         },
 
-        editarProfessor: function (escopoGlobal) {
-            var cadProf =  Utils.Clonar(escopoGlobal.objetoProfessor);
+        editarProfessor: function () {
+            var cadProf =  Utils.Clonar(globalScope().objetoProfessor);
             PessoaBusiness.putProfessor(cadProf, function(resposta){})
         },
 

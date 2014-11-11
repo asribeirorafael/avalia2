@@ -1,0 +1,71 @@
+<ol class="breadcrumb">
+    <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+    <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
+    <li><a ng-click="alterarPagina('listAvaliacoesHipotese', '#Content')">Avaliações</a></li>
+    <li class="active">{{'Avaliacao Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
+</ol>
+
+<div>
+    <div class="col-md-8">
+        <div><h1>Hipótese de Escrita</h1></div>
+        <div>
+            <ul class="wrap-check">
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Alfabético</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico-Alfabético</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico com Valor</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Silábico sem Valor</h2></label>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <label><h2>Pré-Silábico</h2></label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div><a href="#" class="btn btn-primary btn-lg btn-block blue large">Análise da Avaliação</a></div>
+        <div>
+            <div style="margin: 2% 0 2% 0">
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
+                <div style="border: 1px solid #cccccc; float: left; height: 65px; width: 71px; margin:0 2% 0 0"><h2 style="margin: 20px 0 0 8px;">1/10</h2></div>
+                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">></h2></a></div>
+                <div><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
+            </div>
+            <div style="border: 1px solid #cccccc">
+                <div style="padding: 5% 28%;">
+                    <img src="https://graph.facebook.com/364148693751840/picture" style="height: 150px; width: 150px">
+                </div>
+                <div>
+                    <div style="padding: 5% 0 3% 5%;"><b>Nome:</b> Usuario Teste</div>
+                    <div style="padding: 0 0 5% 5%;"><b>Data:</b> 00/00/0000</div>
+                </div>
+            </div>
+        </div>
+        <div style="border: 1px solid #cccccc; margin-top: 3%">
+            <div style="padding: 0 0 0% 28%;"><b>Observação do Aluno:</b></div>
+            <div style="border: 1px solid #cccccc; margin: 5%; height: 217px"></div>
+        </div>
+    </div>
+</div>

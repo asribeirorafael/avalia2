@@ -3,6 +3,10 @@
 var provasApp = angular.module('provasApp', []);
 
 /* Função do $scope */
+function globalScope(){
+    return angular.element(document).scope();
+}
+
 function atualizar(scope, funcao) {
     'use strict';
     if (scope.$$phase || scope.$root.$$phase) {
@@ -81,6 +85,7 @@ provasApp.directive('mask', [function () {
 
 provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
 
+    escopoGlobal.usuarioLogado = JSON.parse(localStorage.getItem("User"));
     escopoGlobal.listaEstadosCidades = Colecoes.EstadosCidades;
     escopoGlobal.listaCursos = Colecoes.Curso;
     escopoGlobal.listaPeriodo = Colecoes.TipoTurno;
@@ -93,12 +98,15 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.turmas = [];
     escopoGlobal.aluno = [];
     escopoGlobal.professores = [];
+    escopoGlobal.avaliacoes = [];
     escopoGlobal.escola = new Objetos.Escola();
     escopoGlobal.turma = new Objetos.Turma();
     escopoGlobal.aluno = new Objetos.Aluno();
     escopoGlobal.professor = new Objetos.Professor();
     escopoGlobal.idEscola = "";
     escopoGlobal.escolaSelecionada = "";
+    escopoGlobal.turmaSelecionada = "";
+    escopoGlobal.avaliacaoSelecionada = new Objetos.Avaliacao();
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;
     };
@@ -121,10 +129,10 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     };
     escopoGlobal.alterarPagina = function (url, container) {
         //Utils.SidebarClose();
-        if ($('#wrapper').hasClass('sidebar')){
-            $('#wrapper').removeClass('sidebar');
-            $('#body-overlay').fadeOut('160');
-        }
+        //if ($('#wrapper').hasClass('sidebar')){
+        //    $('#wrapper').removeClass('sidebar');
+        //    $('#body-overlay').fadeOut('160');
+        //}
 
         var htmlTemplate = jQuery('#template_' + url);
         if (htmlTemplate) {
@@ -151,8 +159,9 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.ESCOLA = EscolaBusiness;
     escopoGlobal.PESSOA = PessoaBusiness;
     escopoGlobal.TURMA = TurmaBusiness;
+    escopoGlobal.AVALIACAO = AvaliacaoBusiness;
 
-    escopoGlobal.TURMA.getTurmasProfessorPage(escopoGlobal);
+    escopoGlobal.TURMA.getTurmasProfessorPage();
 
     /*retornarCidade: function (Estado) {
         var ArrayCidades = new Array();
