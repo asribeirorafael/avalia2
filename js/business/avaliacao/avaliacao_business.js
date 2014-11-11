@@ -105,8 +105,36 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
         selecionarAvaliacao: function(avaliacao){
             globalScope().avaliacaoSelecionada = avaliacao;
+            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+
             globalScope().alterarPagina('avaliacaoHipotese', '#Content');
             globalScope().atualizarEscopo();
+        },
+
+        goToFirst: function(){
+            console.log(globalScope().indiceAluno);
+            globalScope().indiceAluno = 0;
+            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+        },
+
+        goToLast: function(){
+            console.log(globalScope().indiceAluno);
+            globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
+            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+        },
+
+        goToNext: function(){
+            console.log(globalScope().indiceAluno);
+            if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
+                globalScope().indiceAluno = globalScope().indiceAluno + 1;
+                globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+        },
+
+        goToPrior: function(){
+            console.log(globalScope().indiceAluno);
+            if(globalScope().indiceAluno > 0)
+                globalScope().indiceAluno = globalScope().indiceAluno - 1;
+                globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
         }
 
     }

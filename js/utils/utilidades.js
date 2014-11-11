@@ -582,6 +582,43 @@ var Utils = (function() {
             //    $('#body-overlay').fadeIn('160');
             //    $('#wrapper').addClass('sidebar');
             //}
+        },
+
+        validarUnico: function(respAvaliacao){
+            switch (respAvaliacao){
+                case "1":
+                    jQuery("#chkbx2").prop("checked", false);
+                    jQuery("#chkbx3").prop("checked", false);
+                    jQuery("#chkbx4").prop("checked", false);
+                    jQuery("#chkbx5").prop("checked", false);
+                    break;
+                case "2":
+                    jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx3").prop("checked", false);
+                    jQuery("#chkbx4").prop("checked", false);
+                    jQuery("#chkbx5").prop("checked", false);
+                    break;
+                case "3":
+                    jQuery("#chkbx2").prop("checked", false);
+                    jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx4").prop("checked", false);
+                    jQuery("#chkbx5").prop("checked", false);
+                    break;
+                case "4":
+                    jQuery("#chkbx2").prop("checked", false);
+                    jQuery("#chkbx3").prop("checked", false);
+                    jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx5").prop("checked", false);
+                    break;
+                case "5":
+                    jQuery("#chkbx2").prop("checked", false);
+                    jQuery("#chkbx3").prop("checked", false);
+                    jQuery("#chkbx4").prop("checked", false);
+                    jQuery("#chkbx1").prop("checked", false);
+                    break;
+                default :
+                    break;
+            }
         }
     }
 })();

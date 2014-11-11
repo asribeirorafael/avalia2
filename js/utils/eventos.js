@@ -107,6 +107,10 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.escolaSelecionada = "";
     escopoGlobal.turmaSelecionada = "";
     escopoGlobal.avaliacaoSelecionada = new Objetos.Avaliacao();
+    escopoGlobal.alunoSelecionadoHipotese = new Objetos.Aluno();
+    escopoGlobal.indiceAluno = 0;
+    escopoGlobal.respostaAvaliacaoHipotese = new Objetos.ResultadoHipotese();
+
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;
     };
@@ -128,12 +132,6 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
         }
     };
     escopoGlobal.alterarPagina = function (url, container) {
-        //Utils.SidebarClose();
-        //if ($('#wrapper').hasClass('sidebar')){
-        //    $('#wrapper').removeClass('sidebar');
-        //    $('#body-overlay').fadeOut('160');
-        //}
-
         var htmlTemplate = jQuery('#template_' + url);
         if (htmlTemplate) {
             htmlTemplate = htmlTemplate.html();
@@ -160,6 +158,7 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.PESSOA = PessoaBusiness;
     escopoGlobal.TURMA = TurmaBusiness;
     escopoGlobal.AVALIACAO = AvaliacaoBusiness;
+    escopoGlobal.UTILIDADE = Utils;
 
     escopoGlobal.TURMA.getTurmasProfessorPage();
 

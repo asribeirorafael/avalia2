@@ -33,6 +33,7 @@ var Objetos = (function() {
         this.dataNascimento = null;
         this.numero_RA = null;
         this.digito_RA = null;
+        this.imagem = "";
     };
 
     function Professor() {

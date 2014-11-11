@@ -64,7 +64,13 @@ var TurmaContract = (function(Objetos) {
             }          else{
                 objetoBase.set("idProf", null);
             }
-            objetoBase.set("listaAlunos", objetoFront.Alunos);
+
+            var listaIdAlunos = new Array();
+            for(var i=0; i< objetoFront.Alunos.length; i++){
+                listaIdAlunos.push(objetoFront.Alunos[i].id);
+            }
+
+            objetoBase.set("listaAlunos", listaIdAlunos);
 
             return objetoBase;
         }

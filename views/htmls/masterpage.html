@@ -201,31 +201,31 @@
             <ul class="wrap-check">
                 <li>
                     <div>
-                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx1" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="1" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2>Alfabético</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx2" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="2" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2>Silábico-Alfabético</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx3" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="3" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2>Silábico com Valor</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx4" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="4" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2>Silábico sem Valor</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx5" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="5" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 110px; height: 110px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2>Pré-Silábico</h2></label>
                     </div>
                 </li>
@@ -236,19 +236,19 @@
         <div><a href="#" class="btn btn-primary btn-lg btn-block blue large">Análise da Avaliação</a></div>
         <div>
             <div style="margin: 2% 0 2% 0">
-                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
-                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
-                <div style="border: 1px solid #cccccc; float: left; height: 65px; width: 71px; margin:0 2% 0 0"><h2 style="margin: 20px 0 0 8px;">1/10</h2></div>
-                <div style="float: left; margin:0 2% 0 0"><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">></h2></a></div>
-                <div><a href="#" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
+                <div style="float: left; margin:0 2% 0 0"><a ng-click="AVALIACAO.goToFirst()" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
+                <div style="float: left; margin:0 2% 0 0"><a ng-click="AVALIACAO.goToPrior()" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
+                <div style="border: 1px solid #cccccc; float: left; height: 65px; width: 71px; margin:0 2% 0 0"><h2 style="margin: 20px 0 0 8px;">{{(indiceAluno+1)+"/"+turmaSelecionada.Alunos.length}}</h2></div>
+                <div style="float: left; margin:0 2% 0 0"><a ng-click="AVALIACAO.goToNext()" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">></h2></a></div>
+                <div><a ng-click="AVALIACAO.goToLast()" class="btn default middle" style="width: 65px; height: 65px"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
             </div>
             <div style="border: 1px solid #cccccc">
                 <div style="padding: 5% 28%;">
-                    <img src="https://graph.facebook.com/364148693751840/picture" style="height: 150px; width: 150px">
+                    <img src="{{alunoSelecionadoHipotese.imagem}}" style="height: 150px; width: 150px">
                 </div>
                 <div>
-                    <div style="padding: 5% 0 3% 5%;"><b>Nome:</b> Usuario Teste</div>
-                    <div style="padding: 0 0 5% 5%;"><b>Data:</b> 00/00/0000</div>
+                    <div style="padding: 5% 0 3% 5%;"><b>Nome:</b>{{alunoSelecionadoHipotese.nome}}</div>
+                    <div style="padding: 0 0 5% 5%;"><b>Data:</b>{{alunoSelecionadoHipotese.dataNascimento}}</div>
                 </div>
             </div>
         </div>

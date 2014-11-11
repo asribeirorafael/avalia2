@@ -15,6 +15,7 @@ var PessoaContract = (function(Objetos) {
             objetoFront.dataNascimento = Utils.Conversao.dataBrasil(new Date(objetoBase.get("dtNasc")));
             objetoFront.numero_RA = objetoBase.get("numero_RA");
             objetoFront.digito_RA = objetoBase.get("digito_RA");
+            objetoFront.imagem = objetoBase.get("urlImage");
 
             return objetoFront;
         },
@@ -42,6 +43,7 @@ var PessoaContract = (function(Objetos) {
             objetoBase.set("dtNasc", new Date(objetoFront.dataNascimento));
             objetoBase.set("numero_RA", objetoFront.numero_RA);
             objetoBase.set("digito_RA", objetoFront.digito_RA);
+            objetoBase.set("urlImage", objetoFront.imagem);
 
             return objetoBase;
         },
