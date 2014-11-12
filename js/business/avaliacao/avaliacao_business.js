@@ -221,72 +221,84 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         },
 
         goToFirst: function(){
-            console.log(globalScope().indiceAluno);
-            globalScope().indiceAluno = 0;
-            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
-
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        globalScope().indiceAluno = 0;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+                    });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        globalScope().indiceAluno = 0;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+                    });
                 })
             }
         },
 
         goToLast: function(){
-            console.log(globalScope().indiceAluno);
-            globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
-            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
-
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+                    });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+                    });
                 })
             }
         },
 
         goToNext: function(){
-            console.log(globalScope().indiceAluno);
-            if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
-                globalScope().indiceAluno = globalScope().indiceAluno + 1;
-            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
-
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
+                            globalScope().indiceAluno = globalScope().indiceAluno + 1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+                    });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
+                            globalScope().indiceAluno = globalScope().indiceAluno + 1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+                    });
                 })
             }
         },
 
         goToPrior: function(){
-            console.log(globalScope().indiceAluno);
-            if(globalScope().indiceAluno > 0)
-                globalScope().indiceAluno = globalScope().indiceAluno - 1;
-            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
-
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        if(globalScope().indiceAluno > 0)
+                            globalScope().indiceAluno = globalScope().indiceAluno - 1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+                    });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
-                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                    AvaliacaoBusiness.loadResultHipoteseAluno(function(){
+                        if(globalScope().indiceAluno > 0)
+                            globalScope().indiceAluno = globalScope().indiceAluno - 1;
+                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+                    });
                 })
             }
+
+
         },
 
-        loadResultHipoteseAluno: function(){
+        loadResultHipoteseAluno: function(callback){
             AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno){
                 if(!resultadoAluno.id){
                     globalScope().respostaAvaliacaoHipotese.id = "";
@@ -298,6 +310,8 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
                     globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
                     globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
+
+                    callback()
                 } else{
                     globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
                     globalScope().respostaAvaliacaoHipotese.idProjeto = resultadoAluno.idProjeto;
@@ -307,6 +321,8 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     globalScope().respostaAvaliacaoHipotese.Professor = resultadoAluno.Professor;
                     globalScope().respostaAvaliacaoHipotese.Turma = resultadoAluno.Turma;
                     globalScope().respostaAvaliacaoHipotese.Escola = resultadoAluno.Escola;
+
+                    callback();
                 }
             });
         }
