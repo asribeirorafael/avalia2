@@ -48,10 +48,10 @@ var AvaliacaoContract = (function(Objetos) {
                 objetoFront.idProjeto = objetoBase.get("idProjeto");
                 objetoFront.ano = objetoBase.get("ano");
 
-                if(objetoBase.get("idAvalicao")){
-                    objetoFront.Avalicao = AvaliacaoContract.setAvaliacaoFront(objetoBase.get("idAvalicao"));
+                if(objetoBase.get("idAvaliacao")){
+                    objetoFront.Avaliacao = AvaliacaoContract.setAvaliacaoFront(objetoBase.get("idAvaliacao"));
                 }else{
-                    objetoFront.Avalicao = new Objetos.Avaliacao();
+                    objetoFront.Avaliacao = new Objetos.Avaliacao();
                 }
                 if(objetoBase.get("idAluno")){
                     objetoFront.Aluno = PessoaContract.setAlunoFront(objetoBase.get("idAluno"));
@@ -88,11 +88,31 @@ var AvaliacaoContract = (function(Objetos) {
 
             objetoBase.set("idProjeto", projeto);
             objetoBase.set("ano", objetoFront.ano);
-            objetoBase.set("idAvalicao", objetoFront.Avalicao.id);
-            objetoBase.set("idAluno", objetoFront.Aluno.id);
-            objetoBase.set("idProfessor", objetoFront.Professor.id);
-            objetoBase.set("idTurma", objetoFront.Turma.id);
-            objetoBase.set("idEscola", objetoFront.Escola.id);
+            objetoBase.set("idAvaliacao", {
+                __type: "Pointer",
+                className: "avaliacao",
+                objectId: objetoFront.Avaliacao.id
+            });
+            objetoBase.set("idAluno", {
+                __type: "Pointer",
+                className: "pessoaAluno",
+                objectId: objetoFront.Aluno.id
+            });
+            objetoBase.set("idProfessor", {
+                __type: "Pointer",
+                className: "pessoaProf",
+                objectId: objetoFront.Professor.id
+            });
+            objetoBase.set("idTurma", {
+                __type: "Pointer",
+                className: "turma",
+                objectId: objetoFront.Turma.id
+            });
+            objetoBase.set("idEscola", {
+                __type: "Pointer",
+                className: "escola",
+                objectId: objetoFront.Escola.id
+            });
             objetoBase.set("nivelHipotese", objetoFront.nivelHipotese);
 
             return objetoBase;
