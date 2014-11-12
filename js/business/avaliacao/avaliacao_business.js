@@ -226,20 +226,22 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         goToFirst: function(){
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    globalScope().indiceAluno = 0;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno){
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        globalScope().indiceAluno = 0;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    globalScope().indiceAluno = 0;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        globalScope().indiceAluno = 0;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
@@ -250,20 +252,22 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         goToLast: function(){
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
@@ -274,22 +278,24 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         goToNext: function(){
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
+                        globalScope().indiceAluno = globalScope().indiceAluno + 1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
-                            globalScope().indiceAluno = globalScope().indiceAluno + 1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
+                        globalScope().indiceAluno = globalScope().indiceAluno + 1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
-                            globalScope().indiceAluno = globalScope().indiceAluno + 1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
@@ -300,11 +306,12 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         goToPrior: function(){
             if(globalScope().respostaAvaliacaoHipotese.id){
                 AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    if(globalScope().indiceAluno > 0)
+                        globalScope().indiceAluno = globalScope().indiceAluno - 1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        if(globalScope().indiceAluno > 0)
-                            globalScope().indiceAluno = globalScope().indiceAluno - 1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
@@ -312,11 +319,12 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    if(globalScope().indiceAluno > 0)
+                        globalScope().indiceAluno = globalScope().indiceAluno - 1;
+                    globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
                     AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno) {
                         AvaliacaoBusiness.loadResultHipoteseAluno(resultadoAluno);
-                        if(globalScope().indiceAluno > 0)
-                            globalScope().indiceAluno = globalScope().indiceAluno - 1;
-                        globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
                         Utils.validarUnico(globalScope().respostaAvaliacaoHipotese.nivelHipotese);
                         globalScope().atualizarEscopo();
                     });
