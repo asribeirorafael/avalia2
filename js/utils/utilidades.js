@@ -584,6 +584,14 @@ var Utils = (function() {
             //}
         },
 
+        unCheckedAll: function(){
+            jQuery("#chkbx1").prop("checked", false);
+            jQuery("#chkbx2").prop("checked", false);
+            jQuery("#chkbx3").prop("checked", false);
+            jQuery("#chkbx4").prop("checked", false);
+            jQuery("#chkbx5").prop("checked", false);
+        },
+
         validarUnico: function(respAvaliacao){
             switch (respAvaliacao){
                 case "1":
