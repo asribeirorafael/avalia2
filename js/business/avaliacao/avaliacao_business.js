@@ -249,7 +249,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     AvaliacaoBusiness.loadResultHipoteseAluno(retorno);
                     globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
                     globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
-
                 })
             }
         },
@@ -261,7 +260,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
                         globalScope().indiceAluno = globalScope().indiceAluno + 1;
                     globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
-
                 })
             }else{
                 AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
@@ -269,7 +267,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
                         globalScope().indiceAluno = globalScope().indiceAluno + 1;
                     globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
-
                 })
             }
         },
@@ -290,8 +287,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
                 })
             }
-
-
         },
 
         loadResultHipoteseAluno: function(resultadoAluno){
