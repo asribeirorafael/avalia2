@@ -110,7 +110,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
         getResultadoHipoteseAluno: function(idAluno,idAvaliacao, callback){
             var query = new Parse.Query("resultHipotese");
-            query.include("idAvalicao");
+            query.include("idAvaliacao");
             query.include("idAluno");
             query.include("idProfessor");
             query.include("idTurma");
@@ -202,6 +202,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
                     globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
                     globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
+                    globalScope().respostaAvaliacaoHipotese.nivelHipotese = "";
 
                     globalScope().alterarPagina('avaliacaoHipotese', '#Content');
                     globalScope().atualizarEscopo();
@@ -317,6 +318,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                 globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
                 globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
                 globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
+                globalScope().respostaAvaliacaoHipotese.nivelHipotese = "";
                 globalScope().atualizarEscopo();
             } else{
                 globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
