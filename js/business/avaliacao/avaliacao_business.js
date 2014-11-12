@@ -116,11 +116,11 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             query.include("idTurma");
             query.include("idEscola");
 
-            query.equalTo("idAluno", {
-                __type: "Pointer",
-                className: "pessoaAluno",
-                objectId: idAluno
-            });
+            //query.equalTo("idAluno", {
+            //    __type: "Pointer",
+            //    className: "pessoaAluno",
+            //    objectId: idAluno
+            //});
             query.equalTo("idAvalicao", {
                 __type: "Pointer",
                 className: "avaliacao",
