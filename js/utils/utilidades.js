@@ -584,17 +584,10 @@ var Utils = (function() {
             //}
         },
 
-        unCheckedAll: function(){
-            jQuery("#chkbx1").prop("checked", false);
-            jQuery("#chkbx2").prop("checked", false);
-            jQuery("#chkbx3").prop("checked", false);
-            jQuery("#chkbx4").prop("checked", false);
-            jQuery("#chkbx5").prop("checked", false);
-        },
-
         validarUnico: function(respAvaliacao){
             switch (respAvaliacao){
                 case "1":
+                    jQuery("#chkbx1").prop("checked", true);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
                     jQuery("#chkbx4").prop("checked", false);
@@ -602,27 +595,31 @@ var Utils = (function() {
                     break;
                 case "2":
                     jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx2").prop("checked", true);
                     jQuery("#chkbx3").prop("checked", false);
                     jQuery("#chkbx4").prop("checked", false);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
                 case "3":
-                    jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx2").prop("checked", false);
+                    jQuery("#chkbx3").prop("checked", true);
                     jQuery("#chkbx4").prop("checked", false);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
                 case "4":
+                    jQuery("#chkbx1").prop("checked", false);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
-                    jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx4").prop("checked", true);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
                 case "5":
+                    jQuery("#chkbx1").prop("checked", false);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
                     jQuery("#chkbx4").prop("checked", false);
-                    jQuery("#chkbx1").prop("checked", false);
+                    jQuery("#chkbx5").prop("checked", true);
                     break;
                 default :
                     break;
