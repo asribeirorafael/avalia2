@@ -93,6 +93,89 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             });
         },
 
+        postResultadoHipotese: function(object, callback){
+            var HipoteseTable = Parse.Object.extend("resultHipotese");
+            var hipoteseSend = AvaliacaoContract.setHipoteseBase(new HipoteseTable(), object);
+
+            hipoteseSend.save(null, {
+                success: function(res) {
+                    console.log("Create executado com sucesso.");
+                    callback(res)
+                },
+                error: function(obj, error) {
+                    console.log("Create falhou. Erro: "+ error.message);
+                }
+            });
+        },
+
+        getResultadoHipoteseAluno: function(idAluno,idAvaliacao, callback){
+            var query = new Parse.Query("resultHipotese");
+            query.include("idAvalicao");
+            query.include("idAluno");
+            query.include("idProfessor");
+            query.include("idTurma");
+            query.include("idEscola");
+
+            query.equalTo("idAluno", {
+                __type: "Pointer",
+                className: "pessoaAluno",
+                objectId: idAluno
+            });
+            query.equalTo("idAvalicao", {
+                __type: "Pointer",
+                className: "avaliacao",
+                objectId: idAvaliacao
+            });
+
+            query.first({
+                success: function(resultHipoteseRes) {
+                    var resultHipotese = AvaliacaoContract.setHipoteseFront(resultHipoteseRes);
+                    callback(resultHipotese);
+                },
+                error: function(object, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
+        putResultadoHipotese: function(object, callback){
+            var HipoteseTable = Parse.Object.extend("resultHipotese");
+            var hipoteseBack = new HipoteseTable();
+
+            hipoteseBack.id = object.id;
+
+            var hipoteseSend = AvaliacaoContract.setHipoteseBase(hipoteseBack, object);
+
+            hipoteseSend.save(null, {
+                success: function(res) {
+                    console.log("Update realizado com sucesso");
+                    callback(res);
+                },
+                error: function(res, error) {
+                    console.log("Update falhou. Erro: " + error.message);
+                }
+            });
+
+
+        },
+
+        deleteResultadoHipotese: function(id, callback){
+            var HipoteseTable = Parse.Object.extend("resultHipotese");
+
+            var hipoteseBack = new HipoteseTable();
+
+            hipoteseBack.id = id;
+            hipoteseBack.destroy({
+                success: function(res) {
+                    console.log("Delete realizado com sucesso");
+                    callback(res);
+                },
+                error: function(res, error) {
+                    console.log("Delete falhou. Erro: " + error.message);
+                }
+            });
+        },
+
         //EVENTOS PAGINA
 
         retornoAvaliacaoTipoSerie: function(idTipo, turma, callback){
@@ -103,38 +186,129 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             });
         },
 
-        selecionarAvaliacao: function(avaliacao){
+        selecionarAvaliacaoHipotese: function(avaliacao){
             globalScope().avaliacaoSelecionada = avaliacao;
             globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
 
-            globalScope().alterarPagina('avaliacaoHipotese', '#Content');
-            globalScope().atualizarEscopo();
+            AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, avaliacao.id, function(resultadoAluno){
+               if(!resultadoAluno.id){
+                   globalScope().respostaAvaliacaoHipotese.id = "";
+                   globalScope().respostaAvaliacaoHipotese.idProjeto = globalScope().turmaSelecionada.idProjeto;
+                   globalScope().respostaAvaliacaoHipotese.ano = new Date().getFullYear();
+                   globalScope().respostaAvaliacaoHipotese.Avaliacao = avaliacao;
+                   globalScope().respostaAvaliacaoHipotese.Aluno = globalScope().alunoSelecionadoHipotese;
+                   globalScope().respostaAvaliacaoHipotese.Professor = new Objetos.Professor();
+                   globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
+                   globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
+                   globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
+
+                   globalScope().alterarPagina('avaliacaoHipotese', '#Content');
+                   globalScope().atualizarEscopo();
+               } else{
+                   globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
+                   globalScope().respostaAvaliacaoHipotese.idProjeto = resultadoAluno.idProjeto;
+                   globalScope().respostaAvaliacaoHipotese.ano = resultadoAluno.ano;
+                   globalScope().respostaAvaliacaoHipotese.Avaliacao = resultadoAluno.Avaliacao;
+                   globalScope().respostaAvaliacaoHipotese.Aluno = resultadoAluno.Aluno;
+                   globalScope().respostaAvaliacaoHipotese.Professor = resultadoAluno.Professor;
+                   globalScope().respostaAvaliacaoHipotese.Turma = resultadoAluno.Turma;
+                   globalScope().respostaAvaliacaoHipotese.Escola = resultadoAluno.Escola;
+
+                   globalScope().alterarPagina('avaliacaoHipotese', '#Content');
+                   globalScope().atualizarEscopo();
+               }
+            });
         },
 
         goToFirst: function(){
             console.log(globalScope().indiceAluno);
             globalScope().indiceAluno = 0;
             globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+
+            if(globalScope().respostaAvaliacaoHipotese.id){
+                AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }else{
+                AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }
         },
 
         goToLast: function(){
             console.log(globalScope().indiceAluno);
             globalScope().indiceAluno = globalScope().turmaSelecionada.Alunos.length-1;
             globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().turmaSelecionada.Alunos.length-1];
+
+            if(globalScope().respostaAvaliacaoHipotese.id){
+                AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }else{
+                AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }
         },
 
         goToNext: function(){
             console.log(globalScope().indiceAluno);
             if(globalScope().indiceAluno + 1 < globalScope().turmaSelecionada.Alunos.length)
                 globalScope().indiceAluno = globalScope().indiceAluno + 1;
-                globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
+            if(globalScope().respostaAvaliacaoHipotese.id){
+                AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }else{
+                AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }
         },
 
         goToPrior: function(){
             console.log(globalScope().indiceAluno);
             if(globalScope().indiceAluno > 0)
                 globalScope().indiceAluno = globalScope().indiceAluno - 1;
-                globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+            globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[globalScope().indiceAluno];
+
+            if(globalScope().respostaAvaliacaoHipotese.id){
+                AvaliacaoBusiness.putResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }else{
+                AvaliacaoBusiness.postResultadoHipotese(globalScope().respostaAvaliacaoHipotese, function(retorno){
+                    AvaliacaoBusiness.loadResultHipoteseAluno();
+                })
+            }
+        },
+
+        loadResultHipoteseAluno: function(){
+            AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, globalScope().avaliacaoSelecionada.id, function(resultadoAluno){
+                if(!resultadoAluno.id){
+                    globalScope().respostaAvaliacaoHipotese.id = "";
+                    globalScope().respostaAvaliacaoHipotese.idProjeto = globalScope().turmaSelecionada.idProjeto;
+                    globalScope().respostaAvaliacaoHipotese.ano = new Date().getFullYear();
+                    globalScope().respostaAvaliacaoHipotese.Avaliacao = globalScope().avaliacaoSelecionada;
+                    globalScope().respostaAvaliacaoHipotese.Aluno = globalScope().alunoSelecionadoHipotese;
+                    globalScope().respostaAvaliacaoHipotese.Professor = new Objetos.Professor();
+                    globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
+                    globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
+                    globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
+                } else{
+                    globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
+                    globalScope().respostaAvaliacaoHipotese.idProjeto = resultadoAluno.idProjeto;
+                    globalScope().respostaAvaliacaoHipotese.ano = resultadoAluno.ano;
+                    globalScope().respostaAvaliacaoHipotese.Avaliacao = resultadoAluno.Avaliacao;
+                    globalScope().respostaAvaliacaoHipotese.Aluno = resultadoAluno.Aluno;
+                    globalScope().respostaAvaliacaoHipotese.Professor = resultadoAluno.Professor;
+                    globalScope().respostaAvaliacaoHipotese.Turma = resultadoAluno.Turma;
+                    globalScope().respostaAvaliacaoHipotese.Escola = resultadoAluno.Escola;
+                }
+            });
         }
 
     }

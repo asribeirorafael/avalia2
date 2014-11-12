@@ -10,15 +10,18 @@ var EscolaContract = (function(Objetos) {
         setEscolaFront: function(objetoBase){
             var objetoFront = Objetos.Escola();
 
-            objetoFront.id = objetoBase.id;
-            objetoFront.idProjeto = objetoBase.get("idProjeto");
-            objetoFront.nomeEscola = objetoBase.get("nome");
-            objetoFront.nomeCurtoEscola = objetoBase.get("nomeCurto");
-            objetoFront.Turmas = objetoBase.get("listaTurma");
-            if(objetoBase.get("idEndereco")) {
-                objetoFront.Endereco = EnderecoContract.setEnderecoFront(objetoBase.get("idEndereco"));
-            }else{
-                objetoFront.Endereco = new Objetos.Endereco();
+            if(objetoBase){
+                objetoFront.id = objetoBase.id;
+
+                objetoFront.idProjeto = objetoBase.get("idProjeto");
+                objetoFront.nomeEscola = objetoBase.get("nome");
+                objetoFront.nomeCurtoEscola = objetoBase.get("nomeCurto");
+                objetoFront.Turmas = objetoBase.get("listaTurma");
+                if(objetoBase.get("idEndereco")) {
+                    objetoFront.Endereco = EnderecoContract.setEnderecoFront(objetoBase.get("idEndereco"));
+                }else{
+                    objetoFront.Endereco = new Objetos.Endereco();
+                }
             }
 
             return objetoFront;

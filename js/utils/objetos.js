@@ -74,6 +74,7 @@ var Objetos = (function() {
         this.ano = null;
         this.Avaliacao = "";
         this.Aluno = "";
+        this.Professor = "";
         this.Turma = "";
         this.Escola = "";
         this.nivelRegistro = "";
@@ -88,6 +89,7 @@ var Objetos = (function() {
         this.ano = null;
         this.Avaliacao = "";
         this.Aluno = "";
+        this.Professor = "";
         this.Turma = "";
         this.Escola = "";
         this.nivelHipotese = "";
@@ -102,6 +104,7 @@ var Objetos = (function() {
         this.urlFacebook = "";
         this.Pessoa = new Objetos.Professor();
         this.idFacebook = "";
+        this.projeto = "";
     }
 
     return {

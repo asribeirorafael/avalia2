@@ -9,16 +9,19 @@ var EnderecoContract = (function(Objetos) {
         setEnderecoFront: function(objetoBase){
             var objetoFront = Objetos.Endereco();
 
-            objetoFront.id = objetoBase.id;
-            objetoFront.idProjeto = objetoBase.get("idProjeto");
-            objetoFront.cep = objetoBase.get("cep");
-            objetoFront.estado = objetoBase.get("estado");
-            objetoFront.cidade = objetoBase.get("cidade");
-            objetoFront.bairro = objetoBase.get("bairro");
-            objetoFront.numero = objetoBase.get("numero");
-            objetoFront.logradouro = objetoBase.get("logradouro");
-            objetoFront.tipoLogradouro = objetoBase.get("tipo_logradouro");
-            objetoFront.coordenada = objetoBase.get("coordenada");
+            if(objetoBase){
+                objetoFront.id = objetoBase.id;
+
+                objetoFront.idProjeto = objetoBase.get("idProjeto");
+                objetoFront.cep = objetoBase.get("cep");
+                objetoFront.estado = objetoBase.get("estado");
+                objetoFront.cidade = objetoBase.get("cidade");
+                objetoFront.bairro = objetoBase.get("bairro");
+                objetoFront.numero = objetoBase.get("numero");
+                objetoFront.logradouro = objetoBase.get("logradouro");
+                objetoFront.tipoLogradouro = objetoBase.get("tipo_logradouro");
+                objetoFront.coordenada = objetoBase.get("coordenada");
+            }
 
             return objetoFront;
         },

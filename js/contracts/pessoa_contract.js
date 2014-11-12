@@ -9,7 +9,9 @@ var PessoaContract = (function(Objetos) {
         setAlunoFront: function(objetoBase){
             var objetoFront = Objetos.Aluno();
 
-            objetoFront.id = objetoBase.id;
+            if(objetoBase.id)
+                objetoFront.id = objetoBase.id;
+
             objetoFront.idProjeto = objetoBase.get("idProjeto");
             objetoFront.nome = objetoBase.get("nome");
             objetoFront.dataNascimento = Utils.Conversao.dataBrasil(new Date(objetoBase.get("dtNasc")));
@@ -23,11 +25,14 @@ var PessoaContract = (function(Objetos) {
         setProfessorFront: function(objetoBase){
             var objetoFront = Objetos.Professor();
 
-            objetoFront.id = objetoBase.id;
-            objetoFront.idProjeto = objetoBase.get("idProjeto");
-            objetoFront.nome = objetoBase.get("nome");
-            objetoFront.dataNascimento = Utils.Conversao.dataBrasil(new Date(objetoBase.get("dtNasc")));
-            objetoFront.rd = objetoBase.get("rd");
+            if(objetoBase){
+                objetoFront.id = objetoBase.id;
+
+                objetoFront.idProjeto = objetoBase.get("idProjeto");
+                objetoFront.nome = objetoBase.get("nome");
+                objetoFront.dataNascimento = Utils.Conversao.dataBrasil(new Date(objetoBase.get("dtNasc")));
+                objetoFront.rd = objetoBase.get("rd");
+            }
 
             return objetoFront;
         },
@@ -35,15 +40,16 @@ var PessoaContract = (function(Objetos) {
         setAlunoBase: function(objetoBase, objetoFront){
             var projeto = "mg00"; //Futuramente pegar do usuario o projeto
 
-            if(objetoFront.id)
+            if(objetoFront){
                 objetoBase.id = objetoFront.id;
 
-            objetoBase.set("idProjeto", projeto);
-            objetoBase.set("nome", objetoFront.nome);
-            objetoBase.set("dtNasc", new Date(objetoFront.dataNascimento));
-            objetoBase.set("numero_RA", objetoFront.numero_RA);
-            objetoBase.set("digito_RA", objetoFront.digito_RA);
-            objetoBase.set("urlImage", objetoFront.imagem);
+                objetoBase.set("idProjeto", projeto);
+                objetoBase.set("nome", objetoFront.nome);
+                objetoBase.set("dtNasc", new Date(objetoFront.dataNascimento));
+                objetoBase.set("numero_RA", objetoFront.numero_RA);
+                objetoBase.set("digito_RA", objetoFront.digito_RA);
+                objetoBase.set("urlImage", objetoFront.imagem);
+            }
 
             return objetoBase;
         },

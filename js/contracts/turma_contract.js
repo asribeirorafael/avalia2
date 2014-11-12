@@ -8,7 +8,9 @@ var TurmaContract = (function(Objetos) {
         setTurmaFront: function(objetoBase){
             var objetoFront = new Objetos.Turma();
 
-            objetoFront.id = objetoBase.id;
+            if(objetoBase.id)
+                objetoFront.id = objetoBase.id;
+
             objetoFront.idProjeto = objetoBase.get("idProjeto");
             objetoFront.ano = objetoBase.get("ano");
             objetoFront.serie = objetoBase.get("serie");

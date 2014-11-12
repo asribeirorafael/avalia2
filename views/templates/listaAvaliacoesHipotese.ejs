@@ -13,7 +13,7 @@
         <li class="active">Avaliações</li>
     </ol>
     <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
-        <div class="panel easy panel-default drag" ng-click="AVALIACAO.selecionarAvaliacao(avaliacao)">
+        <div class="panel easy panel-default drag" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)">
             <div class="panel-heading">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
             <div class="panel-body">
                 {{turmaSelecionada.serie+" "+turmaSelecionada.turma}}
