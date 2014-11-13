@@ -190,6 +190,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         selecionarAvaliacaoHipotese: function(avaliacao){
             globalScope().avaliacaoSelecionada = avaliacao;
             globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
+            globalScope().indiceAluno = 0;
 
             AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, avaliacao.id, function(resultadoAluno){
                 if(!resultadoAluno.id){
