@@ -4,7 +4,7 @@
 </ol>
 <div class="col-md-4" ng-repeat="turma in turmas">
     <div class="panel easy panel-default drag" ng-click="TURMA.selecionarTurmaAvaliacaoHipotese(turma)">
-        <div class="panel-heading">{{turma.serie+' '+turma.turma}}</div>
+        <div class="panel-heading T{{turma.serie.charAt(0)}}">{{turma.serie+' '+turma.turma}}</div>
         <div class="panel-body">
             Aliquam vitae lectus aliquet, cursus nisi idornare, praesent in ultrices ipsum. Curabitur eget mauris semras in imperdiet tortor, sit amet pulvinar.
         </div>

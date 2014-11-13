@@ -38,7 +38,8 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" ng-click="alterarPagina('dashboard', '#Content')">
-            <img src="../../images/logo.png" alt="" />
+            <h1 class="logo">Mais<span class="logo2">Avalia</span></h1>
+            <!--<img src="../../images/logo.png" alt="" />-->
             <span id="sidebar-exp"></span>
         </a>
     </div>
@@ -82,14 +83,14 @@
                         <span class="icn icon-145"></span>
                         <a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Hipótese</a>
                     </li>
-                    <li>
-                        <span class="icn icon-145"></span>
-                        <a ng-click="alterarPagina('dashboard', '#Content')">Diagnóstica</a>
-                    </li>
-                    <li>
-                        <span class="icn icon-145"></span>
-                        <a ng-click="alterarPagina('dashboard', '#Content')">FADA</a>
-                    </li>
+                    <!--<li>-->
+                        <!--<span class="icn icon-145"></span>-->
+                        <!--<a ng-click="alterarPagina('dashboard', '#Content')">Diagnóstica</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span class="icn icon-145"></span>-->
+                        <!--<a ng-click="alterarPagina('dashboard', '#Content')">FADA</a>-->
+                    <!--</li>-->
                 </ul>
             </li>
             <li>
@@ -245,7 +246,7 @@
 
         <div style="border: 1px solid #cccccc">
             <div style="padding: 5% 34%;">
-                <img src="{{alunoSelecionadoHipotese.imagem}}" style="height: 150px; width: 150px">
+                <img src="{{alunoSelecionadoHipotese.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
             </div>
             <div>
                 <div style="padding: 5% 0 3% 5%;"><b>Nome:</b>{{alunoSelecionadoHipotese.nome}}</div>
@@ -302,7 +303,7 @@
 </ol>
 <div class="col-md-4" ng-repeat="turma in turmas">
     <div class="panel easy panel-default drag" ng-click="TURMA.selecionarTurmaAvaliacaoHipotese(turma)">
-        <div class="panel-heading">{{turma.serie+' '+turma.turma}}</div>
+        <div class="panel-heading T{{turma.serie.charAt(0)}}">{{turma.serie+' '+turma.turma}}</div>
         <div class="panel-body">
             Aliquam vitae lectus aliquet, cursus nisi idornare, praesent in ultrices ipsum. Curabitur eget mauris semras in imperdiet tortor, sit amet pulvinar.
         </div>
