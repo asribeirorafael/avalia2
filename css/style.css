@@ -8,7 +8,7 @@ textarea 																			{ outline:none !important; }
 
 .navbar 																			{ height:59px;background:#37434f;border-bottom:none;padding:0;border-radius:0;border:none; }
 
-.navbar-header 																		{ width:305px;background:#2C363F;height:59px; } 
+.navbar-header 																		{ width:231px;background:#2C363F;height:59px; }
 
 .navbar-nav > li > a 																{ padding:19px; }
 .navbar-nav > li > a.dashboard img 													{ margin-top:-2px;margin-left:5px; }
@@ -1078,7 +1078,7 @@ height:400px;
 .btn .caret { margin-bottom:3px; }
 
 .btn-primary { border:none; }
-.btn-primary.large { padding:13px 23; }
+.btn-primary.large { padding:13px 23px; }
 .btn-primary.default.large { padding:10px 25px 11px 25px; }
 
 .btn-danger.green { border-color:#4CAE4C; }
@@ -1670,15 +1670,15 @@ body .container.dashboard #messages-wrapper li > h3 { padding-left:0 !important;
 
 /* sidebar */
 
-#wrapper { position:relative;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms;min-height:900px; }
+#wrapper { position:relative;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms; height: 100%; }
 
 #wrapper.sidebar #sidebar { left:0; } 
-#wrapper.sidebar { padding-left:325px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms; } 
+#wrapper.sidebar { padding-left:225px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms; }
 
 .container {  }
 #wrap {  }
 
-#sidebar { background:#fff;width:305px;height:100%;position:absolute;left:-325px;top:0;padding:25px 25px 0 25px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms;border-right:1px solid #E1E2E1;z-index:99999; }
+#sidebar { background:#fff;width:231px;height:100%;position:fixed;left:-325px;top:60px;padding:25px 25px 0 25px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms;border-right:1px solid #E1E2E1;z-index:99999; }
 
 #sidebar .search-block span { height:42px;width:30px;display:inline-block;background:url('../images/icon-search-green.png') no-repeat left center;float:left; }
 #sidebar .search-block input { border:none;height:42px;border-bottom:1px solid #D5D7D9;float:left;width:218px;font-style:italic;font-size:15px;color:#b2b5b9; }
