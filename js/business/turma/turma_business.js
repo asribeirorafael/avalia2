@@ -183,6 +183,34 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             globalScope().atualizarEscopo();
         },
 
+        selecionarTurmaCarometro: function (turma) {
+            globalScope().turmaSelecionada = turma;
+
+            if(turma.Alunos.length) {
+                if (!turma.Alunos[0].id) {
+                    var listaAlunos = new Array();
+                    turma.Alunos.forEach(function(idAluno, indice){
+                        PessoaBusiness.getAluno(idAluno, function(alunoRes){
+                            listaAlunos.push(alunoRes);
+                            if(turma.Alunos.length == indice+1){
+                                globalScope().turmaSelecionada.Alunos = listaAlunos;
+
+                                globalScope().alterarPagina('carometro', '#Content');
+                                globalScope().atualizarEscopo();
+                            }
+                        });
+                    });
+                }
+                globalScope().alterarPagina('carometro', '#Content');
+                globalScope().atualizarEscopo();
+            }else{
+                globalScope().alterarPagina('carometro', '#Content');
+                globalScope().atualizarEscopo();
+            }
+
+
+        },
+
         selecionarTurmaAvaliacaoHipotese: function(turma){
             globalScope().turmaSelecionada = turma;
 

@@ -96,18 +96,18 @@
             <li>
                 Turmas
                 <ul>
-                    <li class="ng-scope" ng-repeat="turma in turmas" ng-click="alert('Objeto Slecionado: '+turma.serie+' '+turma.turma)">
+                    <li class="ng-scope" ng-repeat="turma in turmas">
                         <span class="icn icon-123"></span>
-                        <a>{{turma.serie+' '+turma.turma}}</a>
+                        <a ng-click="alterarPagina('tiposAvaliacoes', '#Content')">{{turma.serie+' '+turma.turma}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 Alunos
                 <ul>
-                    <li class="ng-scope" ng-repeat="turma in turmas" ng-click="alert('Objeto Slecionado: '+turma.serie+' '+turma.turma)">
+                    <li class="ng-scope" ng-repeat="turma in turmas">
                         <span class="icn icon-123"></span>
-                        <a>{{turma.serie+' '+turma.turma}}</a>
+                        <a ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
                     </li>
                 </ul>
             </li>
@@ -262,6 +262,32 @@
 </div>
 </script>
 
+<script type="text/html" id="template_carometro">
+<div ng-if="turmaSelecionada.Alunos.length == 0">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li class="active">Carômetro</li>
+    </ol>
+    <div class="col-md-12">
+        <h3>Não Existem Alunos matriculados para esta Turma.</h3>
+    </div>
+</div>
+<div ng-if="turmaSelecionada.Alunos.length != 0">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li class="active">Carômetro</li>
+    </ol>
+    <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
+        <div class="panel easy panel-default drag" ng-click="">
+            <div class="panel-heading">{{aluno.nome}}</div>
+            <div class="panel-body">
+                <img src="{{aluno.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
 <script type="text/html" id="template_dashboard">
 
 </script>
@@ -273,7 +299,9 @@
         <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
         <li class="active">Avaliações</li>
     </ol>
-    <h3>Não Existem Avaliações criadas para esta Turma.</h3>
+    <div class="col-md-12">
+        <h3>Não Existem Avaliações criadas para esta Turma.</h3>
+    </div>
 </div>
 <div ng-if="avaliacoes.length != 0">
     <ol class="breadcrumb">
@@ -311,6 +339,39 @@
 </div>
 
 
+</script>
+
+<script type="text/html" id="template_tiposAvaliacoes">
+<ol class="breadcrumb">
+    <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+    <li class="active">Tipos Avaliações</li>
+</ol>
+<div class="col-md-4">
+    <div class="panel easy panel-default drag" ng-click="">
+        <div class="panel-heading">Hipótese</div>
+        <div class="panel-body">
+            Blablablablablabla
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="panel easy panel-default drag" ng-click="">
+        <div class="panel-heading">Diagnóstica</div>
+        <div class="panel-body">
+            Blablablablablabla
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="panel easy panel-default drag" ng-click="">
+        <div class="panel-heading">FADA</div>
+        <div class="panel-body">
+            Blablablablablabla
+        </div>
+    </div>
+</div>
 </script>
 
 </body>
