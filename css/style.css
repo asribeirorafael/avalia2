@@ -2573,3 +2573,7 @@ table.search-developer a:hover i { color:#BCBCBC; }
 .logo2{
  color: #fff;
 }
+
+.modal{
+ overflow-y: hidden !important;
+}
