@@ -1,8 +1,8 @@
 <div ng-if="avaliacoes.length == 0">
     <ol class="breadcrumb">
         <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
-        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
-        <li class="active">Avaliações</li>
+        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
+        <li class="active">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</li>
     </ol>
     <div class="col-md-12">
         <h3>Não Existem Avaliações criadas para esta Turma.</h3>
@@ -11,14 +11,15 @@
 <div ng-if="avaliacoes.length != 0">
     <ol class="breadcrumb">
         <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
-        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Turmas</a></li>
-        <li class="active">Avaliações</li>
+        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
+        <li class="active">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</li>
     </ol>
     <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
-        <div class="panel easy panel-default drag" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)">
-            <div class="panel-heading">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+        <div class="panel easy panel-default drag">
+            <div class="panel-heading THipotese">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
             <div class="panel-body">
-                {{turmaSelecionada.serie+" "+turmaSelecionada.turma}}
+                <div class="col-md-6"><a ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
+                <div class="col-md-6"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
             </div>
         </div>
     </div>

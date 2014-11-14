@@ -1678,7 +1678,7 @@ body .container.dashboard #messages-wrapper li > h3 { padding-left:0 !important;
 .container {  }
 #wrap {  }
 
-#sidebar { background:#fff;width:231px;height:100%;position:fixed;left:-325px;top:60px;padding:25px 25px 0 25px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms;border-right:1px solid #E1E2E1;z-index:99999; }
+#sidebar { background:#fff;width:231px;height:100%;position:fixed;left:-325px;top:60px;padding:25px 25px 0 25px;-o-transition: all 160ms;-moz-transition: all 160ms;-webkit-transition: all 160ms;transition: all 160ms;border-right:1px solid #E1E2E1; }
 
 #sidebar .search-block span { height:42px;width:30px;display:inline-block;background:url('../images/icon-search-green.png') no-repeat left center;float:left; }
 #sidebar .search-block input { border:none;height:42px;border-bottom:1px solid #D5D7D9;float:left;width:218px;font-style:italic;font-size:15px;color:#b2b5b9; }
@@ -2547,6 +2547,18 @@ table.search-developer a:hover i { color:#BCBCBC; }
 }
 .T9{
  background: #700B0B  !important;
+}
+
+.THipotese{
+ background: #c62828 !important;
+}
+
+.TDiagnostica{
+ background: #00838f !important;
+}
+
+.TFada{
+ background: #ff8f00 !important;
 }
 
 .logo{
