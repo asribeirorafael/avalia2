@@ -70,7 +70,7 @@ textarea 																			{ outline:none !important; }
 #footer 																			{ height: 60px;background-color: #37434f;text-align:left;padding-left:50px;overflow:hidden;z-index:9999;position:relative; }
 #footer ul 																			{ float:left; }
 
-#wrap 																				{ min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -60px;padding: 0 0 60px; }
+#wrap 																				{ min-height: 100%;height: 100%;margin: 0 auto -60px;}
 
 #footer .col-md-6.left 																{  }
 #footer .col-md-6.right 															{ padding:0 60px 0 0; }
