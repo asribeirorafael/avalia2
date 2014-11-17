@@ -47,7 +47,7 @@ function LoginFacebookParse(){
                                         parent.location='unauthorized.html';
                                     }else{
                                         localStorage.setItem("User", JSON.stringify(UsuarioContract.setUsuarioFront(usuario)));
-                                        parent.location='index.htm';
+                                        parent.location='views/htmls/masterpage.html';
                                     }
                                 },
                                 error: function(res, error){
@@ -77,7 +77,7 @@ function LoginFacebookParse(){
                     parent.location='unauthorized.html';
                 }else{
                     localStorage.setItem("User", JSON.stringify(UsuarioContract.setUsuarioFront(usuario)));
-                    parent.location='index.htm';
+                    parent.location='views/htmls/masterpage.html';
                 }
             },
             error: function(res, error) {
