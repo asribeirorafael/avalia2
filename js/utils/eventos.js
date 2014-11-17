@@ -1,26 +1,28 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
+var provasApp = angular.module("provasApp", ['ngRoute', 'AvaliaControllers']);
 
-provasApp.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-            when('/', {
-                templateUrl: 'views/templates/dashboard.ejs',
-                controller: 'DashboardController'
-            }).
-            when('/dashboard', {
-                templateUrl: 'views/templates/dashboard.ejs',
-                controller: 'DashboardController'
-            }).
-            when('/carometro', {
-                templateUrl: 'views/templates/carometro.ejs',
-                controller: 'CarometroController'
-            }).
-            otherwise({
-                redirectTo: '/'
-            });
-    }]);
+provasApp.config(function($routeProvider,  $locationProvider) {
+    $routeProvider.
+        when('/', {
+            templateUrl: 'views/templates/dashboard.ejs',
+            controller: 'DashboardController'
+        }).
+        when('/dashboard', {
+            templateUrl: 'views/templates/dashboard.ejs',
+            controller: 'DashboardController'
+        }).
+        when('/carometro', {
+            templateUrl: 'views/templates/carometro.ejs',
+            controller: 'CarometroController'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
+});
 
 /* Função do $scope */
 function globalScope(){
