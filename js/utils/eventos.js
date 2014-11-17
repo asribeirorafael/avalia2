@@ -1,6 +1,64 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module('provasApp', []);
+var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
+
+//provasApp.config(['$routeProvider',
+//    function($routeProvider) {
+//        $routeProvider.
+//            when('/', {
+//                templateUrl: '../templates/dashboard.ejs',
+//                controller: 'DashboardController'
+//            }).
+//            when('/dashboard', {
+//                templateUrl: '../templates/dashboard.ejs',
+//                controller: 'DashboardController'
+//            }).
+//            when('/carometro', {
+//                templateUrl: '../templates/carometro.ejs',
+//                controller: 'CarometroController'
+//            }).
+//            otherwise({
+//                redirectTo: '/'
+//            });
+//    }]);
+
+provasApp.config(function($stateProvider, $urlRouterProvider){
+    //
+    // For any unmatched url, redirect to /state1
+    $urlRouterProvider.otherwise("/");
+    //
+    // Now set up the states
+    $stateProvider
+        .state('dashboard', {
+            url: "/dashboard",
+            templateUrl: "../templates/dashboard.ejs"
+        })
+        .state('carometro', {
+            url: "/carometro",
+            templateUrl: "../templates/carometro.ejs",
+            controller: function() {
+                var turma = globalScope().turmaSelecionada;
+
+                if(turma.Alunos.length) {
+                    if (!turma.Alunos[0].id) {
+                        var listaAlunos = new Array();
+                        turma.Alunos.forEach(function(idAluno, indice){
+                            PessoaBusiness.getAluno(idAluno, function(alunoRes){
+                                listaAlunos.push(alunoRes);
+                                if(turma.Alunos.length == indice+1){
+                                    globalScope().turmaSelecionada.Alunos = listaAlunos;
+                                    globalScope().atualizarEscopo();
+                                }
+                            });
+                        });
+                    }
+                    globalScope().atualizarEscopo();
+                }else{
+                    globalScope().atualizarEscopo();
+                }
+            }
+        });
+});
 
 /* Função do $scope */
 function globalScope(){
@@ -22,8 +80,6 @@ function atualizar(scope, funcao) {
         }
     }
 }
-
-/* Função do $scope */
 
 /* Função do MASK */
 
@@ -163,17 +219,17 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.TURMA.getTurmasProfessorPage();
 
     /*retornarCidade: function (Estado) {
-        var ArrayCidades = new Array();
-        var Cidades = Colecoes.Cidades();
-        for (var i = 0, lenI = Cidades.length; i < lenI; i++) {
-            if (parseInt(Cidades[i].Key / 100000) == Estado) {
-                Cidades[i].Value = Cidades[i].Value.replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ");
-                Cidades[i].Value = Cidades[i].Value.toLowerCase();
-                ArrayCidades.push(Cidades[i]);
-            }
-        }
-        return ArrayCidades;
-    }*/
+     var ArrayCidades = new Array();
+     var Cidades = Colecoes.Cidades();
+     for (var i = 0, lenI = Cidades.length; i < lenI; i++) {
+     if (parseInt(Cidades[i].Key / 100000) == Estado) {
+     Cidades[i].Value = Cidades[i].Value.replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ");
+     Cidades[i].Value = Cidades[i].Value.toLowerCase();
+     ArrayCidades.push(Cidades[i]);
+     }
+     }
+     return ArrayCidades;
+     }*/
 }]);
 
 

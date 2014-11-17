@@ -624,6 +624,71 @@ var Utils = (function() {
                 default :
                     break;
             }
+        },
+
+        PersistData: function(){
+            var jSonPersist = {
+                Reload: true,
+                usuarioLogado: globalScope().usuarioLogado,
+                objetoEscola: globalScope().objetoEscola,
+                objetoTurma : globalScope().objetoTurma,
+                objetoAluno: globalScope().objetoAluno,
+                objetoProfessor: globalScope().objetoProfessor,
+                pagina: globalScope().pagina,
+                escolas: globalScope().escolas,
+                turmas: globalScope().turmas,
+                aluno: globalScope().aluno,
+                professores: globalScope().professores,
+                avaliacoes: globalScope().avaliacoes,
+                escola: globalScope().escola,
+                turma: globalScope().turma,
+                aluno: globalScope().aluno,
+                professor: globalScope().professor,
+                idEscola: globalScope().idEscola,
+                escolaSelecionada: globalScope().escolaSelecionada,
+                turmaSelecionada: globalScope().turmaSelecionada,
+                avaliacaoSelecionada: globalScope().avaliacaoSelecionada,
+                alunoSelecionadoHipotese: globalScope().alunoSelecionadoHipotese,
+                indiceAluno: globalScope().indiceAluno,
+                respostaAvaliacaoHipotese: globalScope().respostaAvaliacaoHipotese
+            }
+
+            localStorage.setItem("GlobalScope", JSON.stringify(jSonPersist));
+
+        },
+
+        ReturnPersistData: function(){
+
+            var objetoPersist = JSON.parse(localStorage.getItem("GlobalScope"));
+
+            if(objetoPersist){
+
+                globalScope().usuarioLogado = objetoPersist.usuarioLogado;
+                globalScope().objetoEscola = objetoPersist.objetoEscola;
+                globalScope().objetoTurma = objetoPersist.objetoTurma;
+                globalScope().objetoAluno = objetoPersist.objetoAluno;
+                globalScope().objetoProfessor = objetoPersist.objetoProfessor;
+                globalScope().pagina = objetoPersist.pagina;
+                globalScope().escolas = objetoPersist.escolas;
+                globalScope().turmas = objetoPersist.turmas;
+                globalScope().aluno = objetoPersist.aluno;
+                globalScope().professores = objetoPersist.professores;
+                globalScope().avaliacoes = objetoPersist.avaliacoes;
+                globalScope().escola = objetoPersist.escola;
+                globalScope().turma = objetoPersist.turma;
+                globalScope().aluno = objetoPersist.aluno;
+                globalScope().professor = objetoPersist.professor;
+                globalScope().idEscola = objetoPersist.idEscola;
+                globalScope().escolaSelecionada = objetoPersist.escolaSelecionada;
+                globalScope().turmaSelecionada = objetoPersist.turmaSelecionada;
+                globalScope().avaliacaoSelecionada = objetoPersist.avaliacaoSelecionada;
+                globalScope().alunoSelecionadoHipotese = objetoPersist.alunoSelecionadoHipotese;
+                globalScope().indiceAluno = objetoPersist.indiceAluno;
+                globalScope().respostaAvaliacaoHipotese = objetoPersist.respostaAvaliacaoHipotese;
+
+                localStorage.removeItem("GlobalScope");
+            }
+
         }
     }
 })();
