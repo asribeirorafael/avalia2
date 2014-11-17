@@ -2,7 +2,12 @@
 
 var provasApp = angular.module("provasApp", ['ngRoute', 'AvaliaControllers']);
 
-provasApp.config(function($routeProvider,  $locationProvider) {
+provasApp.config(function($routeProvider,  $locationProvider, $provide) {
+    //$provide.decorator('$sniffer', function($delegate) {
+    //    $delegate.history = false;
+    //    return $delegate;
+    //});
+
     $routeProvider.
         when('/', {
             templateUrl: 'views/templates/dashboard.ejs',
@@ -15,13 +20,12 @@ provasApp.config(function($routeProvider,  $locationProvider) {
         when('/carometro', {
             templateUrl: 'views/templates/carometro.ejs',
             controller: 'CarometroController'
-        }).
-        otherwise({
-            redirectTo: '/'
         });
 
     // use the HTML5 History API
-    $locationProvider.html5Mode(true);
+    $locationProvider
+        .html5Mode(true);
+        //.hashPrefix("!");
 });
 
 /* Função do $scope */
