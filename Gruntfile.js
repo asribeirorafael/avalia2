@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                             }
                         },
                         files: {
-                            'views/index2.html': 'views/htmls/index.ejs'
+                            'a/index.html': 'views/htmls/index.ejs'
                         }
                     }
                 },
