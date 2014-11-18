@@ -3,14 +3,13 @@
 var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
-    $locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise("/home");
 
     $stateProvider
         .state('dashboard', {
             url: "/dashboard",
-            templateUrl: "views/templates/dashboard.ejs",
+            templateUrl: "template_dashboard",
             controller: function()
             {
                 console.log("DASHBOARD:");
@@ -19,7 +18,7 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
         })
         .state('carometro', {
             url: "/carometro",
-            templateUrl: "views/templates/carometro.ejs",
+            templateUrl: "template_carometro",
             controller: 'CarometroController'
         });
 

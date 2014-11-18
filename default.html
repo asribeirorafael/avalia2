@@ -6,8 +6,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!--<base href="/">-->
-
     <title>Index</title>
 
     <script type="text/javascript" src="js/plugins/jquery/jquery-1.11.1.js"></script>
@@ -87,7 +85,7 @@
 
         <ul class="drop-area">
             <li class="no-back">
-                <a ui-sref="dashboard">Dashboard</a>
+                <a href="#/dashboard">Dashboard</a>
                 <!--<a ui-sref="dashboard">Dashboard</a>-->
             </li>
             <li>
@@ -122,7 +120,7 @@
                     <li class="ng-scope" ng-repeat="turma in turmas">
                         <span class="icn icon-123"></span>
                         <!--<a ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>-->
-                        <a ui-sref="carometro" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
+                        <a href="#/carometro" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
                         <!--<a ui-sref="carometro" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>-->
                     </li>
                 </ul>
@@ -197,6 +195,263 @@
 <script src="custom.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script>Parse.initialize("Y9INXMkrMANGt2B8ttXcDLPiRfvNTOMVmHekxXDx", "mSFT9RRrXvwMopXmiPZPCr2wOXnrbbBH8H7ZWBqF");</script>
+
+<script type="text/ng-template" id="template_avaliacaoHipotese">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
+        <li><a ng-click="alterarPagina('listaAvaliacoesHipotese', '#Content')">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
+        <li class="active">{{'Avaliacao Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
+    </ol>
+
+    <div>
+        <div class="col-md-7">
+            <div><h1>Hipótese de Escrita</h1></div>
+            <div style="margin: -15px 0 0 0">
+                <ul class="wrap-check">
+                    <li>
+                        <div>
+                            <input id="chkbx1" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="1" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                            <label><h2 data-toggle="modal" data-target="#myModal1">Alfabético</h2></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <input id="chkbx2" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="2" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                            <label><h2 data-toggle="modal" data-target="#myModal2">Silábico-Alfabético</h2></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <input id="chkbx3" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="3" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                            <label><h2 data-toggle="modal" data-target="#myModal3">Silábico com Valor</h2></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <input id="chkbx4" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="4" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                            <label><h2 data-toggle="modal" data-target="#myModal4">Silábico sem Valor</h2></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <input id="chkbx5" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="5" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                            <label><h2 data-toggle="modal" data-target="#myModal5">Pré-Silábico</h2></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <!--<div><a href="#" class="btn btn-primary btn-lg btn-block blue large">Análise da Avaliação</a></div>-->
+
+            <div class="flex-container" style="overflow: hidden; padding-bottom: 3%">
+                <div class="flex-item"><a ng-click="AVALIACAO.goToFirst()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
+                <div class="flex-item"><a ng-click="AVALIACAO.goToPrior()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
+                <div class="flex-item"><h2 style="width: 100%; margin: 0">{{(indiceAluno+1)+"/"+turmaSelecionada.Alunos.length}}</h2></div>
+                <div class="flex-item"><a ng-click="AVALIACAO.goToNext()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;">></h2></a></div>
+                <div class="flex-item"><a ng-click="AVALIACAO.goToLast()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
+            </div>
+
+            <div style="border: 1px solid #cccccc">
+                <div style="padding: 5% 34%;">
+                    <img src="{{alunoSelecionadoHipotese.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
+                </div>
+                <div>
+                    <div style="padding: 5% 0 3% 5%;"><b>Nome:</b>{{alunoSelecionadoHipotese.nome}}</div>
+                    <div style="padding: 0 0 5% 5%;"><b>Data:</b>{{alunoSelecionadoHipotese.dataNascimento}}</div>
+                </div>
+            </div>
+
+            <div style="border: 1px solid #cccccc; margin-top: 3%">
+                <div style="padding: 0 0 0% 34%;"><b>Observação do Aluno:</b></div>
+                <div style="border: 1px solid #cccccc; margin: 5%; height: 100px"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Alfabético</h4>
+                </div>
+                <div class="modal-body">
+                    Neste estágio, o aluno já compreendeu o sistema de escrita, entendendo que cada um dos caracteres da palavra corresponde a um valor sonoro menor do que a sílaba e também domina as convenções ortográficas.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Silábico-Alfabético</h4>
+                </div>
+                <div class="modal-body">
+                    Este nível marca a transição do aluno da hipótese silábica para a hipótese alfabética. Ora ela escreve atribuindo a cada sílaba uma letra, ora representando as unidades sonoras menores, os fonemas.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Silábico com Valor</h4>
+                </div>
+                <div class="modal-body">
+                    Cada letra corresponde a uma sílaba falada e o que se escreve tem correspondência com o som convencional daquela sílaba, em geral representada pela vogal, mas não exclusivamente. A leitura é silabada.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Silábico sem Valor</h4>
+                </div>
+                <div class="modal-body">
+                    Cada letra ou símbolo corresponde a uma sílaba falada, mas o que se escreve ainda não tem correspondência com o som convencional daquela sílaba. A leitura é silabada.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Pré-Silábico</h4>
+                </div>
+                <div class="modal-body">
+                    O aluno diferencia desenhos (que não podem ser lidos) de “escritos” (que podem ser lidos), mesmo que sejam compostos por grafismos, símbolos ou letras. A leitura que realiza do escrito é sempre global, com o dedo deslizando por todo o registro escrito.
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="template_carometro">
+    <div ng-if="turmaSelecionada.Alunos.length == 0">
+        <ol class="breadcrumb">
+            <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+            <li class="active">Carômetro</li>
+        </ol>
+        <div class="col-md-12">
+            <h3>Não Existem Alunos matriculados para esta Turma.</h3>
+        </div>
+    </div>
+    <div ng-if="turmaSelecionada.Alunos.length != 0">
+        <ol class="breadcrumb">
+            <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+            <li class="active">Carômetro</li>
+        </ol>
+        <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
+            <div class="panel easy panel-default drag" ng-click="">
+                <div class="panel-heading">{{aluno.nome}}</div>
+                <div class="panel-body">
+                    <img src="{{aluno.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="template_dashboard">
+    <div></div>
+</script>
+
+<script type="text/html" id="template_listaAvaliacoesHipotese">
+    <div ng-if="avaliacoes.length == 0">
+        <ol class="breadcrumb">
+            <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+            <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
+            <li class="active">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</li>
+        </ol>
+        <div class="col-md-12">
+            <h3>Não Existem Avaliações criadas para esta Turma.</h3>
+        </div>
+    </div>
+    <div ng-if="avaliacoes.length != 0">
+        <ol class="breadcrumb">
+            <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+            <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
+            <li class="active">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</li>
+        </ol>
+        <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
+            <div class="panel easy panel-default drag">
+                <div class="panel-heading THipotese">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+                <div class="panel-body">
+                    <div class="col-md-6"><a ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
+                    <div class="col-md-6"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</script>
+
+<script type="text/html" id="template_listaTurmasHipotese">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li class="active">Lançamentos</li>
+    </ol>
+    <div class="col-md-4" ng-repeat="turma in turmas">
+        <div class="panel easy panel-default drag" ng-click="TURMA.selecionarTurmaAvaliacaoHipotese(turma)">
+            <div class="panel-heading T{{turma.serie.charAt(0)}}"><h3>{{turma.serie+' '+turma.turma}}</h3></div>
+            <div class="panel-body">
+                <div><b>Escola:</b> {{turma.Escola.nomeEscola}}</div>
+                <div><b>Curso:</b> {{turma.curso}}</div>
+                <div><b>Ano da Turma:</b> {{turma.ano}}</div>
+                <div><b>Total de Alunos:</b> {{turma.Alunos.length}}</div>
+            </div>
+        </div>
+    </div>
+
+
+</script>
+
+<script type="text/html" id="template_tiposAvaliacoes">
+    <ol class="breadcrumb">
+        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li class="active">Análise de Provas</li>
+    </ol>
+    <div class="col-md-4">
+        <div class="panel easy panel-default drag" ng-click="">
+            <div class="panel-heading THipotese">Hipótese</div>
+            <!--<div class="panel-body">-->
+            <!--Blablablablablabla-->
+            <!--</div>-->
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel easy panel-default drag" ng-click="">
+            <div class="panel-heading TDiagnostica">Diagnóstica</div>
+            <!--<div class="panel-body">-->
+            <!--Blablablablablabla-->
+            <!--</div>-->
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel easy panel-default drag" ng-click="">
+            <div class="panel-heading TFada">FADA</div>
+            <!--<div class="panel-body">-->
+            <!--Blablablablablabla-->
+            <!--</div>-->
+        </div>
+    </div>
+</script>
 
 </body>
 </html>
