@@ -2,7 +2,7 @@
 
 var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
 
-provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider, $location) {
+provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
     $locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise("/home");
