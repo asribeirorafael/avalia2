@@ -14,7 +14,7 @@ module.exports = function (grunt) {
             for (indiceArquivosDiretorio = 0; indiceArquivosDiretorio < arquivosDiretorio.length; indiceArquivosDiretorio++) {
                 arquivoDiretorio = arquivosDiretorio[indiceArquivosDiretorio];
                 //noinspection JSLint
-                htmlTemplates += '\n<script type="text\/html" id="template_' + arquivoDiretorio.replace(/\.(.*)/,'') + '">\n';
+                htmlTemplates += '\n<script type="text\/ng-template" id="template_' + arquivoDiretorio.replace(/\.(.*)/,'') + '">\n';
                 //noinspection JSLint
                 htmlTemplates += fs.readFileSync('./views/templates/' + arquivoDiretorio);
                 htmlTemplates += '\n<\/script>\n';
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                             }
                         },
                         files: {
-                            'views/htmls/masterpage.html': 'views/htmls/index.ejs'
+                            'index.html': 'views/htmls/index.ejs'
                         }
                     }
                 },
@@ -71,4 +71,3 @@ module.exports = function (grunt) {
         });
     });
 }
-

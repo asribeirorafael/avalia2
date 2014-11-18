@@ -10,11 +10,7 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
         .state('dashboard', {
             url: "/dashboard",
             templateUrl: "template_dashboard",
-            controller: function()
-            {
-                console.log("DASHBOARD:");
-                console.log("Deu certo mano!");
-            }
+            controller: 'DashboardController'
         })
         .state('carometro', {
             url: "/carometro",
