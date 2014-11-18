@@ -9,15 +9,15 @@ provasApp.config(function($routeProvider,  $locationProvider, $provide) {
     //});
 
     $routeProvider.
-        when('/', {
+        when('', {
             templateUrl: 'views/templates/dashboard.ejs',
             controller: 'DashboardController'
         }).
-        when('/dashboard', {
+        when('dashboard', {
             templateUrl: 'views/templates/dashboard.ejs',
             controller: 'DashboardController'
         }).
-        when('/carometro', {
+        when('carometro', {
             templateUrl: 'views/templates/carometro.ejs',
             controller: 'CarometroController'
         });
