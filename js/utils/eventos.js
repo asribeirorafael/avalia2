@@ -1,31 +1,45 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module("provasApp", ['ngRoute', 'AvaliaControllers']);
+var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
 
-provasApp.config(function($routeProvider,  $locationProvider, $provide) {
-    //$provide.decorator('$sniffer', function($delegate) {
-    //    $delegate.history = false;
-    //    return $delegate;
-    //});
+provasApp.config(function($stateProvider,  $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/home");
 
-    $routeProvider.
-        when('', {
-            templateUrl: 'views/templates/dashboard.ejs',
-            controller: 'DashboardController'
-        }).
-        when('dashboard', {
-            templateUrl: 'views/templates/dashboard.ejs',
-            controller: 'DashboardController'
-        }).
-        when('carometro', {
-            templateUrl: 'views/templates/carometro.ejs',
+    $stateProvider
+        .state('dashboard', {
+            url: "/dashboard",
+            templateUrl: "views/templates/dashboard.ejs",
+            controller: function()
+            {
+                console.log("DASHBOARD:");
+                console.log("Deu certo mano!");
+            }
+        })
+        .state('carometro', {
+            url: "/carometro",
+            templateUrl: "views/templates/carometro.ejs",
             controller: 'CarometroController'
         });
 
-    // use the HTML5 History API
-    $locationProvider
-        .html5Mode(true);
-        //.hashPrefix("!");
+    //$routeProvider.
+    //    when('/', {
+    //        templateUrl: 'views/templates/dashboard.ejs',
+    //        controller: 'DashboardController'
+    //    }).
+    //    when('/dashboard', {
+    //        templateUrl: 'views/templates/dashboard.ejs',
+    //        controller: 'DashboardController'
+    //    }).
+    //    when('/carometro', {
+    //        templateUrl: 'views/templates/carometro.ejs',
+    //        controller: 'CarometroController'
+    //    })
+    //
+    //    .otherwise ({ redirectTo: '/' });
+    //
+    //// use the HTML5 History API
+    //$locationProvider.html5Mode(true);
+    //    //.hashPrefix("!");
 });
 
 /* Função do $scope */
