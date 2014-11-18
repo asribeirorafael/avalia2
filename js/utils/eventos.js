@@ -8,7 +8,7 @@ provasApp.config(function($stateProvider,  $urlRouterProvider) {
     $stateProvider
         .state('dashboard', {
             url: "/dashboard",
-            templateUrl: "views/templates/dashboard.ejs",
+            templateUrl: "#/views/templates/dashboard.ejs",
             controller: function()
             {
                 console.log("DASHBOARD:");
@@ -17,7 +17,7 @@ provasApp.config(function($stateProvider,  $urlRouterProvider) {
         })
         .state('carometro', {
             url: "/carometro",
-            templateUrl: "views/templates/carometro.ejs",
+            templateUrl: "#/views/templates/carometro.ejs",
             controller: 'CarometroController'
         });
 
