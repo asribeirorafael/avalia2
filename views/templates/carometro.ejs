@@ -1,6 +1,6 @@
 <div ng-if="turmaSelecionada.Alunos.length == 0">
     <ol class="breadcrumb">
-        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li><a ui-sref="dashboard">Dashboard</a></li>
         <li class="active">Carômetro</li>
     </ol>
     <div class="col-md-12">
@@ -9,7 +9,7 @@
 </div>
 <div ng-if="turmaSelecionada.Alunos.length != 0">
     <ol class="breadcrumb">
-        <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
+        <li><a ui-sref="dashboard">Dashboard</a></li>
         <li class="active">Carômetro</li>
     </ol>
     <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">

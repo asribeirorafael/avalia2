@@ -25,7 +25,6 @@ var Objetos = (function() {
         this.Turmas = new Array();
     };
 
-
     function Aluno(){
         this.id = "";
         this.idProjeto = "";
@@ -107,6 +106,12 @@ var Objetos = (function() {
         this.projeto = "";
     }
 
+    function AnaliseHipotese(){
+        this.nivel = "";
+        this.total = 0;
+        this.porcentagem = "";
+    }
+
     return {
 
         Endereco: function(){return new Endereco()},
@@ -125,7 +130,9 @@ var Objetos = (function() {
 
         ResultadoHipotese: function(){return new ResultadoHipotese()},
 
-        Usuario: function(){return new Usuario()}
+        Usuario: function(){return new Usuario()},
+
+        AnaliseHipotese: function(){return new AnaliseHipotese()}
     }
 
 })();

@@ -1,6 +1,6 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module("provasApp", ['ui.router', 'AvaliaControllers']);
+var provasApp = angular.module("provasApp", ['ui.router', 'googlechart','AvaliaControllers', 'GoogleChartControllers']);
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
 
@@ -12,31 +12,36 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
             templateUrl: "template_dashboard",
             controller: 'DashboardController'
         })
+        .state('turmas', {
+            url: "/turmas/hipotese",
+            templateUrl: "template_listaTurmasHipotese"
+            //controller: 'TurmasHipoteseController'
+        })
+        .state('avaliacoesHipotese', {
+            url: "/turmas/avaliacoes",
+            templateUrl: "template_listaAvaliacoesHipotese",
+            controller: 'SelecionarTurmaHipoteseController'
+        })
+        .state('avaliacaoHipotese', {
+            url: "/turmas/avaliacao/:idAvaliacao",
+            templateUrl: "template_avaliacaoHipotese",
+            controller: 'SelecionarAvaliacaoHipoteseController'
+        })
+        .state('avaliacaoAnalise', {
+            url: "/turmas/analise/:idAvaliacao",
+            templateUrl: "template_analiseAvaliacao",
+            controller: 'GraficoAnaliseHipoteseAvaliacao'
+        })
+        .state('tiposAvaliacoes', {
+            url: "/avaliacoes",
+            templateUrl: "template_tiposAvaliacoes",
+            controller: 'TiposAvaliacoesController'
+        })
         .state('carometro', {
             url: "/carometro",
             templateUrl: "template_carometro",
             controller: 'CarometroController'
         });
-
-    //$routeProvider.
-    //    when('/', {
-    //        templateUrl: 'views/templates/dashboard.ejs',
-    //        controller: 'DashboardController'
-    //    }).
-    //    when('/dashboard', {
-    //        templateUrl: 'views/templates/dashboard.ejs',
-    //        controller: 'DashboardController'
-    //    }).
-    //    when('/carometro', {
-    //        templateUrl: 'views/templates/carometro.ejs',
-    //        controller: 'CarometroController'
-    //    })
-    //
-    //    .otherwise ({ redirectTo: '/' });
-    //
-    //// use the HTML5 History API
-    //$locationProvider.html5Mode(true);
-    //    //.hashPrefix("!");
 });
 
 /* Função do $scope */
@@ -118,7 +123,7 @@ provasApp.directive('mask', [function () {
     };
 }]);
 
-provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
+provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal, compilador, paramRota) {
 
     escopoGlobal.usuarioLogado = JSON.parse(localStorage.getItem("User"));
     escopoGlobal.listaEstadosCidades = Colecoes.EstadosCidades;
@@ -145,6 +150,9 @@ provasApp.run(['$rootScope', '$compile', function (escopoGlobal, compilador) {
     escopoGlobal.alunoSelecionadoHipotese = new Objetos.Aluno();
     escopoGlobal.indiceAluno = 0;
     escopoGlobal.respostaAvaliacaoHipotese = new Objetos.ResultadoHipotese();
+    escopoGlobal.GraficoHipotesePizza = {};
+    escopoGlobal.GraficoHipoteseColuna = {};
+    escopoGlobal.dadosAnaliseAvaliacao = new Array();
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;

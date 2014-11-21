@@ -138,6 +138,35 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             });
         },
 
+        getResultadoHipoteseAvaliacao: function(idAvaliacao, callback){
+            var query = new Parse.Query("resultHipotese");
+            query.include("idAvaliacao");
+            query.include("idAluno");
+            query.include("idProfessor");
+            query.include("idTurma");
+            query.include("idEscola");
+
+            query.equalTo("idAvaliacao", {
+                __type: "Pointer",
+                className: "avaliacao",
+                objectId: idAvaliacao
+            });
+
+            query.find({
+                success: function(resultHipoteseRes) {
+                    var arrayHipotese = new Array();
+                    for(var i = 0, lenHR = resultHipoteseRes.length; i < lenHR; i++){
+                        var resHipotese = AvaliacaoContract.setHipoteseFront(resultHipoteseRes[i]);
+                        arrayHipotese.push(resHipotese);
+                    }
+                    callback(arrayHipotese);
+                },
+                error: function(object, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
         putResultadoHipotese: function(object, callback){
             var HipoteseTable = Parse.Object.extend("resultHipotese");
             var hipoteseBack = new HipoteseTable();
@@ -191,37 +220,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             globalScope().avaliacaoSelecionada = avaliacao;
             globalScope().alunoSelecionadoHipotese = globalScope().turmaSelecionada.Alunos[0];
             globalScope().indiceAluno = 0;
-
-            AvaliacaoBusiness.getResultadoHipoteseAluno(globalScope().alunoSelecionadoHipotese.id, avaliacao.id, function(resultadoAluno){
-                if(!resultadoAluno.id){
-                    globalScope().respostaAvaliacaoHipotese.id = "";
-                    globalScope().respostaAvaliacaoHipotese.idProjeto = globalScope().turmaSelecionada.idProjeto;
-                    globalScope().respostaAvaliacaoHipotese.ano = new Date().getFullYear();
-                    globalScope().respostaAvaliacaoHipotese.Avaliacao = avaliacao;
-                    globalScope().respostaAvaliacaoHipotese.Aluno = globalScope().alunoSelecionadoHipotese;
-                    globalScope().respostaAvaliacaoHipotese.Professor = new Objetos.Professor();
-                    globalScope().respostaAvaliacaoHipotese.Professor.id = globalScope().usuarioLogado.Pessoa.id;
-                    globalScope().respostaAvaliacaoHipotese.Turma = globalScope().turmaSelecionada;
-                    globalScope().respostaAvaliacaoHipotese.Escola = globalScope().turmaSelecionada.Escola;
-                    globalScope().respostaAvaliacaoHipotese.nivelHipotese = "";
-
-                    globalScope().alterarPagina('avaliacaoHipotese', '#Content');
-                    globalScope().atualizarEscopo();
-                } else{
-                    globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
-                    globalScope().respostaAvaliacaoHipotese.idProjeto = resultadoAluno.idProjeto;
-                    globalScope().respostaAvaliacaoHipotese.ano = resultadoAluno.ano;
-                    globalScope().respostaAvaliacaoHipotese.Avaliacao = resultadoAluno.Avaliacao;
-                    globalScope().respostaAvaliacaoHipotese.Aluno = resultadoAluno.Aluno;
-                    globalScope().respostaAvaliacaoHipotese.Professor = resultadoAluno.Professor;
-                    globalScope().respostaAvaliacaoHipotese.Turma = resultadoAluno.Turma;
-                    globalScope().respostaAvaliacaoHipotese.Escola = resultadoAluno.Escola;
-                    globalScope().respostaAvaliacaoHipotese.nivelHipotese = resultadoAluno.nivelHipotese;
-
-                    globalScope().alterarPagina('avaliacaoHipotese', '#Content');
-                    globalScope().atualizarEscopo();
-                }
-            });
         },
 
         goToFirst: function(){
@@ -358,6 +356,67 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                 globalScope().respostaAvaliacaoHipotese.nivelHipotese = resultadoAluno.nivelHipotese;
                 globalScope().atualizarEscopo();
             }
+        },
+
+        gerarAnaliseAvaliacao: function(idAvaliacao, callback){
+            AvaliacaoBusiness.getResultadoHipoteseAvaliacao(idAvaliacao, function(listaResultados){
+                var arrayGrafico = new Array(),
+                    ObjetoA = new Objetos.AnaliseHipotese(),
+                    ObjetoSA = new Objetos.AnaliseHipotese(),
+                    ObjetoSC = new Objetos.AnaliseHipotese(),
+                    ObjetoSS = new Objetos.AnaliseHipotese(),
+                    ObjetoS = new Objetos.AnaliseHipotese();
+
+                for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
+                    switch(listaResultados[i].nivelHipotese){
+                        case "1":
+                            ObjetoA.total++;
+                            break;
+                        case "2":
+                            ObjetoSA.total++;
+                            break;
+                        case "3":
+                            ObjetoSC.total++;
+                            break;
+                        case "4":
+                            ObjetoSS.total++;
+                            break;
+                        case "5":
+                            ObjetoS.total++;
+                            break;
+                    }
+                }
+
+                ObjetoA.nivel = "Alfabético";
+                ObjetoA.porcentagem = ((ObjetoA.total/LenLR)*100).toFixed(2);
+                ObjetoSA.nivel = "Silábico-Alfabético";
+                ObjetoSA.porcentagem = ((ObjetoSA.total/LenLR)*100).toFixed(2);
+                ObjetoSC.nivel = "Silábico com Valor";
+                ObjetoSC.porcentagem = ((ObjetoSC.total/LenLR)*100).toFixed(2);
+                ObjetoSS.nivel = "Silábico sem Valor";
+                ObjetoSS.porcentagem = ((ObjetoSS.total/LenLR)*100).toFixed(2);
+                ObjetoS.nivel = "Pré-Silábico";
+                ObjetoS.porcentagem = ((ObjetoS.total/LenLR)*100).toFixed(2);
+
+                arrayGrafico.push(ObjetoA);
+                arrayGrafico.push(ObjetoSA);
+                arrayGrafico.push(ObjetoSC);
+                arrayGrafico.push(ObjetoSS);
+                arrayGrafico.push(ObjetoS);
+
+                for(var i = 0, LenAG = arrayGrafico.length; i < LenAG; i++){
+                    var objAnalise = [
+                        {v: arrayGrafico[i].nivel},
+                        {v: arrayGrafico[i].total}
+                    ];
+
+                    globalScope().dadosAnaliseAvaliacao.push(objAnalise);
+                }
+
+                globalScope().atualizarEscopo();
+
+                callback();
+            });
         }
 
     }

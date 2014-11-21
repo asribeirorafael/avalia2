@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
-    <li><a ng-click="alterarPagina('dashboard', '#Content')">Dashboard</a></li>
-    <li><a ng-click="alterarPagina('listaTurmasHipotese', '#Content')">Lançamentos</a></li>
-    <li><a ng-click="alterarPagina('listaAvaliacoesHipotese', '#Content')">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li><a ui-sref="turmas">Lançamentos</a></li>
+    <li><a ui-sref="avaliacoesHipotese">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
     <li class="active">{{'Avaliacao Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
 </ol>
 
@@ -12,31 +12,31 @@
             <ul class="wrap-check">
                 <li>
                     <div>
-                        <input id="chkbx1" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="1" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx1" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="1" ng-false-value="" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2 data-toggle="modal" data-target="#myModal1">Alfabético</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input id="chkbx2" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="2" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx2" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="2" ng-false-value="" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2 data-toggle="modal" data-target="#myModal2">Silábico-Alfabético</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input id="chkbx3" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="3" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx3" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="3" ng-false-value="" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2 data-toggle="modal" data-target="#myModal3">Silábico com Valor</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input id="chkbx4" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="4" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx4" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="4" ng-false-value="" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2 data-toggle="modal" data-target="#myModal4">Silábico sem Valor</h2></label>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <input id="chkbx5" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="5" ng-false-value="" class="prettycheckbox" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
+                        <input id="chkbx5" ng-change="UTILIDADE.validarUnico(respostaAvaliacaoHipotese.nivelHipotese)" ng-model="respostaAvaliacaoHipotese.nivelHipotese" ng-true-value="5" ng-false-value="" type="checkbox" style="width: 95px; height: 95px;vertical-align: bottom;position: relative;top: 15px;overflow: hidden;"/>
                         <label><h2 data-toggle="modal" data-target="#myModal5">Pré-Silábico</h2></label>
                     </div>
                 </li>

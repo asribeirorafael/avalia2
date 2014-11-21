@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li><a ui-sref="turmas">Lançamentos</a></li>
+    <li><a ui-sref="avaliacoesHipotese">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
+    <li class="active">{{'Análise Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
+</ol>
+
+<div class="col-md-12">
+    <div class="col-md-6" google-chart chart="GraficoHipotesePizza" style="height:400px;"></div>
+    <div class="col-md-6" google-chart chart="GraficoHipoteseColuna" style="height:400px;"></div>
+</div>

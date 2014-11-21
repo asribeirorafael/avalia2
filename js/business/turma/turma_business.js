@@ -189,35 +189,6 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
 
         selecionarTurmaAvaliacaoHipotese: function(turma){
             globalScope().turmaSelecionada = turma;
-
-            if(turma.Alunos.length){
-                if(!turma.Alunos[0].id){
-                    var listaAlunos = new Array();
-                    turma.Alunos.forEach(function(idAluno, indice){
-                        PessoaBusiness.getAluno(idAluno, function(alunoRes){
-                            listaAlunos.push(alunoRes);
-                            if(turma.Alunos.length == indice+1){
-                                globalScope().turmaSelecionada.Alunos = listaAlunos;
-
-                                AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
-                                    globalScope().alterarPagina('listaAvaliacoesHipotese', '#Content');
-                                    globalScope().atualizarEscopo();
-                                });
-                            }
-                        });
-                    });
-                }else{
-                    AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
-                        globalScope().alterarPagina('listaAvaliacoesHipotese', '#Content');
-                        globalScope().atualizarEscopo();
-                    });
-                }
-            }else{
-                AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
-                    globalScope().alterarPagina('listaAvaliacoesHipotese', '#Content');
-                    globalScope().atualizarEscopo();
-                });
-            }
         },
 
         editarTurma: function () {
