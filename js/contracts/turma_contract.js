@@ -59,7 +59,7 @@ var TurmaContract = (function(Objetos) {
             if(escolaSave){
                 objetoBase.set("idEscola", escolaSave);
             }else{
-                objetoBase.set("idProf", null);
+                objetoBase.set("idEscola", null);
             }
             if(professorSave){
                 objetoBase.set("idProf", professorSave);

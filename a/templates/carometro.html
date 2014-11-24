@@ -1,0 +1,23 @@
+<div ng-if="turmaSelecionada.Alunos.length == 0">
+    <ol class="breadcrumb">
+        <li><a ui-sref="dashboard">Dashboard</a></li>
+        <li class="active">Carômetro</li>
+    </ol>
+    <div class="col-md-12">
+        <h3>Não Existem Alunos matriculados para esta Turma.</h3>
+    </div>
+</div>
+<div ng-if="turmaSelecionada.Alunos.length != 0">
+    <ol class="breadcrumb">
+        <li><a ui-sref="dashboard">Dashboard</a></li>
+        <li class="active">Carômetro</li>
+    </ol>
+    <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
+        <div class="panel easy panel-default drag" ng-click="">
+            <div class="panel-heading">{{aluno.nome}}</div>
+            <div class="panel-body">
+                <img src="{{aluno.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
+            </div>
+        </div>
+    </div>
+</div>

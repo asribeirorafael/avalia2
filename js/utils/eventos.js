@@ -9,37 +9,37 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
     $stateProvider
         .state('dashboard', {
             url: "/dashboard",
-            templateUrl: "template_dashboard",
+            templateUrl: "templates/dashboard.html",
             controller: 'DashboardController'
         })
         .state('turmas', {
             url: "/turmas/hipotese",
-            templateUrl: "template_listaTurmasHipotese"
+            templateUrl: "templates/listaTurmasHipotese.html"
             //controller: 'TurmasHipoteseController'
         })
         .state('avaliacoesHipotese', {
-            url: "/turmas/avaliacoes",
-            templateUrl: "template_listaAvaliacoesHipotese",
+            url: "/turmas/hipotese/:idTurma/avaliacoes",
+            templateUrl: "templates/listaAvaliacoesHipotese.html",
             controller: 'SelecionarTurmaHipoteseController'
         })
         .state('avaliacaoHipotese', {
-            url: "/turmas/avaliacao/:idAvaliacao",
-            templateUrl: "template_avaliacaoHipotese",
+            url: "/turmas/hipotese/:idTurma/avaliacoes/:idAvaliacao",
+            templateUrl: "templates/avaliacaoHipotese.html",
             controller: 'SelecionarAvaliacaoHipoteseController'
         })
         .state('avaliacaoAnalise', {
-            url: "/turmas/analise/:idAvaliacao",
-            templateUrl: "template_analiseAvaliacao",
+            url: "/turmas/hipotese/:idTurma/avaliacoes/analise/:idAvaliacao",
+            templateUrl: "templates/analiseAvaliacao.html",
             controller: 'GraficoAnaliseHipoteseAvaliacao'
         })
         .state('tiposAvaliacoes', {
-            url: "/avaliacoes",
-            templateUrl: "template_tiposAvaliacoes",
-            controller: 'TiposAvaliacoesController'
+            url: "/:idTurma/avaliacoes",
+            templateUrl: "templates/tiposAvaliacoes.html"
+            //controller: 'TiposAvaliacoesController'
         })
         .state('carometro', {
-            url: "/carometro",
-            templateUrl: "template_carometro",
+            url: "/:idTurma/carometro",
+            templateUrl: "templates/carometro.html",
             controller: 'CarometroController'
         });
 });

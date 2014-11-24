@@ -103,6 +103,10 @@ AvaliaControllers.controller("CarometroController", ['$scope','$http', function(
 AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateParams){
     Utils.ReturnPersistData();
 
+    globalScope().GraficoHipotesePizza = {};
+    globalScope().GraficoHipoteseColuna = {};
+    globalScope().dadosAnaliseAvaliacao = new Array();
+
     AvaliacaoBusiness.gerarAnaliseAvaliacao($stateParams.idAvaliacao, function(){
         globalScope().GraficoHipotesePizza.data = {
             "cols": [

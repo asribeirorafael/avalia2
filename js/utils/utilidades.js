@@ -650,7 +650,10 @@ var Utils = (function() {
                 avaliacaoSelecionada: globalScope().avaliacaoSelecionada,
                 alunoSelecionadoHipotese: globalScope().alunoSelecionadoHipotese,
                 indiceAluno: globalScope().indiceAluno,
-                respostaAvaliacaoHipotese: globalScope().respostaAvaliacaoHipotese
+                respostaAvaliacaoHipotese: globalScope().respostaAvaliacaoHipotese,
+                GraficoHipotesePizza: globalScope().GraficoHipotesePizza,
+                GraficoHipoteseColuna:globalScope().GraficoHipoteseColuna,
+                dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao
             }
 
             localStorage.setItem("GlobalScope", JSON.stringify(jSonPersist));
@@ -685,6 +688,9 @@ var Utils = (function() {
                 globalScope().alunoSelecionadoHipotese = objetoPersist.alunoSelecionadoHipotese;
                 globalScope().indiceAluno = objetoPersist.indiceAluno;
                 globalScope().respostaAvaliacaoHipotese = objetoPersist.respostaAvaliacaoHipotese;
+                globalScope().GraficoHipotesePizza = objetoPersist.GraficoHipotesePizza;
+                globalScope().GraficoHipoteseColuna = objetoPersist.GraficoHipoteseColuna;
+                globalScope().dadosAnaliseAvaliacao = objetoPersist.dadosAnaliseAvaliacao;
 
                 localStorage.removeItem("GlobalScope");
             }

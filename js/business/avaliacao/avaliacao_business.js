@@ -39,7 +39,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             var query = new Parse.Query("avaliacao");
             query.equalTo("tipoAvaliacao", idTipo);
             query.equalTo("tipoSerie", idSerie);
-            query.ascending("periodo");
+            //query.ascending("periodo");
             query.find({
                 success: function(avaliacaoRes) {
                     var arrayAvaliacao = new Array();
@@ -360,62 +360,71 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
         gerarAnaliseAvaliacao: function(idAvaliacao, callback){
             AvaliacaoBusiness.getResultadoHipoteseAvaliacao(idAvaliacao, function(listaResultados){
-                var arrayGrafico = new Array(),
-                    ObjetoA = new Objetos.AnaliseHipotese(),
-                    ObjetoSA = new Objetos.AnaliseHipotese(),
-                    ObjetoSC = new Objetos.AnaliseHipotese(),
-                    ObjetoSS = new Objetos.AnaliseHipotese(),
-                    ObjetoS = new Objetos.AnaliseHipotese();
+                if(listaResultados.length){
+                    var arrayGrafico = new Array(),
+                        ObjetoA = new Objetos.AnaliseHipotese(),
+                        ObjetoSA = new Objetos.AnaliseHipotese(),
+                        ObjetoSC = new Objetos.AnaliseHipotese(),
+                        ObjetoSS = new Objetos.AnaliseHipotese(),
+                        ObjetoS = new Objetos.AnaliseHipotese();
 
-                for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
-                    switch(listaResultados[i].nivelHipotese){
-                        case "1":
-                            ObjetoA.total++;
-                            break;
-                        case "2":
-                            ObjetoSA.total++;
-                            break;
-                        case "3":
-                            ObjetoSC.total++;
-                            break;
-                        case "4":
-                            ObjetoSS.total++;
-                            break;
-                        case "5":
-                            ObjetoS.total++;
-                            break;
+                    for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
+                        switch(listaResultados[i].nivelHipotese){
+                            case "1":
+                                ObjetoA.total++;
+                                break;
+                            case "2":
+                                ObjetoSA.total++;
+                                break;
+                            case "3":
+                                ObjetoSC.total++;
+                                break;
+                            case "4":
+                                ObjetoSS.total++;
+                                break;
+                            case "5":
+                                ObjetoS.total++;
+                                break;
+                        }
                     }
+
+                    ObjetoA.nivel = "Alfabético";
+                    ObjetoA.porcentagem = ((ObjetoA.total/LenLR)*100).toFixed(2);
+                    ObjetoSA.nivel = "Silábico-Alfabético";
+                    ObjetoSA.porcentagem = ((ObjetoSA.total/LenLR)*100).toFixed(2);
+                    ObjetoSC.nivel = "Silábico com Valor";
+                    ObjetoSC.porcentagem = ((ObjetoSC.total/LenLR)*100).toFixed(2);
+                    ObjetoSS.nivel = "Silábico sem Valor";
+                    ObjetoSS.porcentagem = ((ObjetoSS.total/LenLR)*100).toFixed(2);
+                    ObjetoS.nivel = "Pré-Silábico";
+                    ObjetoS.porcentagem = ((ObjetoS.total/LenLR)*100).toFixed(2);
+
+                    arrayGrafico.push(ObjetoA);
+                    arrayGrafico.push(ObjetoSA);
+                    arrayGrafico.push(ObjetoSC);
+                    arrayGrafico.push(ObjetoSS);
+                    arrayGrafico.push(ObjetoS);
+
+                    for(var i = 0, LenAG = arrayGrafico.length; i < LenAG; i++){
+                        var objAnalise = [
+                            {v: arrayGrafico[i].nivel},
+                            {v: arrayGrafico[i].total}
+                        ];
+
+                        globalScope().dadosAnaliseAvaliacao.push(objAnalise);
+                    }
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
+                }else{
+                    globalScope().dadosAnaliseAvaliacao = new Array();
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
                 }
 
-                ObjetoA.nivel = "Alfabético";
-                ObjetoA.porcentagem = ((ObjetoA.total/LenLR)*100).toFixed(2);
-                ObjetoSA.nivel = "Silábico-Alfabético";
-                ObjetoSA.porcentagem = ((ObjetoSA.total/LenLR)*100).toFixed(2);
-                ObjetoSC.nivel = "Silábico com Valor";
-                ObjetoSC.porcentagem = ((ObjetoSC.total/LenLR)*100).toFixed(2);
-                ObjetoSS.nivel = "Silábico sem Valor";
-                ObjetoSS.porcentagem = ((ObjetoSS.total/LenLR)*100).toFixed(2);
-                ObjetoS.nivel = "Pré-Silábico";
-                ObjetoS.porcentagem = ((ObjetoS.total/LenLR)*100).toFixed(2);
-
-                arrayGrafico.push(ObjetoA);
-                arrayGrafico.push(ObjetoSA);
-                arrayGrafico.push(ObjetoSC);
-                arrayGrafico.push(ObjetoSS);
-                arrayGrafico.push(ObjetoS);
-
-                for(var i = 0, LenAG = arrayGrafico.length; i < LenAG; i++){
-                    var objAnalise = [
-                        {v: arrayGrafico[i].nivel},
-                        {v: arrayGrafico[i].total}
-                    ];
-
-                    globalScope().dadosAnaliseAvaliacao.push(objAnalise);
-                }
-
-                globalScope().atualizarEscopo();
-
-                callback();
             });
         }
 
