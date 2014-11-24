@@ -1,6 +1,6 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module("provasApp", ['ui.router', 'googlechart','AvaliaControllers', 'GoogleChartControllers']);
+var provasApp = angular.module("provasApp", ['ngGrid', 'ui.router', 'googlechart','AvaliaControllers', 'GoogleChartControllers']);
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
 
@@ -126,33 +126,42 @@ provasApp.directive('mask', [function () {
 provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal, compilador, paramRota) {
 
     escopoGlobal.usuarioLogado = JSON.parse(localStorage.getItem("User"));
+
     escopoGlobal.listaEstadosCidades = Colecoes.EstadosCidades;
     escopoGlobal.listaCursos = Colecoes.Curso;
     escopoGlobal.listaPeriodo = Colecoes.TipoTurno;
+
     escopoGlobal.objetoEscola = new Objetos.Escola();
     escopoGlobal.objetoTurma = new Objetos.Turma();
     escopoGlobal.objetoAluno = new Objetos.Aluno;
     escopoGlobal.objetoProfessor = new Objetos.Professor;
-    escopoGlobal.pagina = 0;
+
     escopoGlobal.escolas = [];
     escopoGlobal.turmas = [];
-    escopoGlobal.aluno = [];
+    escopoGlobal.alunos = [];
     escopoGlobal.professores = [];
     escopoGlobal.avaliacoes = [];
+
     escopoGlobal.escola = new Objetos.Escola();
     escopoGlobal.turma = new Objetos.Turma();
     escopoGlobal.aluno = new Objetos.Aluno();
     escopoGlobal.professor = new Objetos.Professor();
+
     escopoGlobal.idEscola = "";
+
     escopoGlobal.escolaSelecionada = "";
     escopoGlobal.turmaSelecionada = "";
     escopoGlobal.avaliacaoSelecionada = new Objetos.Avaliacao();
+
     escopoGlobal.alunoSelecionadoHipotese = new Objetos.Aluno();
     escopoGlobal.indiceAluno = 0;
     escopoGlobal.respostaAvaliacaoHipotese = new Objetos.ResultadoHipotese();
+
     escopoGlobal.GraficoHipotesePizza = {};
     escopoGlobal.GraficoHipoteseColuna = {};
     escopoGlobal.dadosAnaliseAvaliacao = new Array();
+    escopoGlobal.DataGrid = new Array();
+    escopoGlobal.gridOptions = { data: 'DataGrid' };
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;

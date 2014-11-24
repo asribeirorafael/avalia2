@@ -573,6 +573,12 @@ var Utils = (function() {
             }
         },
 
+        Ordenacao:{
+            byname: function byname(user_a, user_b) {
+                return user_a.nome > user_b.nome;
+            }
+        },
+
         SidebarClose: function(){
             if ($('#wrapper').hasClass('sidebar')){
                 $('#wrapper').removeClass('sidebar');
@@ -653,7 +659,8 @@ var Utils = (function() {
                 respostaAvaliacaoHipotese: globalScope().respostaAvaliacaoHipotese,
                 GraficoHipotesePizza: globalScope().GraficoHipotesePizza,
                 GraficoHipoteseColuna:globalScope().GraficoHipoteseColuna,
-                dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao
+                dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao,
+                DataGrid: globalScope().DataGrid
             }
 
             localStorage.setItem("GlobalScope", JSON.stringify(jSonPersist));
@@ -691,6 +698,7 @@ var Utils = (function() {
                 globalScope().GraficoHipotesePizza = objetoPersist.GraficoHipotesePizza;
                 globalScope().GraficoHipoteseColuna = objetoPersist.GraficoHipoteseColuna;
                 globalScope().dadosAnaliseAvaliacao = objetoPersist.dadosAnaliseAvaliacao;
+                globalScope().DataGrid = objetoPersist.DataGrid;
 
                 localStorage.removeItem("GlobalScope");
             }

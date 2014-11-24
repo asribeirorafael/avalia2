@@ -56,6 +56,8 @@ AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
                 PessoaBusiness.getAluno(idAluno, function(alunoRes){
                     listaAlunos.push(alunoRes);
                     if(turma.Alunos.length == indice+1){
+                        listaAlunos.sort(Utils.Ordenacao.byname);
+
                         globalScope().turmaSelecionada.Alunos = listaAlunos;
 
                         AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
@@ -88,7 +90,10 @@ AvaliaControllers.controller("CarometroController", ['$scope','$http', function(
                 PessoaBusiness.getAluno(idAluno, function(alunoRes){
                     listaAlunos.push(alunoRes);
                     if(turma.Alunos.length == indice+1){
+                        listaAlunos.sort(Utils.Ordenacao.byname);
+
                         globalScope().turmaSelecionada.Alunos = listaAlunos;
+
                         globalScope().atualizarEscopo();
                     }
                 });
@@ -106,6 +111,7 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
     globalScope().GraficoHipotesePizza = {};
     globalScope().GraficoHipoteseColuna = {};
     globalScope().dadosAnaliseAvaliacao = new Array();
+    globalScope().DataGrid = new Array();
 
     AvaliacaoBusiness.gerarAnaliseAvaliacao($stateParams.idAvaliacao, function(){
         globalScope().GraficoHipotesePizza.data = {
@@ -126,7 +132,7 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
         globalScope().GraficoHipotesePizza.type = "PieChart";
         globalScope().GraficoHipotesePizza.options = {
             'title': 'Porcentagem de Alunos por Nível'
-        }
+        };
 
         globalScope().GraficoHipoteseColuna.data = {
             "cols": [
@@ -151,7 +157,7 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
                     'count': 0
                 }
             }
-        }
+        };
 
         globalScope().atualizarEscopo();
     });

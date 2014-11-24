@@ -362,30 +362,41 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             AvaliacaoBusiness.getResultadoHipoteseAvaliacao(idAvaliacao, function(listaResultados){
                 if(listaResultados.length){
                     var arrayGrafico = new Array(),
+                        arrayAlunosDado = new Array(),
                         ObjetoA = new Objetos.AnaliseHipotese(),
                         ObjetoSA = new Objetos.AnaliseHipotese(),
                         ObjetoSC = new Objetos.AnaliseHipotese(),
                         ObjetoSS = new Objetos.AnaliseHipotese(),
                         ObjetoS = new Objetos.AnaliseHipotese();
 
+
                     for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
+                        var nivelEscrito = "";
+
                         switch(listaResultados[i].nivelHipotese){
                             case "1":
                                 ObjetoA.total++;
+                                nivelEscrito = "Alfabético";
                                 break;
                             case "2":
                                 ObjetoSA.total++;
+                                nivelEscrito = "Silábico-Alfabético";
                                 break;
                             case "3":
                                 ObjetoSC.total++;
+                                nivelEscrito = "Silábico com Valor";
                                 break;
                             case "4":
                                 ObjetoSS.total++;
+                                nivelEscrito = "Silábico sem Valor";
                                 break;
                             case "5":
                                 ObjetoS.total++;
+                                nivelEscrito = "Pré-Silábico";
                                 break;
                         }
+                        arrayAlunosDado.push({"Nome": listaResultados[i].Aluno.nome, "Nivel": nivelEscrito});
+
                     }
 
                     ObjetoA.nivel = "Alfabético";
@@ -413,6 +424,9 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
                         globalScope().dadosAnaliseAvaliacao.push(objAnalise);
                     }
+
+                    arrayAlunosDado.sort(Utils.Ordenacao.byname);
+                    globalScope().DataGrid = arrayAlunosDado;
 
                     globalScope().atualizarEscopo();
 
