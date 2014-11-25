@@ -122,7 +122,6 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
                 globalScope().escolas.push(cadEscola);
                 globalScope().alterarPagina("tabelaEscola", '#container-cadastro');
                 atualizar(globalScope());
-                console.log(resposta);
             })
         },
 
@@ -145,7 +144,6 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
             EscolaBusiness.getEscolasRede(function(data){
                 globalScope().escolas = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         },
 
@@ -153,7 +151,6 @@ var EscolaBusiness = (function(Objetos, EscolaContract, EnderecoContract) {
             EscolaBusiness.getEscola(idEscola, function(data){
                 globalScope().escola = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         }
 

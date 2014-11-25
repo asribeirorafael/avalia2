@@ -2505,6 +2505,12 @@ table.search-developer a:hover i { color:#BCBCBC; }
  float: left;
 }
 
+.flex-item-carometro {
+ width: 100%;
+ text-align: center;
+ float: left;
+}
+
 .TInfantil{
  background: #50627f !important;
 }

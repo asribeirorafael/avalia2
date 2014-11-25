@@ -109,6 +109,7 @@ var Objetos = (function() {
     function AnaliseHipotese(){
         this.nivel = "";
         this.total = 0;
+        this.periodo = "";
         this.porcentagem = "";
     }
 

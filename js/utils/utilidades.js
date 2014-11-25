@@ -519,8 +519,23 @@ var Utils = (function() {
                 } else {
                     return curr_date + "/" + curr_month;
                 }
-            }
+            },
 
+            KeyValue: function (key, colecao) {
+                for(var i = 0, LenC = colecao.length; i< LenC; i++){
+                    if(key == colecao[i].Key){
+                        return colecao[i].Value;
+                    }
+                }
+            },
+
+            ValueKey: function (value, colecao) {
+                for(var i = 0, LenC = colecao.length; i< LenC; i++){
+                    if(value == colecao[i].Value){
+                        return colecao[i].Key;
+                    }
+                }
+            }
         },
 
         ChecarObjeto: {
@@ -574,7 +589,7 @@ var Utils = (function() {
         },
 
         Ordenacao:{
-            byname: function byname(user_a, user_b) {
+            byname: function (user_a, user_b) {
                 return user_a.nome > user_b.nome;
             }
         },
@@ -592,14 +607,14 @@ var Utils = (function() {
 
         validarUnico: function(respAvaliacao){
             switch (respAvaliacao){
-                case "1":
+                case "5":
                     jQuery("#chkbx1").prop("checked", true);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
                     jQuery("#chkbx4").prop("checked", false);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
-                case "2":
+                case "4":
                     jQuery("#chkbx1").prop("checked", false);
                     jQuery("#chkbx2").prop("checked", true);
                     jQuery("#chkbx3").prop("checked", false);
@@ -613,14 +628,14 @@ var Utils = (function() {
                     jQuery("#chkbx4").prop("checked", false);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
-                case "4":
+                case "2":
                     jQuery("#chkbx1").prop("checked", false);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
                     jQuery("#chkbx4").prop("checked", true);
                     jQuery("#chkbx5").prop("checked", false);
                     break;
-                case "5":
+                case "1":
                     jQuery("#chkbx1").prop("checked", false);
                     jQuery("#chkbx2").prop("checked", false);
                     jQuery("#chkbx3").prop("checked", false);
@@ -704,6 +719,7 @@ var Utils = (function() {
             }
 
         }
+
     }
 })();
 

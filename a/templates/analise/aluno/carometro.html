@@ -14,10 +14,13 @@
     </ol>
     <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
         <div class="panel easy panel-default drag" ng-click="">
-            <div class="panel-heading">{{aluno.nome}}</div>
-            <div class="panel-body">
-                <img src="{{aluno.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
+            <div class="panel-heading T{{turmaSelecionada.serie.charAt(0)}}">{{aluno.nome}}</div>
+            <div class="panel-body flex-container">
+                <div class="flex-item-carometro"><img src="{{aluno.imagem}}" style="width: 90%; border-radius: 3px"></div>
+                <div class="flex-item-carometro"><a class="btn btn-primary btn-lg btn-block default large" style="width: 100%">Evolução</a></div>
             </div>
         </div>
     </div>
 </div>
+
+<!--ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})"-->

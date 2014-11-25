@@ -178,7 +178,6 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
                 glob.aluno.push(cadAluno);
                 globalScope().alterarPagina("tabelaPessoa", '#container-cadastro');
                 atualizar(globalScope());
-                console.log(resposta);
             })
         },
 
@@ -191,7 +190,6 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
             PessoaBusiness.getAlunosRede(function(data){
                 globalScope().alunos = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         },
 
@@ -199,7 +197,6 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
             PessoaBusiness.getProfessoresRede(function(data){
                 globalScope().professores = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         },
 

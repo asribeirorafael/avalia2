@@ -156,7 +156,6 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
                 globalScope().turmas.push(cadTurma);
                 globalScope().alterarPagina("tabelaTurma", '#container-cadastro');
                 atualizar(globalScope());
-                console.log(resposta);
             })
         },
 
@@ -166,7 +165,6 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
                 globalScope().turmas = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         },
 
@@ -174,7 +172,6 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
             TurmaBusiness.getTurmasRede(function(data){
                 globalScope().escolas = data;
                 globalScope().atualizarEscopo();
-                console.log(data)
             });
         },
 

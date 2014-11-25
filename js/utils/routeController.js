@@ -159,44 +159,64 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
             }
         };
 
+        globalScope().AVALIACAO.changeGroupBy("Nivel");
+
         globalScope().atualizarEscopo();
     });
 });
 
-var GoogleChartControllers = angular.module("GoogleChartControllers", []);
+AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
+    Utils.ReturnPersistData();
 
-GoogleChartControllers.controller("GenericChartCtrl", function ($scope, $routeParams) {
-    $scope.chartObject = {};
+    globalScope().GraficoEvolucaoHipotese = {};
+    globalScope().dadosAnaliseAvaliacao = new Array();
+    globalScope().DataGrid = new Array();
 
-    $scope.chartObject.data = {
-        "cols": [
-            {id: "t", label: "Topping", type: "string"},
-            {id: "s", label: "Slices", type: "number"}
-        ],
-        "rows": [
-            {c: [
-                {v: "Mushrooms"},
-                {v: 3},
-            ]},
-            {c: [
-                {v: "Olives"},
-                {v: 31}
-            ]},
-            {c: [
-                {v: "Zucchini"},
-                {v: 1},
-            ]},
-            {c: [
-                {v: "Pepperoni"},
-                {v: 2},
-            ]}
-        ]};
+    AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma($stateParams.idTurma, function(){
+        globalScope().GraficoEvolucaoHipotese.data = {
+            "cols": [
+                {
+                    "id": "mes",
+                    "label": "Mês",
+                    "type": "string"
+                },
+                {
+                    "id": "alfabetico-id",
+                    "label": "alfabetico",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-alfabetico-id",
+                    "label": "Silábico-Alfabético",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-valor-id",
+                    "label": "Silábico com Valor",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-sem-id",
+                    "label": "Silábico sem Valor",
+                    "type": "number"
+                },
+
+                {
+                    "id": "silabico-id",
+                    "label": "Silábico",
+                    "type": "number"
+                }
+            ],
+            "rows": globalScope().dadosAnaliseAvaliacao
+        };
 
 
-    // $routeParams.chartType == BarChart or PieChart or ColumnChart...
-    $scope.chartObject.type = "PieChart";
-    $scope.chartObject.options = {
-        'title': 'How Much Pizza I Ate Last Night'
-    }
+        // $routeParams.chartType == BarChart or PieChart or ColumnChart...
+        globalScope().GraficoEvolucaoHipotese.type = "LineChart";
+        globalScope().GraficoEvolucaoHipotese.options = {
+            'title': 'Evolução dos Alunos'
+        };
+
+        globalScope().atualizarEscopo();
+    });
 });
-

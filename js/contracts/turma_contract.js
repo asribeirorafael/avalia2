@@ -13,10 +13,10 @@ var TurmaContract = (function(Objetos) {
 
             objetoFront.idProjeto = objetoBase.get("idProjeto");
             objetoFront.ano = objetoBase.get("ano");
-            objetoFront.serie = objetoBase.get("serie");
-            objetoFront.turma = objetoBase.get("turma");
-            objetoFront.curso = objetoBase.get("curso");
-            objetoFront.turno = objetoBase.get("turno");
+            objetoFront.serie = Utils.Conversao.KeyValue(objetoBase.get("serie"), Colecoes.Curso[objetoBase.get("curso")-1].Serie);
+            objetoFront.turma = Utils.Conversao.KeyValue(objetoBase.get("turma"), Colecoes.TipoTurma());
+            objetoFront.curso = Utils.Conversao.KeyValue(objetoBase.get("curso"), Colecoes.Curso);
+            objetoFront.turno = Utils.Conversao.KeyValue(objetoBase.get("turno"), Colecoes.TipoTurno);
             objetoFront.codigoProdesp = objetoBase.get("codigoProdesp");
 
             if(objetoBase.get("idEscola")) {
@@ -51,10 +51,12 @@ var TurmaContract = (function(Objetos) {
 
             objetoBase.set("idProjeto", projeto);
             objetoBase.set("ano", parseInt(objetoFront.ano));
-            objetoBase.set("serie", objetoFront.serie);
-            objetoBase.set("turma", objetoFront.turma);
-            objetoBase.set("curso", objetoFront.curso);
-            objetoBase.set("turno", objetoFront.turno);
+
+            objetoBase.set("serie", Utils.Conversao.ValueKey(objetoFront.serie, Colecoes.Curso[(Utils.Conversao.ValueKey(objetoFront.curso, Colecoes.Curso)-1)].Serie));
+            objetoBase.set("turma", Utils.Conversao.ValueKey(objetoFront.turma, Colecoes.TipoTurma()));
+            objetoBase.set("curso", Utils.Conversao.ValueKey(objetoFront.curso, Colecoes.Curso));
+            objetoBase.set("turno", Utils.Conversao.ValueKey(objetoFront.turno, Colecoes.TipoTurno));
+
             objetoBase.set("codigoProdesp", parseInt(objetoFront.codigoProdesp));
             if(escolaSave){
                 objetoBase.set("idEscola", escolaSave);

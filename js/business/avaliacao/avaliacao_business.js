@@ -38,7 +38,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         getAvaliacaoTipoSerie: function(idTipo, idSerie, callback){
             var query = new Parse.Query("avaliacao");
             query.equalTo("tipoAvaliacao", idTipo);
-            query.equalTo("tipoSerie", idSerie);
+            query.equalTo("tipoSerie", Utils.Conversao.ValueKey(idSerie, Colecoes.Curso[(Utils.Conversao.ValueKey(globalScope().turmaSelecionada.curso, Colecoes.Curso)-1)].Serie));
             //query.ascending("periodo");
             query.find({
                 success: function(avaliacaoRes) {
@@ -150,6 +150,35 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                 __type: "Pointer",
                 className: "avaliacao",
                 objectId: idAvaliacao
+            });
+
+            query.find({
+                success: function(resultHipoteseRes) {
+                    var arrayHipotese = new Array();
+                    for(var i = 0, lenHR = resultHipoteseRes.length; i < lenHR; i++){
+                        var resHipotese = AvaliacaoContract.setHipoteseFront(resultHipoteseRes[i]);
+                        arrayHipotese.push(resHipotese);
+                    }
+                    callback(arrayHipotese);
+                },
+                error: function(object, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
+        getResultadoHipoteseAvaliacaoTurma: function(idTurma, callback){
+            var query = new Parse.Query("resultHipotese");
+            query.include("idAvaliacao");
+            query.include("idAluno");
+            query.include("idProfessor");
+            query.include("idTurma");
+            query.include("idEscola");
+
+            query.equalTo("idTurma", {
+                __type: "Pointer",
+                className: "turma",
+                objectId: idTurma
             });
 
             query.find({
@@ -374,11 +403,11 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                         var nivelEscrito = "";
 
                         switch(listaResultados[i].nivelHipotese){
-                            case "1":
+                            case "5":
                                 ObjetoA.total++;
                                 nivelEscrito = "Alfabético";
                                 break;
-                            case "2":
+                            case "4":
                                 ObjetoSA.total++;
                                 nivelEscrito = "Silábico-Alfabético";
                                 break;
@@ -386,11 +415,11 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                                 ObjetoSC.total++;
                                 nivelEscrito = "Silábico com Valor";
                                 break;
-                            case "4":
+                            case "2":
                                 ObjetoSS.total++;
                                 nivelEscrito = "Silábico sem Valor";
                                 break;
-                            case "5":
+                            case "1":
                                 ObjetoS.total++;
                                 nivelEscrito = "Pré-Silábico";
                                 break;
@@ -425,7 +454,8 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                         globalScope().dadosAnaliseAvaliacao.push(objAnalise);
                     }
 
-                    arrayAlunosDado.sort(Utils.Ordenacao.byname);
+                    //arrayAlunosDado.sort(Utils.Ordenacao.byname);
+
                     globalScope().DataGrid = arrayAlunosDado;
 
                     globalScope().atualizarEscopo();
@@ -440,6 +470,126 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                 }
 
             });
+        },
+
+        gerarAnaliseAvaliacaoTurma: function(idTurma, callback){
+            AvaliacaoBusiness.getResultadoHipoteseAvaliacaoTurma(idTurma, function(listaResultados){
+                if(listaResultados.length){
+                    var ListaTrabalhada = new Array();
+
+                    var arrayGroup = {};
+
+                    for (var i = 0; i < listaResultados.length; ++i) {
+                        var obj = listaResultados[i];
+
+                        if (arrayGroup[obj.Avaliacao.periodo] == undefined)
+                            arrayGroup[obj.Avaliacao.periodo] = [obj.Avaliacao.periodo];
+
+                        arrayGroup[obj.Avaliacao.periodo].push(obj);
+                    }
+
+                    var j = 0;
+                    for (var periodo in arrayGroup) {
+
+                        var listaResultadosGroup = arrayGroup[periodo];
+
+                        var ObjetoA = new Objetos.AnaliseHipotese(),
+                            ObjetoSA = new Objetos.AnaliseHipotese(),
+                            ObjetoSC = new Objetos.AnaliseHipotese(),
+                            ObjetoSS = new Objetos.AnaliseHipotese(),
+                            ObjetoS = new Objetos.AnaliseHipotese();
+
+                        for(var i = 1, LenLR = listaResultadosGroup.length;i < LenLR; i++ ){
+                            var nivelEscrito = "";
+
+                            switch(listaResultadosGroup[i].nivelHipotese){
+                                case "5":
+                                    ObjetoA.total++;
+                                    nivelEscrito = "Alfabético";
+                                    break;
+                                case "4":
+                                    ObjetoSA.total++;
+                                    nivelEscrito = "Silábico-Alfabético";
+                                    break;
+                                case "3":
+                                    ObjetoSC.total++;
+                                    nivelEscrito = "Silábico com Valor";
+                                    break;
+                                case "2":
+                                    ObjetoSS.total++;
+                                    nivelEscrito = "Silábico sem Valor";
+                                    break;
+                                case "1":
+                                    ObjetoS.total++;
+                                    nivelEscrito = "Pré-Silábico";
+                                    break;
+                            }
+                        }
+
+                        ObjetoA.nivel = "Alfabético";
+                        ObjetoA.periodo = listaResultadosGroup[0] + "ºBimestre";
+                        ObjetoA.porcentagem = ((ObjetoA.total/LenLR)*100).toFixed(2);
+                        ObjetoSA.nivel = "Silábico-Alfabético";
+                        ObjetoSA.periodo = listaResultadosGroup[0] + "ºBimestre";
+                        ObjetoSA.porcentagem = ((ObjetoSA.total/LenLR)*100).toFixed(2);
+                        ObjetoSC.nivel = "Silábico com Valor";
+                        ObjetoSC.periodo = listaResultadosGroup[0] + "ºBimestre";
+                        ObjetoSC.porcentagem = ((ObjetoSC.total/LenLR)*100).toFixed(2);
+                        ObjetoSS.nivel = "Silábico sem Valor";
+                        ObjetoSS.periodo = listaResultadosGroup[0] + "ºBimestre";
+                        ObjetoSS.porcentagem = ((ObjetoSS.total/LenLR)*100).toFixed(2);
+                        ObjetoS.nivel = "Pré-Silábico";
+                        ObjetoS.periodo = listaResultadosGroup[0] + "ºBimestre";
+                        ObjetoS.porcentagem = ((ObjetoS.total/LenLR)*100).toFixed(2);
+
+                        var arrayGrafico = new Array();
+
+                        arrayGrafico.push(ObjetoA);
+                        arrayGrafico.push(ObjetoSA);
+                        arrayGrafico.push(ObjetoSC);
+                        arrayGrafico.push(ObjetoSS);
+                        arrayGrafico.push(ObjetoS);
+
+                        ListaTrabalhada[j] = arrayGrafico;
+
+                        j++;
+
+                    }
+
+                    console.log(ListaTrabalhada);
+
+                    for(var j = 0, LenT = ListaTrabalhada.length; j < LenT; j++){
+
+                        var objAnalise = [
+                            {v: ListaTrabalhada[j][0].periodo},
+                            {v: ListaTrabalhada[j][0].total},
+                            {v: ListaTrabalhada[j][1].total},
+                            {v: ListaTrabalhada[j][2].total},
+                            {v: ListaTrabalhada[j][3].total},
+                            {v: ListaTrabalhada[j][4].total},
+                        ];
+
+                        globalScope().dadosAnaliseAvaliacao.push({"c": objAnalise});
+
+                    }
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
+                }else{
+                    globalScope().dadosAnaliseAvaliacao = new Array();
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
+                }
+
+            });
+        },
+
+        changeGroupBy: function (group) {
+            globalScope().gridOptions.groupBy(group);
+            globalScope().gridOptions.sortBy(group);
         }
 
     }

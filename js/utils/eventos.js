@@ -1,6 +1,6 @@
 /*globals angular, $, console*/
 
-var provasApp = angular.module("provasApp", ['ngGrid', 'ui.router', 'googlechart','AvaliaControllers', 'GoogleChartControllers']);
+var provasApp = angular.module("provasApp", ['ngGrid', 'ui.router', 'googlechart','AvaliaControllers']);
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
 
@@ -14,32 +14,37 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
         })
         .state('turmas', {
             url: "/turmas/hipotese",
-            templateUrl: "templates/listaTurmasHipotese.html"
+            templateUrl: "templates/lancamento/listaTurmasHipotese.html"
             //controller: 'TurmasHipoteseController'
         })
         .state('avaliacoesHipotese', {
             url: "/turmas/hipotese/:idTurma/avaliacoes",
-            templateUrl: "templates/listaAvaliacoesHipotese.html",
+            templateUrl: "templates/lancamento/listaAvaliacoesHipotese.html",
             controller: 'SelecionarTurmaHipoteseController'
         })
         .state('avaliacaoHipotese', {
             url: "/turmas/hipotese/:idTurma/avaliacoes/:idAvaliacao",
-            templateUrl: "templates/avaliacaoHipotese.html",
+            templateUrl: "templates/lancamento/avaliacaoHipotese.html",
             controller: 'SelecionarAvaliacaoHipoteseController'
         })
         .state('avaliacaoAnalise', {
             url: "/turmas/hipotese/:idTurma/avaliacoes/analise/:idAvaliacao",
-            templateUrl: "templates/analiseAvaliacao.html",
+            templateUrl: "templates/analise/prova/analiseAvaliacao.html",
             controller: 'GraficoAnaliseHipoteseAvaliacao'
         })
         .state('tiposAvaliacoes', {
             url: "/:idTurma/avaliacoes",
-            templateUrl: "templates/tiposAvaliacoes.html"
+            templateUrl: "templates/analise/prova/tiposAvaliacoes.html"
             //controller: 'TiposAvaliacoesController'
+        })
+        .state('evolucaoTurmaAnalise', {
+            url: "/:idTurma/avaliacoes/hipotese",
+            templateUrl: "templates/analise/prova/evolucaoHipotese.html",
+            controller: 'EvolucaoTurmaController'
         })
         .state('carometro', {
             url: "/:idTurma/carometro",
-            templateUrl: "templates/carometro.html",
+            templateUrl: "templates/analise/aluno/carometro.html",
             controller: 'CarometroController'
         });
 });
@@ -159,9 +164,12 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
 
     escopoGlobal.GraficoHipotesePizza = {};
     escopoGlobal.GraficoHipoteseColuna = {};
+    escopoGlobal.GraficoEvolucaoHipotese = {}
     escopoGlobal.dadosAnaliseAvaliacao = new Array();
     escopoGlobal.DataGrid = new Array();
-    escopoGlobal.gridOptions = { data: 'DataGrid' };
+    escopoGlobal.gridOptions = {
+        data: 'DataGrid'
+    };
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;
