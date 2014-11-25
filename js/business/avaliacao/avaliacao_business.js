@@ -589,7 +589,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
         changeGroupBy: function (group) {
             globalScope().gridOptions.groupBy(group);
-            globalScope().gridOptions.sortBy(group);
         }
 
     }
