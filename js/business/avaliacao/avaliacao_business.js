@@ -38,7 +38,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
         getAvaliacaoTipoSerie: function(idTipo, idSerie, callback){
             var query = new Parse.Query("avaliacao");
             query.equalTo("tipoAvaliacao", idTipo);
-            query.equalTo("tipoSerie", Utils.Conversao.ValueKey(idSerie, Colecoes.Curso[(Utils.Conversao.ValueKey(globalScope().turmaSelecionada.curso, Colecoes.Curso)-1)].Serie));
+            query.equalTo("tipoSerie", Utils.Conversao.ValueKey(idSerie, Colecoes.Curso[Utils.Conversao.ValueKey(globalScope().turmaSelecionada.curso, Colecoes.Curso)].Serie));
             //query.ascending("periodo");
             query.find({
                 success: function(avaliacaoRes) {

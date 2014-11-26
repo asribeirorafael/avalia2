@@ -182,7 +182,7 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
                 },
                 {
                     "id": "alfabetico-id",
-                    "label": "alfabetico",
+                    "label": "Alfabético",
                     "type": "number"
                 },
                 {

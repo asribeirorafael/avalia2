@@ -566,38 +566,36 @@ var Colecoes = (function () {
             { "Key": "4", "Value": "Integral" }
         ],
 
-        TipoTurma: function () {
-            return [
+        TipoTurma:[
 
-                {"Key": "1", "Value": "A"},
-                {"Key": "2", "Value": "B"},
-                {"Key": "3", "Value": "C"},
-                {"Key": "4", "Value": "D"},
-                {"Key": "5", "Value": "E"},
-                {"Key": "6", "Value": "F"},
-                {"Key": "7", "Value": "G"},
-                {"Key": "8", "Value": "H"},
-                {"Key": "9", "Value": "I"},
-                {"Key": "10", "Value": "J"},
-                {"Key": "11", "Value": "K"},
-                {"Key": "12", "Value": "L"},
-                {"Key": "13", "Value": "M"},
-                {"Key": "14", "Value": "N"},
-                {"Key": "15", "Value": "O"},
-                {"Key": "16", "Value": "P"},
-                {"Key": "17", "Value": "Q"},
-                {"Key": "18", "Value": "R"},
-                {"Key": "19", "Value": "S"},
-                {"Key": "20", "Value": "T"},
-                {"Key": "21", "Value": "U"},
-                {"Key": "22", "Value": "V"},
-                {"Key": "23", "Value": "W"},
-                {"Key": "24", "Value": "X"},
-                {"Key": "25", "Value": "Y"},
-                {"Key": "26", "Value": "Z"},
-                {"Key": "27", "Value": "MU"}
-            ];
-        },
+            {"Key": "1", "Value": "A"},
+            {"Key": "2", "Value": "B"},
+            {"Key": "3", "Value": "C"},
+            {"Key": "4", "Value": "D"},
+            {"Key": "5", "Value": "E"},
+            {"Key": "6", "Value": "F"},
+            {"Key": "7", "Value": "G"},
+            {"Key": "8", "Value": "H"},
+            {"Key": "9", "Value": "I"},
+            {"Key": "10", "Value": "J"},
+            {"Key": "11", "Value": "K"},
+            {"Key": "12", "Value": "L"},
+            {"Key": "13", "Value": "M"},
+            {"Key": "14", "Value": "N"},
+            {"Key": "15", "Value": "O"},
+            {"Key": "16", "Value": "P"},
+            {"Key": "17", "Value": "Q"},
+            {"Key": "18", "Value": "R"},
+            {"Key": "19", "Value": "S"},
+            {"Key": "20", "Value": "T"},
+            {"Key": "21", "Value": "U"},
+            {"Key": "22", "Value": "V"},
+            {"Key": "23", "Value": "W"},
+            {"Key": "24", "Value": "X"},
+            {"Key": "25", "Value": "Y"},
+            {"Key": "26", "Value": "Z"},
+            {"Key": "27", "Value": "MU"}
+        ],
 
         OrigemEscola: function () {
             return [
@@ -968,20 +966,20 @@ var Colecoes = (function () {
         },
 
         Curso: [
-            {"Key":"1", "Value":"Educação Infantil", "Serie":[
-                {"Key":"11", "Value":"Berçario I"},
-                {"Key":"12", "Value":"Berçario II"},
-                {"Key":"13", "Value":"Maternal I"},
-                {"Key":"14", "Value":"Maternal II"},
-                {"Key":"15", "Value":"Jardim"},
-                {"Key":"16", "Value":"Pré-Escola"}
+            {"Key":"0", "Value":"Educação Infantil", "Serie":[
+                {"Key":"01", "Value":"Berçario I"},
+                {"Key":"02", "Value":"Berçario II"},
+                {"Key":"03", "Value":"Maternal I"},
+                {"Key":"04", "Value":"Maternal II"},
+                {"Key":"05", "Value":"Jardim"},
+                {"Key":"06", "Value":"Pré-Escola"}
             ]},
-            {"Key":"2", "Value":"Ensino Fundamental", "Serie":[
-                {"Key":"21", "Value":"1° Ano"},
-                {"Key":"22", "Value":"2° Ano"},
-                {"Key":"23", "Value":"3° Ano"},
-                {"Key":"24", "Value":"4° Ano"},
-                {"Key":"25", "Value":"5° Ano"}
+            {"Key":"1", "Value":"Ensino Fundamental", "Serie":[
+                {"Key":"11", "Value":"1° Ano"},
+                {"Key":"12", "Value":"2° Ano"},
+                {"Key":"13", "Value":"3° Ano"},
+                {"Key":"14", "Value":"4° Ano"},
+                {"Key":"15", "Value":"5° Ano"}
             ]}
         ],
 
