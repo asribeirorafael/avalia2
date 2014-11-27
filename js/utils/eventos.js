@@ -46,6 +46,16 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
             url: "/:idTurma/carometro",
             templateUrl: "templates/analise/aluno/carometro.html",
             controller: 'CarometroController'
+        })
+        .state('tiposAvaliacoesAluno', {
+            url: "/:idTurma/carometro/:idAluno/avaliacoes",
+            templateUrl: "templates/analise/aluno/tiposAvaliacoes.html"
+            //controller: 'CarometroController'
+        })
+        .state('evolucaoAlunoAnalise', {
+            url: "/:idTurma/carometro/:idAluno/avaliacoes/hipotese",
+            templateUrl: "templates/analise/aluno/evolucaoHipotese.html",
+            controller: 'EvolucaoAlunoController'
         });
 });
 
@@ -156,6 +166,7 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
 
     escopoGlobal.escolaSelecionada = "";
     escopoGlobal.turmaSelecionada = "";
+    escopoGlobal.alunoSelecionado = "";
     escopoGlobal.avaliacaoSelecionada = new Objetos.Avaliacao();
 
     escopoGlobal.alunoSelecionadoHipotese = new Objetos.Aluno();
@@ -164,8 +175,10 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
 
     escopoGlobal.GraficoHipotesePizza = {};
     escopoGlobal.GraficoHipoteseColuna = {};
-    escopoGlobal.GraficoEvolucaoHipotese = {}
+    escopoGlobal.GraficoEvolucaoHipotese = {};
+    escopoGlobal.GraficoEvolucaoHipoteseAluno = {};
     escopoGlobal.dadosAnaliseAvaliacao = new Array();
+    escopoGlobal.dadosAnaliseAvaliacaoAluno = new Array();
     escopoGlobal.DataGrid = new Array();
     escopoGlobal.gridOptions = {
         data: 'DataGrid'

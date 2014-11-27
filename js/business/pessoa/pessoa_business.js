@@ -200,12 +200,16 @@ var PessoaBusiness = (function(Objetos, PessoaContract) {
             });
         },
 
-        selecionarAluno: function () {
-            globalScope().alterarPagina('cadastroPessoa', '#container-cadastro');
+        selecionarAluno: function (aluno) {
+            globalScope().alunoSelecionado = aluno;
         },
 
         selecionarProf: function () {
             globalScope().alterarPagina('cadastroPessoa', '#container-cadastro');
+        },
+
+        selecionarTurmaCarometro: function (turma) {
+            globalScope().turmaSelecionada = turma;
         },
 
         editarAluno: function () {

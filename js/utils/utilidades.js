@@ -591,6 +591,9 @@ var Utils = (function() {
         Ordenacao:{
             byname: function (user_a, user_b) {
                 return user_a.nome > user_b.nome;
+            },
+            byPeriodo: function (user_a, user_b) {
+                return user_a.periodo > user_b.periodo;
             }
         },
 
@@ -675,6 +678,7 @@ var Utils = (function() {
                 GraficoHipotesePizza: globalScope().GraficoHipotesePizza,
                 GraficoHipoteseColuna:globalScope().GraficoHipoteseColuna,
                 dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao,
+                dadosAnaliseAvaliacaoAluno: globalScope().dadosAnaliseAvaliacaoAluno,
                 DataGrid: globalScope().DataGrid
             }
 
@@ -713,6 +717,7 @@ var Utils = (function() {
                 globalScope().GraficoHipotesePizza = objetoPersist.GraficoHipotesePizza;
                 globalScope().GraficoHipoteseColuna = objetoPersist.GraficoHipoteseColuna;
                 globalScope().dadosAnaliseAvaliacao = objetoPersist.dadosAnaliseAvaliacao;
+                globalScope().dadosAnaliseAvaliacaoAluno = objetoPersist.dadosAnaliseAvaliacaoAluno;
                 globalScope().DataGrid = objetoPersist.DataGrid;
 
                 localStorage.removeItem("GlobalScope");

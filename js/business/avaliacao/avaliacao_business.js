@@ -196,6 +196,36 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             });
         },
 
+        getResultadoHipoteseAvaliacaoAluno: function(idAluno, callback){
+            var query = new Parse.Query("resultHipotese");
+            query.include("idAvaliacao");
+            query.include("idAluno");
+            query.include("idProfessor");
+            query.include("idTurma");
+            query.include("idEscola");
+
+            query.equalTo("idAluno", {
+                __type: "Pointer",
+                className: "pessoaAluno",
+                objectId: idAluno
+            });
+
+            query.ascending("periodo");
+            query.find({
+                success: function(resultHipoteseRes) {
+                    var arrayHipotese = new Array();
+                    for(var i = 0, lenHR = resultHipoteseRes.length; i < lenHR; i++){
+                        var resHipotese = AvaliacaoContract.setHipoteseFront(resultHipoteseRes[i]);
+                        arrayHipotese.push(resHipotese);
+                    }
+                    callback(arrayHipotese);
+                },
+                error: function(object, error) {
+                    console.log("Ocorreu um erro: "+error);
+                }
+            });
+        },
+
         putResultadoHipotese: function(object, callback){
             var HipoteseTable = Parse.Object.extend("resultHipotese");
             var hipoteseBack = new HipoteseTable();
@@ -578,6 +608,73 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                     callback();
                 }else{
                     globalScope().dadosAnaliseAvaliacao = new Array();
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
+                }
+
+            });
+        },
+
+        gerarAnaliseAvaliacaoAluno: function(idAluno, callback){
+            AvaliacaoBusiness.getResultadoHipoteseAvaliacaoAluno(idAluno, function(listaResultados){
+                if(listaResultados.length){
+
+                    var arrayGrafico = new Array();
+
+                    for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
+                        var ObjetoP = new Objetos.AnaliseHipotese();
+
+                        switch(listaResultados[i].nivelHipotese){
+                            case "5":
+                                ObjetoP.total = listaResultados[i].nivelHipotese;
+                                ObjetoP.nivel = "Alfabético";
+                                ObjetoP.periodo = listaResultados[i].Avaliacao.periodo + "ºBimestre";
+                                break;
+                            case "4":
+                                ObjetoP.total = listaResultados[i].nivelHipotese;
+                                ObjetoP.nivel = "Silábico-Alfabético";
+                                ObjetoP.periodo = listaResultados[i].Avaliacao.periodo + "ºBimestre";
+                                break;
+                            case "3":
+                                ObjetoP.total = listaResultados[i].nivelHipotese;
+                                ObjetoP.nivel = "Silábico com Valor";
+                                ObjetoP.periodo = listaResultados[i].Avaliacao.periodo + "ºBimestre";
+                                break;
+                            case "2":
+                                ObjetoP.total = listaResultados[i].nivelHipotese;
+                                ObjetoP.nivel = "Silábico sem Valor";
+                                ObjetoP.periodo = listaResultados[i].Avaliacao.periodo + "ºBimestre";
+                                break;
+                            case "1":
+                                ObjetoP.total = listaResultados[i].nivelHipotese;
+                                ObjetoP.nivel = "Pré-Silábico";
+                                ObjetoP.periodo = listaResultados[i].Avaliacao.periodo + "ºBimestre";
+                                break;
+                        }
+
+                        arrayGrafico.push(ObjetoP);
+                    }
+
+                    arrayGrafico.sort(Utils.Ordenacao.byPeriodo)
+
+                    for(var j = 0, LenT = arrayGrafico.length; j < LenT; j++){
+
+                        var objAnalise = [
+                            {v: arrayGrafico[j].periodo},
+                            {v: parseInt(arrayGrafico[j].total)}
+                        ];
+
+                        globalScope().dadosAnaliseAvaliacaoAluno.push({"c": objAnalise});
+
+                    }
+
+                    globalScope().atualizarEscopo();
+
+                    callback();
+                }else{
+                    globalScope().dadosAnaliseAvaliacaoAluno = new Array();
 
                     globalScope().atualizarEscopo();
 

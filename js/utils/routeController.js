@@ -170,7 +170,6 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
 
     globalScope().GraficoEvolucaoHipotese = {};
     globalScope().dadosAnaliseAvaliacao = new Array();
-    globalScope().DataGrid = new Array();
 
     AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma($stateParams.idTurma, function(){
         globalScope().GraficoEvolucaoHipotese.data = {
@@ -220,3 +219,99 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
         globalScope().atualizarEscopo();
     });
 });
+
+AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
+    Utils.ReturnPersistData();
+
+    globalScope().GraficoEvolucaoHipotese = {};
+    globalScope().GraficoEvolucaoHipoteseAluno = {};
+    globalScope().dadosAnaliseAvaliacao = new Array();
+    globalScope().dadosAnaliseAvaliacaoAluno = new Array();
+
+    AvaliacaoBusiness.gerarAnaliseAvaliacaoAluno($stateParams.idAluno, function(){
+        globalScope().GraficoEvolucaoHipoteseAluno.data = {
+            "cols": [
+                {
+                    "id": "periodo",
+                    "label": "Períodos",
+                    "type": "string"
+                },
+                {
+                    "id": "nivel-id",
+                    "label": "Nível",
+                    "type": "number"
+                }
+            ],
+            "rows": globalScope().dadosAnaliseAvaliacaoAluno
+        };
+
+
+        // $routeParams.chartType == BarChart or PieChart or ColumnChart...
+        globalScope().GraficoEvolucaoHipoteseAluno.type = "LineChart";
+        globalScope().GraficoEvolucaoHipoteseAluno.options = {
+            'title': 'Evolução do Aluno',
+            'vAxis':
+                {
+                    'gridlines': {
+                        'count': 5
+                    },
+                    'viewWindow':
+                    {
+                        'max': 5,
+                        'min': 1
+                    }
+                }
+        };
+
+        globalScope().atualizarEscopo();
+    });
+
+    AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma($stateParams.idTurma, function(){
+        globalScope().GraficoEvolucaoHipotese.data = {
+            "cols": [
+                {
+                    "id": "mes",
+                    "label": "Mês",
+                    "type": "string"
+                },
+                {
+                    "id": "alfabetico-id",
+                    "label": "Alfabético",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-alfabetico-id",
+                    "label": "Silábico-Alfabético",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-valor-id",
+                    "label": "Silábico com Valor",
+                    "type": "number"
+                },
+                {
+                    "id": "silabico-sem-id",
+                    "label": "Silábico sem Valor",
+                    "type": "number"
+                },
+
+                {
+                    "id": "silabico-id",
+                    "label": "Silábico",
+                    "type": "number"
+                }
+            ],
+            "rows": globalScope().dadosAnaliseAvaliacao
+        };
+
+
+        // $routeParams.chartType == BarChart or PieChart or ColumnChart...
+        globalScope().GraficoEvolucaoHipotese.type = "LineChart";
+        globalScope().GraficoEvolucaoHipotese.options = {
+            'title': 'Evolução da Turma'
+        };
+
+        globalScope().atualizarEscopo();
+    });
+});
+
