@@ -99,11 +99,11 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
             hipoteseSend.save(null, {
                 success: function(res) {
-                    console.log("Create executado com sucesso.");
+                    toastr.success("Informação salva com sucesso.");
                     callback(res)
                 },
                 error: function(obj, error) {
-                    console.log("Create falhou. Erro: "+ error.message);
+                   toastr.error("Create falhou. Erro: "+ error.message);
                 }
             });
         },
@@ -237,11 +237,11 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             hipoteseSend.save(null, {
                 success: function(res) {
                     var resultHipotese = AvaliacaoContract.setHipoteseFront(res);
-                    console.log("Update realizado com sucesso");
+                    toastr.success("Informação atualizada com sucesso.");
                     callback(resultHipotese);
                 },
                 error: function(res, error) {
-                    console.log("Update falhou. Erro: " + error.message);
+                    toastr.error("Atualização falhou. Erro: " + error.message);
                 }
             });
 

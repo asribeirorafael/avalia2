@@ -3,6 +3,26 @@
     <li><a ui-sref="tiposAvaliacoes({idTurma: '{{turmaSelecionada.id}}'})">Análise de Provas</a></li>
     <li class="active">Evolução</li>
 </ol>
-<div class="col-md-12" style="overflow: hidden;">
+
+<div id="floatingBarsG" style="display: block;">
+    <div class="blockG" id="rotateG_01">
+    </div>
+    <div class="blockG" id="rotateG_02">
+    </div>
+    <div class="blockG" id="rotateG_03">
+    </div>
+    <div class="blockG" id="rotateG_04">
+    </div>
+    <div class="blockG" id="rotateG_05">
+    </div>
+    <div class="blockG" id="rotateG_06">
+    </div>
+    <div class="blockG" id="rotateG_07">
+    </div>
+    <div class="blockG" id="rotateG_08">
+    </div>
+</div>
+
+<div class="col-md-12" style="overflow: hidden; display: none;" id="evolucaoHipotese">
     <div google-chart chart="GraficoEvolucaoHipotese" style="height:400px;"></div>
 </div>

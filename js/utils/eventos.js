@@ -14,28 +14,33 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
         })
         .state('turmas', {
             url: "/turmas/hipotese",
-            templateUrl: "templates/lancamento/listaTurmasHipotese.html"
-            //controller: 'TurmasHipoteseController'
+            templateUrl: "templates/lancamento/listaTurmasHipotese.html",
+            controller: 'TurmasHipoteseController'
+        })
+        .state('tiposAvaliacoesLancamento', {
+            url: "/turmas/:idTurma/avaliacoes",
+            templateUrl: "templates/lancamento/tiposAvaliacoes.html",
+            controller: 'TiposAvaliacoesTurmaController'
         })
         .state('avaliacoesHipotese', {
-            url: "/turmas/hipotese/:idTurma/avaliacoes",
+            url: "/turmas/:idTurma/avaliacoes/hipotese",
             templateUrl: "templates/lancamento/listaAvaliacoesHipotese.html",
             controller: 'SelecionarTurmaHipoteseController'
         })
         .state('avaliacaoHipotese', {
-            url: "/turmas/hipotese/:idTurma/avaliacoes/:idAvaliacao",
+            url: "/turmas/:idTurma/avaliacoes/hipotese/:idAvaliacao",
             templateUrl: "templates/lancamento/avaliacaoHipotese.html",
             controller: 'SelecionarAvaliacaoHipoteseController'
         })
         .state('avaliacaoAnalise', {
-            url: "/turmas/hipotese/:idTurma/avaliacoes/analise/:idAvaliacao",
+            url: "/turmas/:idTurma/avaliacoes/hipotese/analise/:idAvaliacao",
             templateUrl: "templates/analise/prova/analiseAvaliacao.html",
             controller: 'GraficoAnaliseHipoteseAvaliacao'
         })
         .state('tiposAvaliacoes', {
             url: "/:idTurma/avaliacoes",
-            templateUrl: "templates/analise/prova/tiposAvaliacoes.html"
-            //controller: 'TiposAvaliacoesController'
+            templateUrl: "templates/analise/prova/tiposAvaliacoes.html",
+            controller: 'TiposAvaliacoesTurmaAnaliseController'
         })
         .state('evolucaoTurmaAnalise', {
             url: "/:idTurma/avaliacoes/hipotese",

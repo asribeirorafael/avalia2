@@ -1,36 +1,54 @@
-<div ng-if="dadosAnaliseAvaliacao.length == 0">
-    <ol class="breadcrumb">
-        <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li><a ui-sref="turmas">Lançamentos</a></li>
-        <li><a ui-sref="avaliacoesHipotese({idTurma: '{{turmaSelecionada.id}}'})">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
-        <li class="active">{{'Análise Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
-    </ol>
-    <div class="col-md-12">
-        <h3>Não Existem Resultados para esta Avaliação.</h3>
+<ol class="breadcrumb">
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li><a ui-sref="turmas">Lançamentos</a></li>
+    <li><a ui-sref="avaliacoesHipotese({idTurma: '{{turmaSelecionada.id}}'})">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
+    <li class="active">{{'Análise Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
+</ol>
+
+<div id="floatingBarsG" style="display: block;">
+    <div class="blockG" id="rotateG_01">
+    </div>
+    <div class="blockG" id="rotateG_02">
+    </div>
+    <div class="blockG" id="rotateG_03">
+    </div>
+    <div class="blockG" id="rotateG_04">
+    </div>
+    <div class="blockG" id="rotateG_05">
+    </div>
+    <div class="blockG" id="rotateG_06">
+    </div>
+    <div class="blockG" id="rotateG_07">
+    </div>
+    <div class="blockG" id="rotateG_08">
     </div>
 </div>
 
-<div ng-if="dadosAnaliseAvaliacao.length != 0">
-    <ol class="breadcrumb">
-        <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li><a ui-sref="turmas">Lançamentos</a></li>
-        <li><a ui-sref="avaliacoesHipotese({idTurma: '{{turmaSelecionada.id}}'})">{{turmaSelecionada.serie+" "+turmaSelecionada.turma}}</a></li>
-        <li class="active">{{'Análise Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
-    </ol>
-    <div class="col-md-12" style="overflow: hidden;">
-        <div class="col-md-6" google-chart chart="GraficoHipotesePizza" style="height:400px;"></div>
-        <div class="col-md-6" google-chart chart="GraficoHipoteseColuna" style="height:400px;"></div>
+<div style="display: none;" id="analiseAvaliacao">
+    <div ng-if="dadosAnaliseAvaliacao.length == 0">
+        <div class="col-md-12">
+            <h3>Não Existem Resultados para esta Avaliação.</h3>
+        </div>
     </div>
-    <div class="col-md-12">
-        <div class="gridStyle" ng-grid="gridOptions"></div>
+
+    <div ng-if="dadosAnaliseAvaliacao.length != 0">
+        <div class="col-md-12" style="overflow: hidden;">
+            <div class="col-md-6" google-chart chart="GraficoHipotesePizza" style="height:400px;"></div>
+            <div class="col-md-6" google-chart chart="GraficoHipoteseColuna" style="height:400px;"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="gridStyle" ng-grid="gridOptions"></div>
+        </div>
     </div>
+
+    <style>
+        .gridStyle {
+            border: 1px solid rgb(212,212,212);
+            overflow: hidden;
+            margin: 15px;
+            height: 300px
+        }
+    </style>
+
 </div>
 
-<style>
-    .gridStyle {
-        border: 1px solid rgb(212,212,212);
-        overflow: hidden;
-        margin: 15px;
-        height: 300px
-    }
-</style>

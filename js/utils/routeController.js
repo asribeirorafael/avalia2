@@ -28,6 +28,9 @@ AvaliaControllers.controller("SelecionarAvaliacaoHipoteseController", ['$scope',
             globalScope().respostaAvaliacaoHipotese.nivelHipotese = "";
 
             globalScope().atualizarEscopo();
+
+            jQuery('#avaliacaoHipotese').css('display', 'block');
+            jQuery('#floatingBarsG').css('display', 'none');
         } else{
             globalScope().respostaAvaliacaoHipotese.id = resultadoAluno.id;
             globalScope().respostaAvaliacaoHipotese.idProjeto = resultadoAluno.idProjeto;
@@ -40,9 +43,27 @@ AvaliaControllers.controller("SelecionarAvaliacaoHipoteseController", ['$scope',
             globalScope().respostaAvaliacaoHipotese.nivelHipotese = resultadoAluno.nivelHipotese;
 
             globalScope().atualizarEscopo();
+
+            jQuery('#avaliacaoHipotese').css('display', 'block');
+            jQuery('#floatingBarsG').css('display', 'none');
         }
     });
 }]);
+
+AvaliaControllers.controller("TurmasHipoteseController", function(){
+    jQuery('#listaTurmasHipotese').css('display', 'block');
+    jQuery('#floatingBarsG').css('display', 'none');
+});
+
+AvaliaControllers.controller("TiposAvaliacoesTurmaController", function(){
+    jQuery('#tiposAvaliacoes').css('display', 'block');
+    jQuery('#floatingBarsG').css('display', 'none');
+});
+
+AvaliaControllers.controller("TiposAvaliacoesTurmaAnaliseController", function(){
+    jQuery('#tiposAvaliacoes').css('display', 'block');
+    jQuery('#floatingBarsG').css('display', 'none');
+});
 
 AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
     Utils.ReturnPersistData();
@@ -62,6 +83,8 @@ AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
 
                         AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
                             globalScope().atualizarEscopo();
+                            jQuery('#listaAvaliacoesHipotese').css('display', 'block');
+                            jQuery('#floatingBarsG').css('display', 'none');
                         });
                     }
                 });
@@ -69,11 +92,15 @@ AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
         }else{
             AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
                 globalScope().atualizarEscopo();
+                jQuery('#listaAvaliacoesHipotese').css('display', 'block');
+                jQuery('#floatingBarsG').css('display', 'none');
             });
         }
     }else{
         AvaliacaoBusiness.retornoAvaliacaoTipoSerie("1", turma, function () {
             globalScope().atualizarEscopo();
+            jQuery('#listaAvaliacoesHipotese').css('display', 'block');
+            jQuery('#floatingBarsG').css('display', 'none');
         });
     }
 });
@@ -162,6 +189,9 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
         globalScope().AVALIACAO.changeGroupBy("Nivel");
 
         globalScope().atualizarEscopo();
+
+        jQuery('#analiseAvaliacao').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
@@ -213,10 +243,13 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
         globalScope().GraficoEvolucaoHipotese.type = "LineChart";
         globalScope().GraficoEvolucaoHipotese.options = {
-            'title': 'Evolução dos Alunos'
+            'title': 'Evolução da Turma'
         };
 
         globalScope().atualizarEscopo();
+
+        jQuery('#evolucaoHipotese').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
@@ -251,17 +284,22 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
         globalScope().GraficoEvolucaoHipoteseAluno.options = {
             'title': 'Evolução do Aluno',
             'vAxis':
-                {
-                    'gridlines': {
-                        'count': 5
-                    },
-                    'viewWindow':
-                    {
-                        'max': 5,
-                        'min': 1
-                    }
-                }
+            {
+                'ticks': [
+                    {v:1, f:'Silábico'},
+                    {v:2, f:'Silábico sem Valor'},
+                    {v:3, f:'Silábico com Valor'},
+                    {v:4, f:'Silábico-Alfabético'},
+                    {v:5, f:'Alfabético'}
+                ]
+            },
+            'tooltip':
+            {
+                trigger: 'none'
+            }
         };
+
+
 
         globalScope().atualizarEscopo();
     });
