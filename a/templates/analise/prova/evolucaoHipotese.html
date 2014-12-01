@@ -23,6 +23,15 @@
     </div>
 </div>
 
-<div class="col-md-12" style="overflow: hidden; display: none;" id="evolucaoHipotese">
-    <div google-chart chart="GraficoEvolucaoHipotese" style="height:400px;"></div>
+<div style="display: none;" id="evolucaoHipotese">
+    <div ng-if="dadosAnaliseAvaliacao.length == 0">
+        <div class="col-md-12">
+            <h3>Não Existem Resultados para esta Turma.</h3>
+        </div>
+    </div>
+    <div>
+        <div ng-if="dadosAnaliseAvaliacao.length != 0" class="col-md-12" style="overflow: hidden;">
+            <div google-chart chart="GraficoEvolucaoHipotese" style="height:400px;"></div>
+        </div>
+    </div>
 </div>

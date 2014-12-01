@@ -35,19 +35,19 @@ module.exports = function (grunt) {
                         },
                         files: {
                             'a/index.html': 'views/htmls/index.ejs',
-                            'js/business/avaliacao/avaliacao_business_<%= versao %>.js': 'js/business/avaliacao/avaliacao_business.js',
-                            'js/business/endereco/endereco_business_<%= versao %>.js': 'js/business/endereco/endereco_business.js',
-                            'js/business/escola/escola_business_<%= versao %>.js': 'js/business/escola/escola_business.js',
-                            'js/business/pessoa/pessoa_business_<%= versao %>.js': 'js/business/pessoa/pessoa_business.js',
-                            'js/business/turma/turma_business_<%= versao %>.js': 'js/business/turma/turma_business.js',
-                            'js/contracts/avaliacao_contract_<%= versao %>.js': 'js/contracts/avaliacao_contract.js',
-                            'js/contracts/endereco_contract_<%= versao %>.js': 'js/contracts/endereco_contract.js',
-                            'js/contracts/escola_contract_<%= versao %>.js': 'js/contracts/escola_contract.js',
-                            'js/contracts/pessoa_contract_<%= versao %>.js': 'js/contracts/pessoa_contract.js',
-                            'js/contracts/turma_contract_<%= versao %>.js': 'js/contracts/turma_contract.js',
-                            'js/utils/eventos_<%= versao %>.js': 'js/utils/eventos.js',
-                            'js/utils/routeController_<%= versao %>.js': 'js/utils/routeController.js',
-                            'js/utils/utilidades_<%= versao %>.js': 'js/utils/utilidades.js'
+                            'js/business/processados/avaliacao_business_<%= versao %>.js': 'js/business/avaliacao/avaliacao_business.js',
+                            'js/business/processados/endereco_business_<%= versao %>.js': 'js/business/endereco/endereco_business.js',
+                            'js/business/processados/escola_business_<%= versao %>.js': 'js/business/escola/escola_business.js',
+                            'js/business/processados/pessoa_business_<%= versao %>.js': 'js/business/pessoa/pessoa_business.js',
+                            'js/business/processados/turma_business_<%= versao %>.js': 'js/business/turma/turma_business.js',
+                            'js/contracts/processados/avaliacao_contract_<%= versao %>.js': 'js/contracts/avaliacao_contract.js',
+                            'js/contracts/processados/endereco_contract_<%= versao %>.js': 'js/contracts/endereco_contract.js',
+                            'js/contracts/processados/escola_contract_<%= versao %>.js': 'js/contracts/escola_contract.js',
+                            'js/contracts/processados/pessoa_contract_<%= versao %>.js': 'js/contracts/pessoa_contract.js',
+                            'js/contracts/processados/turma_contract_<%= versao %>.js': 'js/contracts/turma_contract.js',
+                            'js/utils/processados/eventos_<%= versao %>.js': 'js/utils/eventos.js',
+                            'js/utils/processados/routeController_<%= versao %>.js': 'js/utils/routeController.js',
+                            'js/utils/processados/utilidades_<%= versao %>.js': 'js/utils/utilidades.js'
                         }
                     }
                 },

@@ -3,7 +3,27 @@
     <li><a ui-sref="carometro({idTurma: '{{turmaSelecionada.id}}'})">Carometro</a></li>
     <li class="active">Análise de Provas</li>
 </ol>
-<div class="col-md-4">
+
+<div id="floatingBarsG" style="display: block;">
+    <div class="blockG" id="rotateG_01">
+    </div>
+    <div class="blockG" id="rotateG_02">
+    </div>
+    <div class="blockG" id="rotateG_03">
+    </div>
+    <div class="blockG" id="rotateG_04">
+    </div>
+    <div class="blockG" id="rotateG_05">
+    </div>
+    <div class="blockG" id="rotateG_06">
+    </div>
+    <div class="blockG" id="rotateG_07">
+    </div>
+    <div class="blockG" id="rotateG_08">
+    </div>
+</div>
+
+<div class="col-md-4" id="tiposAvaliacoes" style="display: none;">
     <div class="panel easy panel-default drag" ui-sref="evolucaoAlunoAnalise({idTurma: '{{turmaSelecionada.id}}',idAluno: '{{alunoSelecionado.id}}'})">
         <div class="panel-heading THipotese">Hipótese</div>
     </div>

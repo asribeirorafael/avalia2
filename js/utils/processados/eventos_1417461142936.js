@@ -54,13 +54,18 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
         })
         .state('tiposAvaliacoesAluno', {
             url: "/:idTurma/carometro/:idAluno/avaliacoes",
-            templateUrl: "templates/analise/aluno/tiposAvaliacoes.html"
-            //controller: 'CarometroController'
+            templateUrl: "templates/analise/aluno/tiposAvaliacoes.html",
+            controller: 'TiposAvaliacoesAlunoAnaliseController'
         })
         .state('evolucaoAlunoAnalise', {
             url: "/:idTurma/carometro/:idAluno/avaliacoes/hipotese",
             templateUrl: "templates/analise/aluno/evolucaoHipotese.html",
             controller: 'EvolucaoAlunoController'
+        })
+        .state('trocarTurma', {
+            url: "/administracao/turmas",
+            templateUrl: "templates/administracao/listaTurmas.html",
+            controller: 'TrocarTurmaController'
         });
 });
 
@@ -146,6 +151,7 @@ provasApp.directive('mask', [function () {
 provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal, compilador, paramRota) {
 
     escopoGlobal.usuarioLogado = JSON.parse(localStorage.getItem("User"));
+    escopoGlobal.state = "";
 
     escopoGlobal.listaEstadosCidades = Colecoes.EstadosCidades;
     escopoGlobal.listaCursos = Colecoes.Curso;

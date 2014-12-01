@@ -164,6 +164,7 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
 
             TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
                 globalScope().turmas = data;
+                globalScope().turmaSelecionada = data[0]
                 globalScope().atualizarEscopo();
             });
         },

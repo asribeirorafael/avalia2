@@ -21,7 +21,7 @@
     <script type="text/javascript" src="../js/plugins/angular-ui-router/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../js/plugins/angular-ui-grid/ng-grid.js"></script>
 
-    <script type="text/javascript" src="../js/utils/routeController_<!-- @echo versao -->.js"></script>
+    <script type="text/javascript" src="../js/utils/processados/routeController_<!-- @echo versao -->.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
@@ -85,47 +85,61 @@
     </div><!-- /.navbar-collapse -->
 </nav>
 
-<div id="wrapper">
+<div id="wrapper" class="sidebar">
 
     <div id="body-overlay"></div>
 
     <div id="sidebar">
 
         <ul class="drop-area">
+            <li style="margin-bottom: 30px" class="no-back">
+                <h2>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
+            </li>
+
+            <!--<div class="btn-group" style="margin: 0 30px">-->
+                <!--<button style="width: 145px" type="button" class="btn btn-default dropdown-toggle button-dropdown" data-toggle="dropdown">-->
+                    <!--{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}&nbsp;&nbsp;<span class="caret space"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu blue" role="menu">-->
+                    <!--<li class="ng-scope" ng-repeat="turma in turmas">-->
+                        <!--<a ng-click="TURMA.selecionarTurmaCarometro(turma)" ui-sref="dashboard">{{turma.serie+' '+turma.turma}}</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <li class="no-back">
                 <a ui-sref="dashboard">Dashboard</a>
             </li>
-            <li>
-                Lançamentos
-                <ul>
-                    <li class="ng-scope" ng-repeat="turma in turmas">
-                        <span class="icn icon-145"></span>
-                        <a ui-sref="tiposAvaliacoesLancamento({idTurma: '{{turma.id}}'})" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
-                    </li>
-                </ul>
+            <li class="no-back ng-scope">
+                <a ui-sref="tiposAvaliacoesLancamento({idTurma: turmaSelecionada.id})">Lançamentos</a>
+                <!--<ul>-->
+                <!--<li class="ng-scope" ng-repeat="turma in turmas">-->
+                <!--<span class="icn icon-145"></span>-->
+                <!--<a ui-sref="tiposAvaliacoesLancamento({idTurma: '{{turma.id}}'})" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>-->
+                <!--</li>-->
+                <!--</ul>-->
             </li>
-            <li>
-                Análise de Provas
-                <ul>
-                    <li class="ng-scope" ng-repeat="turma in turmas">
-                        <span class="icn icon-123"></span>
-                        <a ui-sref="tiposAvaliacoes({idTurma: '{{turma.id}}'})" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
-                    </li>
-                </ul>
+            <li class="no-back">
+                <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução da Turma</a>
+                <!--<ul>-->
+                <!--<li class="ng-scope" ng-repeat="turma in turmas">-->
+                <!--<span class="icn icon-123"></span>-->
+                <!--<a  ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>-->
+                <!--</li>-->
+                <!--</ul>-->
             </li>
-            <li>
-                Análise de Alunos
-                <ul>
-                    <li class="ng-scope" ng-repeat="turma in turmas">
-                        <span class="icn icon-123"></span>
-                        <a ui-sref="carometro({idTurma: '{{turma.id}}'})" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>
-                    </li>
-                </ul>
+            <li class="no-back">
+                <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
+                <!--<ul>-->
+                <!--<li class="ng-scope" ng-repeat="turma in turmas">-->
+                <!--<span class="icn icon-123"></span>-->
+                <!--<a ui-sref="carometro({idTurma: '{{turma.id}}'})" ng-click="TURMA.selecionarTurmaCarometro(turma)">{{turma.serie+' '+turma.turma}}</a>-->
+                <!--</li>-->
+                <!--</ul>-->
             </li>
             <li>
                 Administrativo
                 <ul>
-                    <li style="display: block" id="noPermissionM">
+                    <li style="display: none" id="noPermissionM">
                         <a>Não possui permissão para essa área.</a>
                     </li>
                     <li style="display: none" id="cadEscola">
@@ -143,6 +157,10 @@
                     <li style="display: none" id="cadProfessor">
                         <span class="icn icon-124"></span>
                         <a>Cadastro de Professor</a>
+                    </li>
+                    <li style="display: block" id="changeTurma">
+                        <span class="icn icon-202"></span>
+                        <a ui-sref="trocarTurma">Trocar Turma</a>
                     </li>
                 </ul>
             </li>
@@ -173,19 +191,19 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="../js/utils/objetos.js"></script>
-<script type="text/javascript" src="../js/contracts/avaliacao_contract_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/contracts/endereco_contract_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/contracts/escola_contract_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/contracts/turma_contract_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/contracts/pessoa_contract_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/business/avaliacao/avaliacao_business_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/business/endereco/endereco_business_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/business/escola/escola_business_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/business/turma/turma_business_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/business/pessoa/pessoa_business_<!-- @echo versao -->.js"></script>
-<script type="text/javascript" src="../js/utils/utilidades_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/avaliacao_contract_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/endereco_contract_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/escola_contract_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/turma_contract_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/pessoa_contract_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/business/processados/avaliacao_business_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/business/processados/endereco_business_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/business/processados/escola_business_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/business/processados/turma_business_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/business/processados/pessoa_business_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/utils/processados/utilidades_<!-- @echo versao -->.js"></script>
 <script type="text/javascript" src="../js/utils/colecoes.js"></script>
-<script type="text/javascript" src="../js/utils/eventos_<!-- @echo versao -->.js"></script>
+<script type="text/javascript" src="../js/utils/processados/eventos_<!-- @echo versao -->.js"></script>
 <script type="text/javascript" src="../custom.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 <script>Parse.initialize("Y9INXMkrMANGt2B8ttXcDLPiRfvNTOMVmHekxXDx", "mSFT9RRrXvwMopXmiPZPCr2wOXnrbbBH8H7ZWBqF");</script>

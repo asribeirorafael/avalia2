@@ -65,6 +65,18 @@ AvaliaControllers.controller("TiposAvaliacoesTurmaAnaliseController", function()
     jQuery('#floatingBarsG').css('display', 'none');
 });
 
+AvaliaControllers.controller("TiposAvaliacoesAlunoAnaliseController", function(){
+    jQuery('#tiposAvaliacoes').css('display', 'block');
+    jQuery('#floatingBarsG').css('display', 'none');
+});
+
+AvaliaControllers.controller("TrocarTurmaController", function(){
+    jQuery('#listaTurmas').css('display', 'block');
+    jQuery('#floatingBarsG').css('display', 'none');
+});
+
+
+
 AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
     Utils.ReturnPersistData();
 
@@ -122,13 +134,22 @@ AvaliaControllers.controller("CarometroController", ['$scope','$http', function(
                         globalScope().turmaSelecionada.Alunos = listaAlunos;
 
                         globalScope().atualizarEscopo();
+
+                        jQuery('#carometro').css('display', 'block');
+                        jQuery('#floatingBarsG').css('display', 'none');
                     }
                 });
             });
         }
         globalScope().atualizarEscopo();
+
+        jQuery('#carometro').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     }else{
         globalScope().atualizarEscopo();
+
+        jQuery('#carometro').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     }
 }]);
 
@@ -299,9 +320,11 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
             }
         };
 
-
-
         globalScope().atualizarEscopo();
+
+        jQuery('#EvolucaoAluno').css('display', 'block');
+        if(document.getElementById('EvolucaoTurma').style.display == "block")
+            jQuery('#floatingBarsG').css('display', 'none');
     });
 
     AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma($stateParams.idTurma, function(){
@@ -350,6 +373,10 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
         };
 
         globalScope().atualizarEscopo();
+
+        jQuery('#EvolucaoTurma').css('display', 'block');
+        if(document.getElementById('EvolucaoAluno').style.display == "block")
+            jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 

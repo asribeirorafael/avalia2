@@ -1,26 +1,45 @@
-<div ng-if="turmaSelecionada.Alunos.length == 0">
-    <ol class="breadcrumb">
-        <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li class="active">Carômetro</li>
-    </ol>
-    <div class="col-md-12">
-        <h3>Não Existem Alunos matriculados para esta Turma.</h3>
+<ol class="breadcrumb">
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li class="active">Carômetro</li>
+</ol>
+
+<div id="floatingBarsG" style="display: block;">
+    <div class="blockG" id="rotateG_01">
+    </div>
+    <div class="blockG" id="rotateG_02">
+    </div>
+    <div class="blockG" id="rotateG_03">
+    </div>
+    <div class="blockG" id="rotateG_04">
+    </div>
+    <div class="blockG" id="rotateG_05">
+    </div>
+    <div class="blockG" id="rotateG_06">
+    </div>
+    <div class="blockG" id="rotateG_07">
+    </div>
+    <div class="blockG" id="rotateG_08">
     </div>
 </div>
-<div ng-if="turmaSelecionada.Alunos.length != 0">
-    <ol class="breadcrumb">
-        <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li class="active">Carômetro</li>
-    </ol>
-    <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
-        <div class="panel easy panel-default drag" ng-click="PESSOA.selecionarAluno(aluno)">
-            <div class="panel-heading T{{turmaSelecionada.serie.charAt(0)}}">{{aluno.nome}}</div>
-            <div class="panel-body flex-container">
-                <div class="flex-item-carometro"><img src="{{aluno.imagem}}" style="width: 90%; border-radius: 3px"></div>
-                <div class="flex-item-carometro"><a ui-sref="tiposAvaliacoesAluno({idTurma: '{{turmaSelecionada.id}}',idAluno: '{{aluno.id}}'})" class="btn btn-primary btn-lg btn-block default large" style="width: 100%">Evolução</a></div>
+
+<div id="carometro" style="display: none;">
+    <div ng-if="turmaSelecionada.Alunos.length == 0">
+        <div class="col-md-12">
+            <h3>Não Existem Alunos matriculados para esta Turma.</h3>
+        </div>
+    </div>
+    <div ng-if="turmaSelecionada.Alunos.length != 0">
+        <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
+            <div class="panel easy panel-default drag" ng-click="PESSOA.selecionarAluno(aluno)">
+                <div class="panel-heading T{{turmaSelecionada.serie.charAt(0)}}">{{aluno.nome}}</div>
+                <div class="panel-body flex-container">
+                    <div class="flex-item-carometro"><img src="{{aluno.imagem}}" style="width: 90%; border-radius: 3px"></div>
+                    <div class="flex-item-carometro"><a ui-sref="tiposAvaliacoesAluno({idTurma: '{{turmaSelecionada.id}}',idAluno: '{{aluno.id}}'})" class="btn btn-primary btn-lg btn-block default large" style="width: 100%">Evolução</a></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!--ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})"-->
