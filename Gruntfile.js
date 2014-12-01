@@ -46,7 +46,8 @@ module.exports = function (grunt) {
                             'js/contracts/pessoa_contract_<%= versao %>.js': 'js/contracts/pessoa_contract.js',
                             'js/contracts/turma_contract_<%= versao %>.js': 'js/contracts/turma_contract.js',
                             'js/utils/eventos_<%= versao %>.js': 'js/utils/eventos.js',
-                            'js/utils/routeController_<%= versao %>.js': 'js/utils/routeController.js'
+                            'js/utils/routeController_<%= versao %>.js': 'js/utils/routeController.js',
+                            'js/utils/utilidades_<%= versao %>.js': 'js/utils/utilidades.js'
                         }
                     }
                 },
