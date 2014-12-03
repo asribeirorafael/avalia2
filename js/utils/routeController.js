@@ -264,7 +264,10 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
         globalScope().GraficoEvolucaoHipotese.type = "LineChart";
         globalScope().GraficoEvolucaoHipotese.options = {
-            'title': 'Evolução da Turma'
+            'title': 'Evolução da Turma',
+            'vAxis': {
+                'title': "Total de Alunos"
+            }
         };
 
         globalScope().atualizarEscopo();
@@ -306,7 +309,9 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
             'title': 'Evolução do Aluno',
             'vAxis':
             {
+                'title': "Nível de Avaliação",
                 'ticks': [
+                    {v:0, f:''},
                     {v:1, f:'Silábico'},
                     {v:2, f:'Silábico sem Valor'},
                     {v:3, f:'Silábico com Valor'},
@@ -369,7 +374,10 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
         globalScope().GraficoEvolucaoHipotese.type = "LineChart";
         globalScope().GraficoEvolucaoHipotese.options = {
-            'title': 'Evolução da Turma'
+            'title': 'Evolução da Turma',
+            'vAxis': {
+                'title': 'Total de Alunos'
+            }
         };
 
         globalScope().atualizarEscopo();

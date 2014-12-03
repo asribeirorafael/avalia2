@@ -188,6 +188,7 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
     escopoGlobal.GraficoHipoteseColuna = {};
     escopoGlobal.GraficoEvolucaoHipotese = {};
     escopoGlobal.GraficoEvolucaoHipoteseAluno = {};
+    escopoGlobal.dadosBruto = new Array();
     escopoGlobal.dadosAnaliseAvaliacao = new Array();
     escopoGlobal.dadosAnaliseAvaliacaoAluno = new Array();
     escopoGlobal.DataGrid = new Array();

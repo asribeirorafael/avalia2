@@ -70,7 +70,7 @@ textarea 																			{ outline:none !important; }
 #footer 																			{ height: 60px;background-color: #37434f;text-align:left;padding-left:50px;overflow:hidden;z-index:9999;position:relative; }
 #footer ul 																			{ float:left; }
 
-#wrap 																				{ min-height: 100%;height: 100%;margin: 0 20px;}
+#wrap 																				{ min-height: 100%;height: 100%;margin: 0 26px;}
 
 #footer .col-md-6.left 																{  }
 #footer .col-md-6.right 															{ padding:0 60px 0 0; }
@@ -2794,4 +2794,27 @@ table.search-developer a:hover i { color:#BCBCBC; }
  100%{
   background-color:#FFFFFF}
 
+}
+
+.headRelatorio{
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: #fff;
+}
+.head2Relatorio{
+    width: 160px;
+    float: left;
+}
+.fotoRelatorio{
+    width: 150px;
+    margin-left: -15px;
+}
+.infoAlunoRelatorio{
+    float: left;
+}
+.h3Relatorio{
+    /*margin-bottom: 5px;*/
+}
+.tituloRelatorio{
+    text-align: center;
 }

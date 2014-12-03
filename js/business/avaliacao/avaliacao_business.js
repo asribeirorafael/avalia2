@@ -586,7 +586,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
 
                     }
 
-                    console.log(ListaTrabalhada);
+                    globalScope().dadosBruto = ListaTrabalhada;
 
                     for(var j = 0, LenT = ListaTrabalhada.length; j < LenT; j++){
 

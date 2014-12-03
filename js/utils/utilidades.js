@@ -654,29 +654,39 @@ var Utils = (function() {
             var jSonPersist = {
                 Reload: true,
                 usuarioLogado: globalScope().usuarioLogado,
+
                 objetoEscola: globalScope().objetoEscola,
                 objetoTurma : globalScope().objetoTurma,
                 objetoAluno: globalScope().objetoAluno,
                 objetoProfessor: globalScope().objetoProfessor,
-                pagina: globalScope().pagina,
+
                 escolas: globalScope().escolas,
                 turmas: globalScope().turmas,
-                aluno: globalScope().aluno,
+                alunos: globalScope().alunos,
                 professores: globalScope().professores,
                 avaliacoes: globalScope().avaliacoes,
+
                 escola: globalScope().escola,
                 turma: globalScope().turma,
                 aluno: globalScope().aluno,
                 professor: globalScope().professor,
+
                 idEscola: globalScope().idEscola,
+
                 escolaSelecionada: globalScope().escolaSelecionada,
                 turmaSelecionada: globalScope().turmaSelecionada,
+                alunoSelecionado: globalScope().alunoSelecionado,
                 avaliacaoSelecionada: globalScope().avaliacaoSelecionada,
+
                 alunoSelecionadoHipotese: globalScope().alunoSelecionadoHipotese,
                 indiceAluno: globalScope().indiceAluno,
                 respostaAvaliacaoHipotese: globalScope().respostaAvaliacaoHipotese,
+
                 GraficoHipotesePizza: globalScope().GraficoHipotesePizza,
                 GraficoHipoteseColuna:globalScope().GraficoHipoteseColuna,
+                GraficoEvolucaoHipotese: globalScope().GraficoEvolucaoHipotese,
+                GraficoEvolucaoHipoteseAluno: globalScope().GraficoEvolucaoHipoteseAluno,
+                dadosBruto: globalScope().dadosBruto,
                 dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao,
                 dadosAnaliseAvaliacaoAluno: globalScope().dadosAnaliseAvaliacaoAluno,
                 DataGrid: globalScope().DataGrid
@@ -697,25 +707,34 @@ var Utils = (function() {
                 globalScope().objetoTurma = objetoPersist.objetoTurma;
                 globalScope().objetoAluno = objetoPersist.objetoAluno;
                 globalScope().objetoProfessor = objetoPersist.objetoProfessor;
-                globalScope().pagina = objetoPersist.pagina;
+
                 globalScope().escolas = objetoPersist.escolas;
                 globalScope().turmas = objetoPersist.turmas;
-                globalScope().aluno = objetoPersist.aluno;
+                globalScope().alunos = objetoPersist.alunos;
                 globalScope().professores = objetoPersist.professores;
                 globalScope().avaliacoes = objetoPersist.avaliacoes;
+
                 globalScope().escola = objetoPersist.escola;
                 globalScope().turma = objetoPersist.turma;
                 globalScope().aluno = objetoPersist.aluno;
                 globalScope().professor = objetoPersist.professor;
+
                 globalScope().idEscola = objetoPersist.idEscola;
+
                 globalScope().escolaSelecionada = objetoPersist.escolaSelecionada;
                 globalScope().turmaSelecionada = objetoPersist.turmaSelecionada;
+                globalScope().alunoSelecionado = objetoPersist.alunoSelecionado;
                 globalScope().avaliacaoSelecionada = objetoPersist.avaliacaoSelecionada;
+
                 globalScope().alunoSelecionadoHipotese = objetoPersist.alunoSelecionadoHipotese;
                 globalScope().indiceAluno = objetoPersist.indiceAluno;
                 globalScope().respostaAvaliacaoHipotese = objetoPersist.respostaAvaliacaoHipotese;
+
                 globalScope().GraficoHipotesePizza = objetoPersist.GraficoHipotesePizza;
                 globalScope().GraficoHipoteseColuna = objetoPersist.GraficoHipoteseColuna;
+                globalScope().GraficoEvolucaoHipotese = objetoPersist.GraficoEvolucaoHipotese;
+                globalScope().GraficoEvolucaoHipoteseAluno = objetoPersist.GraficoEvolucaoHipoteseAluno;
+                globalScope().dadosBruto = objetoPersist.dadosBruto;
                 globalScope().dadosAnaliseAvaliacao = objetoPersist.dadosAnaliseAvaliacao;
                 globalScope().dadosAnaliseAvaliacaoAluno = objetoPersist.dadosAnaliseAvaliacaoAluno;
                 globalScope().DataGrid = objetoPersist.DataGrid;
@@ -723,8 +742,16 @@ var Utils = (function() {
                 localStorage.removeItem("GlobalScope");
             }
 
-        }
+        },
 
+        Imprimir: function(divName){
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            var popupWin = window.open('', '_blank', 'width=1200,height=800');
+            popupWin.document.open()
+            popupWin.document.write('<html><head><script type="text/javascript" src="../js/plugins/jquery/jquery-1.11.1.js"></script><link rel="stylesheet" type="text/css" href="../css/style.css" media="all"/><link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"><link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="all"><link href="../fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" media="all"><link href="../scripts/jquery.prettycheckable/prettycheckable.css" rel="stylesheet" type="text/css" media="all"/><link href="../scripts/jquery.easypiechart/easypiechart.css" rel="stylesheet" type="text/css" media="all" /><link href="../scripts/jquery.toggles/toggles.css" rel="stylesheet" type="text/css" media="all"/><link href="../js/plugins/toastr/2.0.1/toastr.css" rel="stylesheet" type="text/css" media="all"/><link href="../js/plugins/angular-ui-grid/ng-grid.min.css" rel="stylesheet" type="text/css" media="all"/><script type="text/javascript" src="../custom.js"></script><script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script></head><body onload="window.print()">' + printContents + '</html>');
+            popupWin.document.close();
+        }
     }
 })();
 
