@@ -162,7 +162,7 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
         getTurmasProfessorPage: function(){
             var usuario = JSON.parse(localStorage.getItem("User"));
 
-            if(!globalScope().turmas){
+            if(globalScope().turmas.length == 0){
                 TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
                     globalScope().turmas = data;
                     globalScope().turmaSelecionada = data[0]
