@@ -7,6 +7,8 @@ var AvaliaControllers = angular.module("AvaliaControllers", []);
 AvaliaControllers.controller("DashboardController", ['$scope','$http', function($scope, $http)
 {
     Utils.ReturnPersistData();
+
+    //globalScope().TURMA.getTurmasProfessorPage();
 }]);
 
 AvaliaControllers.controller("SelecionarAvaliacaoHipoteseController", ['$scope','$stateParams', function($stateParams){
@@ -51,26 +53,55 @@ AvaliaControllers.controller("SelecionarAvaliacaoHipoteseController", ['$scope',
 }]);
 
 AvaliaControllers.controller("TurmasHipoteseController", function(){
+    Utils.ReturnPersistData();
+
     jQuery('#listaTurmasHipotese').css('display', 'block');
     jQuery('#floatingBarsG').css('display', 'none');
 });
 
 AvaliaControllers.controller("TiposAvaliacoesTurmaController", function(){
+    Utils.ReturnPersistData();
+
     jQuery('#tiposAvaliacoes').css('display', 'block');
     jQuery('#floatingBarsG').css('display', 'none');
 });
 
 AvaliaControllers.controller("TiposAvaliacoesTurmaAnaliseController", function(){
+    Utils.ReturnPersistData();
+
     jQuery('#tiposAvaliacoes').css('display', 'block');
     jQuery('#floatingBarsG').css('display', 'none');
 });
 
 AvaliaControllers.controller("TiposAvaliacoesAlunoAnaliseController", function(){
+    Utils.ReturnPersistData();
+
     jQuery('#tiposAvaliacoes').css('display', 'block');
     jQuery('#floatingBarsG').css('display', 'none');
 });
 
 AvaliaControllers.controller("TrocarTurmaController", function(){
+    Utils.ReturnPersistData();
+
+    var turma = globalScope().turmaSelecionada;
+
+    var listaAlunos = new Array();
+    var i = 1;
+    turma.Alunos.forEach(function(idAluno){
+        PessoaBusiness.getAluno(idAluno, function(alunoRes){
+            listaAlunos.push(alunoRes);
+            if(turma.Alunos.length == i){
+                listaAlunos.sort(Utils.Ordenacao.byname);
+
+                globalScope().turmaSelecionada.Alunos = listaAlunos;
+
+                globalScope().atualizarEscopo();
+            }else{
+                i++;
+            }
+        });
+    });
+
     jQuery('#listaTurmas').css('display', 'block');
     jQuery('#floatingBarsG').css('display', 'none');
 });
@@ -125,10 +156,11 @@ AvaliaControllers.controller("CarometroController", ['$scope','$http', function(
     if(turma.Alunos.length) {
         if (!turma.Alunos[0].id) {
             var listaAlunos = new Array();
-            turma.Alunos.forEach(function(idAluno, indice){
+            var i = 1;
+            turma.Alunos.forEach(function(idAluno){
                 PessoaBusiness.getAluno(idAluno, function(alunoRes){
                     listaAlunos.push(alunoRes);
-                    if(turma.Alunos.length == indice+1){
+                    if(turma.Alunos.length == i){
                         listaAlunos.sort(Utils.Ordenacao.byname);
 
                         globalScope().turmaSelecionada.Alunos = listaAlunos;
@@ -137,17 +169,15 @@ AvaliaControllers.controller("CarometroController", ['$scope','$http', function(
 
                         jQuery('#carometro').css('display', 'block');
                         jQuery('#floatingBarsG').css('display', 'none');
+                    }else{
+                        i++;
                     }
                 });
             });
         }
-        globalScope().atualizarEscopo();
-
         jQuery('#carometro').css('display', 'block');
         jQuery('#floatingBarsG').css('display', 'none');
     }else{
-        globalScope().atualizarEscopo();
-
         jQuery('#carometro').css('display', 'block');
         jQuery('#floatingBarsG').css('display', 'none');
     }
@@ -267,6 +297,9 @@ AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){
             'title': 'Evolução da Turma',
             'vAxis': {
                 'title': "Total de Alunos"
+            },
+            'legend': {
+                position: 'bottom'
             }
         };
 
@@ -322,11 +355,16 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
             'tooltip':
             {
                 trigger: 'none'
+            },
+            'legend': {
+                position: 'none'
             }
         };
 
         globalScope().atualizarEscopo();
 
+        jQuery('#headerAluno').css('display', 'block');
+        jQuery('#tituloRelatorio').css('display', 'block');
         jQuery('#EvolucaoAluno').css('display', 'block');
         if(document.getElementById('EvolucaoTurma').style.display == "block")
             jQuery('#floatingBarsG').css('display', 'none');
@@ -377,11 +415,16 @@ AvaliaControllers.controller("EvolucaoAlunoController", function($stateParams){
             'title': 'Evolução da Turma',
             'vAxis': {
                 'title': 'Total de Alunos'
+            },
+            'legend': {
+                position: 'bottom'
             }
         };
 
         globalScope().atualizarEscopo();
 
+        jQuery('#headerAluno').css('display', 'block');
+        jQuery('#tituloRelatorio').css('display', 'block');
         jQuery('#EvolucaoTurma').css('display', 'block');
         if(document.getElementById('EvolucaoAluno').style.display == "block")
             jQuery('#floatingBarsG').css('display', 'none');

@@ -33,7 +33,7 @@
         <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
             <div class="panel easy panel-default drag">
                 <div class="panel-heading THipotese">{{'Avaliacao Hipotese '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
-                <div class="panel-body">
+                <div class="avaliacoesCSS">
                     <div class="col-md-6"><a ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
                     <div class="col-md-6"><a ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
                 </div>

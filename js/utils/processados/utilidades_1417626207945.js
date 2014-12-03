@@ -723,6 +723,24 @@ var Utils = (function() {
 
                 globalScope().escolaSelecionada = objetoPersist.escolaSelecionada;
                 globalScope().turmaSelecionada = objetoPersist.turmaSelecionada;
+                if(objetoPersist.turmaSelecionada.Alunos){
+                    var arrayAlunos = new Array();
+                    for(var i = 0, lenA = objetoPersist.turmaSelecionada.Alunos.length; i < lenA; i++){
+                        var Aluno = new Objetos.Aluno();
+
+                        Aluno.id = objetoPersist.turmaSelecionada.Alunos[i].id;
+
+                        Aluno.idProjeto = objetoPersist.turmaSelecionada.Alunos[i].idProjeto;
+                        Aluno.nome = objetoPersist.turmaSelecionada.Alunos[i].nome;
+                        Aluno.dataNascimento = objetoPersist.turmaSelecionada.Alunos[i].dataNascimento;
+                        Aluno.numero_RA = objetoPersist.turmaSelecionada.Alunos[i].numero_RA;
+                        Aluno.digito_RA =objetoPersist.turmaSelecionada.Alunos[i].digito_RA;
+                        Aluno.imagem = objetoPersist.turmaSelecionada.Alunos[i].imagem;
+
+                        arrayAlunos.push(Aluno);
+                    }
+                }
+                globalScope().turmaSelecionada.Alunos = arrayAlunos;
                 globalScope().alunoSelecionado = objetoPersist.alunoSelecionado;
                 globalScope().avaliacaoSelecionada = objetoPersist.avaliacaoSelecionada;
 

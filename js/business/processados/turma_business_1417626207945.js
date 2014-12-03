@@ -162,11 +162,13 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
         getTurmasProfessorPage: function(){
             var usuario = JSON.parse(localStorage.getItem("User"));
 
-            TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
-                globalScope().turmas = data;
-                globalScope().turmaSelecionada = data[0]
-                globalScope().atualizarEscopo();
-            });
+            if(!globalScope().turmas){
+                TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id, function(data){
+                    globalScope().turmas = data;
+                    globalScope().turmaSelecionada = data[0]
+                    globalScope().atualizarEscopo();
+                });
+            }
         },
 
         getTurmasRedePage: function(){

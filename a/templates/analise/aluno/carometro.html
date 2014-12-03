@@ -29,11 +29,11 @@
         </div>
     </div>
     <div ng-if="turmaSelecionada.Alunos.length != 0">
-        <div class="col-md-4" ng-repeat="aluno in turmaSelecionada.Alunos">
+        <div class="col-md-3" ng-repeat="aluno in turmaSelecionada.Alunos">
             <div class="panel easy panel-default drag" ng-click="PESSOA.selecionarAluno(aluno)">
-                <div class="panel-heading T{{turmaSelecionada.serie.charAt(0)}}">{{aluno.nome}}</div>
+                <div class="panel-heading T{{turmaSelecionada.serie.charAt(0)}}" style="height: 40px !important; line-height: 22px !important;">{{aluno.nome}}</div>
                 <div class="panel-body flex-container">
-                    <div class="flex-item-carometro"><img src="{{aluno.imagem}}" style="width: 90%; border-radius: 3px"></div>
+                    <div class="flex-item-carometro"><img src="{{aluno.imagem}}" style="width: 75%;"></div>
                     <div class="flex-item-carometro"><a ui-sref="tiposAvaliacoesAluno({idTurma: '{{turmaSelecionada.id}}',idAluno: '{{aluno.id}}'})" class="btn btn-primary btn-lg btn-block default large" style="width: 100%">Evolução</a></div>
                 </div>
             </div>

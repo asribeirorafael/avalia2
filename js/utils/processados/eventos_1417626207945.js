@@ -4,7 +4,7 @@ var provasApp = angular.module("provasApp", ['ngGrid', 'ui.router', 'googlechart
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/dashboard");
 
     $stateProvider
         .state('dashboard', {
@@ -244,8 +244,6 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
     escopoGlobal.TURMA = TurmaBusiness;
     escopoGlobal.AVALIACAO = AvaliacaoBusiness;
     escopoGlobal.UTILIDADE = Utils;
-
-    escopoGlobal.TURMA.getTurmasProfessorPage();
 
     /*retornarCidade: function (Estado) {
      var ArrayCidades = new Array();

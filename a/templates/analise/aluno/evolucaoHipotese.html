@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a ui-sref="dashboard">Dashboard</a></li>
-    <li><a ui-sref="carometro({idTurma: '{{turmaSelecionada.id}}'})">Carometro</a></li>
+    <li><a ui-sref="carometro({idTurma: '{{turmaSelecionada.id}}'})">Carômetro</a></li>
     <li><a ui-sref="tiposAvaliacoesAluno({idTurma: '{{turmaSelecionada.id}}'})">Análise de Provas</a></li>
     <li class="active">Evolução</li>
 </ol>
@@ -25,12 +25,13 @@
 </div>
 
 <!--background: #E8E8E8;-->
-<div>
-    <input type="button" ng-click="UTILIDADE.Imprimir('relatorioImp')"/>
+<div style="float: right">
+    <a ng-click="UTILIDADE.Imprimir('evolucaoAlunoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>
 </div>
 
-<div class="col-md-12" style="overflow: hidden; background: #fff" id="relatorioImp">
-    <div class="headRelatorio">
+
+<div class="col-md-12" style="overflow: hidden; background: #fff" id="evolucaoAlunoRelatorio">
+    <div class="headRelatorio" id="headerAluno" style="display: none">
         <div class="head2Relatorio">
             <img src="{{alunoSelecionado.imagem}}" class="fotoRelatorio">
         </div>
@@ -41,7 +42,7 @@
         </div>
     </div>
     <br />
-    <div style="overflow: hidden;margin-bottom: 15px;background: #fff;">
+    <div style="overflow: hidden;margin-bottom: 15px;background: #fff; display: none;" id="tituloRelatorio">
         <h3 class="tituloRelatorio">Relatório de Evolução do Aluno</h3>
     </div>
     <div google-chart chart="GraficoEvolucaoHipoteseAluno" id="EvolucaoAluno" style="height:400px; display: none" ></div>

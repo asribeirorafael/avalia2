@@ -237,7 +237,7 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
             hipoteseSend.save(null, {
                 success: function(res) {
                     var resultHipotese = AvaliacaoContract.setHipoteseFront(res);
-                    toastr.success("Informação atualizada com sucesso.");
+                    //toastr.success("Informação atualizada com sucesso.");
                     callback(resultHipotese);
                 },
                 error: function(res, error) {
