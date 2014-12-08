@@ -118,7 +118,7 @@
 		function init_scrollbar(){
 		
 			if(window.mCustomScrollbar != true){
-				//console.log('Error - Scrollbar script is not included! ['+window.mCustomScrollbar+']');
+				console.log('Error - Scrollbar script is not included! ['+window.mCustomScrollbar+']');
 				return false;
 			}
 		

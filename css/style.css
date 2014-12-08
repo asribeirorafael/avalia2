@@ -1050,28 +1050,28 @@ table thead {  }
 /*
 .dropdown-menu.orange > li > a:hover,
 .dropdown-menu.orange > li > a:focus {
-  
+
   background-color: #F7AF48;
- 
+
 }
 
 .dropdown-menu.red > li > a:hover,
 .dropdown-menu.red > li > a:focus {
- 
+
   background-color: #D64B5A;
- 
+
 }
 
 .dropdown-menu.green > li > a:hover,
 .dropdown-menu.green > li > a:focus {
- 
+
   background-color: #2abc68;
- 
+
 }
 
 .dropdown-menu.blue > li > a:hover,
 .dropdown-menu.blue > li > a:focus {
- 
+
   background-color: #3498db;
 
 }
@@ -1163,11 +1163,11 @@ table thead {  }
 /*
 
 .blue-btn.plus { background:#3498db url('images/icon-plus.png') no-repeat 10px 14px;padding:7px 10px 7px 25px; }
-	
-.blue-btn.plus:link { }	
-.blue-btn.plus:visited { }	
-.blue-btn.plus:hover { background:#2e80b6 url('images/icon-plus.png') no-repeat 10px 14px;  }	
-.blue-btn.plus:active { }	
+
+.blue-btn.plus:link { }
+.blue-btn.plus:visited { }
+.blue-btn.plus:hover { background:#2e80b6 url('images/icon-plus.png') no-repeat 10px 14px;  }
+.blue-btn.plus:active { }
 
 
 
@@ -2559,15 +2559,15 @@ table.search-developer a:hover i { color:#BCBCBC; }
     background: #700B0B  !important;
 }
 
-.THipotese{
-    background: #c62828 !important;
-}
-
-.TDiagnostica{
+.TA1{
     background: #00838f !important;
 }
 
-.TFada{
+.TA2{
+    background: #c62334 !important;
+}
+
+.TA3{
     background: #ff8f00 !important;
 }
 
