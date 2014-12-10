@@ -9,10 +9,10 @@ AvaliaControllers.controller("DashboardController", ['$scope','$http', function(
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-        globalScope().GraficoEvolucaoHipotese = {};
-        globalScope().dadosAnaliseAvaliacao = new Array();
-
         if(res){
+            globalScope().GraficoEvolucaoHipotese = {};
+            globalScope().dadosAnaliseAvaliacao = new Array();
+
             AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma(globalScope().turmaSelecionada.id, function(){
                 globalScope().GraficoEvolucaoHipotese.data = {
                     "cols": [
@@ -69,9 +69,6 @@ AvaliaControllers.controller("DashboardController", ['$scope','$http', function(
                 jQuery('#dashboard').css('display', 'block');
                 jQuery('#floatingBarsG').css('display', 'none');
             });
-        }else{
-            jQuery('#dashboard').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
         }
     });
 }]);
@@ -121,8 +118,10 @@ AvaliaControllers.controller("TurmasHipoteseController", function(){
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
+        if(res){
             jQuery('#listaTurmasHipotese').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
+        }
     });
 });
 
@@ -130,8 +129,10 @@ AvaliaControllers.controller("TiposAvaliacoesTurmaController", function(){
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
+        if(res) {
             jQuery('#tiposAvaliacoes').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
+        }
     });
 });
 
@@ -139,8 +140,10 @@ AvaliaControllers.controller("TiposAvaliacoesTurmaAnaliseController", function()
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
+        if(res) {
             jQuery('#tiposAvaliacoes').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
+        }
     });
 });
 
@@ -148,8 +151,10 @@ AvaliaControllers.controller("TiposAvaliacoesAlunoAnaliseController", function()
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
+        if(res) {
             jQuery('#tiposAvaliacoes').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
+        }
     });
 });
 

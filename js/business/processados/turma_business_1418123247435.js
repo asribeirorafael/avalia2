@@ -187,7 +187,7 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
                     });
                 });
             }else{
-                if(globalScope().turmaSelecionada.Alunos.length){
+                if(globalScope().turmaSelecionada.Alunos){
                     if(!globalScope().turmaSelecionada.Alunos[0].id){
                         var listaAlunos = new Array();
                         var i = 1;
@@ -208,7 +208,7 @@ var TurmaBusiness = (function(Objetos, TurmaContract) {
                             });
                         });
                     }else{
-                        callback(true);
+                        callback(false);
                     }
                 }else{
                     callback(false)

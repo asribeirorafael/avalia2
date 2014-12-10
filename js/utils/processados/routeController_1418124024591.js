@@ -9,10 +9,10 @@ AvaliaControllers.controller("DashboardController", ['$scope','$http', function(
     Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-        globalScope().GraficoEvolucaoHipotese = {};
-        globalScope().dadosAnaliseAvaliacao = new Array();
-
         if(res){
+            globalScope().GraficoEvolucaoHipotese = {};
+            globalScope().dadosAnaliseAvaliacao = new Array();
+
             AvaliacaoBusiness.gerarAnaliseAvaliacaoTurma(globalScope().turmaSelecionada.id, function(){
                 globalScope().GraficoEvolucaoHipotese.data = {
                     "cols": [
