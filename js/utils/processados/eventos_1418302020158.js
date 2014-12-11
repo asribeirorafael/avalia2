@@ -4,7 +4,7 @@ var provasApp = angular.module("provasApp", ['ngGrid', 'ui.router', 'googlechart
 
 provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/dashboard");
+    $urlRouterProvider.otherwise("/administracao/turmas");
 
     $stateProvider
         .state('dashboard', {

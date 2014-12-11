@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="avalia-versao" content="1418236921502" />
+    <meta name="avalia-versao" content="1418325580013" />
 
     <title>Index</title>
 
@@ -21,7 +21,7 @@
     <script type="text/javascript" src="../js/plugins/angular-ui-router/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../js/plugins/angular-ui-grid/ng-grid.js"></script>
 
-    <script type="text/javascript" src="../js/utils/processados/routeController_1418236921502.js"></script>
+    <script type="text/javascript" src="../js/utils/processados/routeController_1418325580013.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
@@ -88,45 +88,100 @@
 
     <div id="sidebar">
 
-        <ul class="drop-area">
-            <li style="margin-bottom: 30px; display: block" class="no-back">
-                <h2>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
+        <ul class="drop-area" id="professorLogin" style="display: block">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2 ui-sref="trocarTurma"> <span class="icn icon-202" style="float: left;margin: 5px 15px 0 0;"></span>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
             </li>
-            <li class="no-back" style="display: block">
-                <a ui-sref="dashboard">Dashboard</a>
-            </li>
-            <li class="no-back ng-scope" style="display: block">
+            <li class="no-back ng-scope">
                 <a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>
             </li>
-            <li class="no-back" style="display: block">
+            <li class="no-back">
                 <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução da Turma</a>
             </li>
-            <li class="no-back" style="display: block">
+            <li class="no-back">
+                <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
+            </li>
+        </ul>
+
+        <ul class="drop-area" id="escolaLogin" style="display: none">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2>{{escolaSelecionada.nome}}</h2>
+            </li>
+            <li class="no-back">
+                <a ui-sref="dashboard">Dashboard</a>
+            </li>
+            <!--<li class="no-back ng-scope">-->
+                <!--<a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>-->
+            <!--</li>-->
+            <li class="no-back">
+                <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução das Turmas</a>
+            </li>
+            <li class="no-back">
                 <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
             </li>
             <li>
                 Administrativo
                 <ul>
-                    <li style="display: none" id="noPermissionM">
-                        <a>Não possui permissão para essa área.</a>
-                    </li>
-                    <li style="display: none" id="cadEscola">
+                    <li>
                         <span class="icn icon-190"></span>
                         <a>Cadastro de Escola</a>
                     </li>
-                    <li style="display: none" id="cadTurma">
+                    <li>
                         <span class="icn icon-123"></span>
                         <a>Cadastro de Turma</a>
                     </li>
-                    <li style="display: none" id="cadAluno">
+                    <li>
                         <span class="icn icon-124"></span>
                         <a>Cadastro de Aluno</a>
                     </li>
-                    <li style="display: none" id="cadProfessor">
+                    <li>
                         <span class="icn icon-124"></span>
                         <a>Cadastro de Professor</a>
                     </li>
-                    <li style="display: block" id="changeTurma">
+                    <li>
+                        <span class="icn icon-202"></span>
+                        <a ui-sref="trocarTurma">Trocar Turma</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="drop-area" id="semecLogin" style="display: none">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
+            </li>
+            <li class="no-back">
+                <a ui-sref="dashboard">Dashboard</a>
+            </li>
+            <li class="no-back ng-scope">
+                <a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>
+            </li>
+            <li class="no-back">
+                <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução da Turma</a>
+            </li>
+            <li class="no-back">
+                <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
+            </li>
+            <li>
+                Administrativo
+                <ul>
+                    <li>
+                        <span class="icn icon-190"></span>
+                        <a>Cadastro de Escola</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-123"></span>
+                        <a>Cadastro de Turma</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-124"></span>
+                        <a>Cadastro de Aluno</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-124"></span>
+                        <a>Cadastro de Professor</a>
+                    </li>
+                    <li>
                         <span class="icn icon-202"></span>
                         <a ui-sref="trocarTurma">Trocar Turma</a>
                     </li>
@@ -159,19 +214,19 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="../js/utils/objetos.js"></script>
-<script type="text/javascript" src="../js/contracts/processados/avaliacao_contract_1418236921502.js"></script>
-<script type="text/javascript" src="../js/contracts/processados/endereco_contract_1418236921502.js"></script>
-<script type="text/javascript" src="../js/contracts/processados/escola_contract_1418236921502.js"></script>
-<script type="text/javascript" src="../js/contracts/processados/turma_contract_1418236921502.js"></script>
-<script type="text/javascript" src="../js/contracts/processados/pessoa_contract_1418236921502.js"></script>
-<script type="text/javascript" src="../js/business/processados/avaliacao_business_1418236921502.js"></script>
-<script type="text/javascript" src="../js/business/processados/endereco_business_1418236921502.js"></script>
-<script type="text/javascript" src="../js/business/processados/escola_business_1418236921502.js"></script>
-<script type="text/javascript" src="../js/business/processados/turma_business_1418236921502.js"></script>
-<script type="text/javascript" src="../js/business/processados/pessoa_business_1418236921502.js"></script>
-<script type="text/javascript" src="../js/utils/processados/utilidades_1418236921502.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/avaliacao_contract_1418325580013.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/endereco_contract_1418325580013.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/escola_contract_1418325580013.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/turma_contract_1418325580013.js"></script>
+<script type="text/javascript" src="../js/contracts/processados/pessoa_contract_1418325580013.js"></script>
+<script type="text/javascript" src="../js/business/processados/avaliacao_business_1418325580013.js"></script>
+<script type="text/javascript" src="../js/business/processados/endereco_business_1418325580013.js"></script>
+<script type="text/javascript" src="../js/business/processados/escola_business_1418325580013.js"></script>
+<script type="text/javascript" src="../js/business/processados/turma_business_1418325580013.js"></script>
+<script type="text/javascript" src="../js/business/processados/pessoa_business_1418325580013.js"></script>
+<script type="text/javascript" src="../js/utils/processados/utilidades_1418325580013.js"></script>
 <script type="text/javascript" src="../js/utils/colecoes.js"></script>
-<script type="text/javascript" src="../js/utils/processados/eventos_1418236921502.js"></script>
+<script type="text/javascript" src="../js/utils/processados/eventos_1418325580013.js"></script>
 
 <script type="text/javascript" src="../js/plugins/google-chart/ng-google-chart.js"></script>
 <script type="text/javascript" src="../scripts/jquery.mCustomScrollbar/jquery.mcustomscrollbar.js"></script>

@@ -88,45 +88,100 @@
 
     <div id="sidebar">
 
-        <ul class="drop-area">
-            <li style="margin-bottom: 30px; display: block" class="no-back">
-                <h2>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
+        <ul class="drop-area" id="professorLogin" style="display: block">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2 ui-sref="trocarTurma"> <span class="icn icon-202" style="float: left;margin: 5px 15px 0 0;"></span>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
             </li>
-            <li class="no-back" style="display: block">
-                <a ui-sref="dashboard">Dashboard</a>
-            </li>
-            <li class="no-back ng-scope" style="display: block">
+            <li class="no-back ng-scope">
                 <a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>
             </li>
-            <li class="no-back" style="display: block">
+            <li class="no-back">
                 <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução da Turma</a>
             </li>
-            <li class="no-back" style="display: block">
+            <li class="no-back">
+                <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
+            </li>
+        </ul>
+
+        <ul class="drop-area" id="escolaLogin" style="display: none">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2>{{escolaSelecionada.nome}}</h2>
+            </li>
+            <li class="no-back">
+                <a ui-sref="dashboard">Dashboard</a>
+            </li>
+            <!--<li class="no-back ng-scope">-->
+                <!--<a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>-->
+            <!--</li>-->
+            <li class="no-back">
+                <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução das Turmas</a>
+            </li>
+            <li class="no-back">
                 <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
             </li>
             <li>
                 Administrativo
                 <ul>
-                    <li style="display: none" id="noPermissionM">
-                        <a>Não possui permissão para essa área.</a>
-                    </li>
-                    <li style="display: none" id="cadEscola">
+                    <li>
                         <span class="icn icon-190"></span>
                         <a>Cadastro de Escola</a>
                     </li>
-                    <li style="display: none" id="cadTurma">
+                    <li>
                         <span class="icn icon-123"></span>
                         <a>Cadastro de Turma</a>
                     </li>
-                    <li style="display: none" id="cadAluno">
+                    <li>
                         <span class="icn icon-124"></span>
                         <a>Cadastro de Aluno</a>
                     </li>
-                    <li style="display: none" id="cadProfessor">
+                    <li>
                         <span class="icn icon-124"></span>
                         <a>Cadastro de Professor</a>
                     </li>
-                    <li style="display: block" id="changeTurma">
+                    <li>
+                        <span class="icn icon-202"></span>
+                        <a ui-sref="trocarTurma">Trocar Turma</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="drop-area" id="semecLogin" style="display: none">
+            <li style="margin-bottom: 30px;" class="no-back">
+                <h2>{{turmaSelecionada.serie+' '+turmaSelecionada.turma}}</h2>
+            </li>
+            <li class="no-back">
+                <a ui-sref="dashboard">Dashboard</a>
+            </li>
+            <li class="no-back ng-scope">
+                <a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a>
+            </li>
+            <li class="no-back">
+                <a ui-sref="tiposAvaliacoes({idTurma: turmaSelecionada.id})">Evolução da Turma</a>
+            </li>
+            <li class="no-back">
+                <a ui-sref="carometro({idTurma: turmaSelecionada.id})">Evolução dos Alunos</a>
+            </li>
+            <li>
+                Administrativo
+                <ul>
+                    <li>
+                        <span class="icn icon-190"></span>
+                        <a>Cadastro de Escola</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-123"></span>
+                        <a>Cadastro de Turma</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-124"></span>
+                        <a>Cadastro de Aluno</a>
+                    </li>
+                    <li>
+                        <span class="icn icon-124"></span>
+                        <a>Cadastro de Professor</a>
+                    </li>
+                    <li>
                         <span class="icn icon-202"></span>
                         <a ui-sref="trocarTurma">Trocar Turma</a>
                     </li>
