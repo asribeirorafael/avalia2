@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol class="breadcrumb col-md-12">
     <li><a ui-sref="dashboard">Dashboard</a></li>
     <li><a ui-sref="avaliacoesHipotese({idTurma: turmaSelecionada.id})">Lançamentos</a></li>
     <li class="active">{{'Análise Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div style="display: none;" id="analiseAvaliacao">
+<div class="col-md-12" style="display: none;" id="analiseAvaliacao">
     <div ng-if="dadosAnaliseAvaliacao.length == 0">
         <div class="col-md-12">
             <h3>Não Existem Resultados para esta Avaliação.</h3>

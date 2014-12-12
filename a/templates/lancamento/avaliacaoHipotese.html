@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol class="breadcrumb col-md-12">
     <li><a ui-sref="dashboard">Dashboard</a></li>
     <li><a ui-sref="avaliacoesHipotese({idTurma: '{{turmaSelecionada.id}}'})">Lançamentos</a></li>
     <li class="active">{{'Avaliacao Hipotese '+avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</li>
@@ -23,9 +23,9 @@
     </div>
 </div>
 
-<div style="display: none;" id="avaliacaoHipotese">
+<div class="col-md-12" style="display: none;" id="avaliacaoHipotese">
     <div>
-        <div class="col-md-7">
+        <div class="col-md-7" style="background-color: #fff;">
             <div><h1>Hipótese de Escrita</h1></div>
             <div style="margin: -15px 0 0 0">
                 <ul class="wrap-check">
@@ -65,7 +65,7 @@
         <div class="col-md-5">
             <!--<div><a href="#" class="btn btn-primary btn-lg btn-block blue large">Análise da Avaliação</a></div>-->
 
-            <div class="flex-container" style="overflow: hidden; padding-bottom: 3%">
+            <div class="flex-container" style="overflow: hidden; padding-bottom: 3%;background-color: #fff;">
                 <div class="flex-item"><a ng-click="AVALIACAO.goToFirst()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;"><<</h2></a></div>
                 <div class="flex-item"><a ng-click="AVALIACAO.goToPrior()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;"><</h2></a></div>
                 <div class="flex-item"><h2 style="width: 100%; margin: 0">{{(indiceAluno+1)+"/"+turmaSelecionada.Alunos.length}}</h2></div>
@@ -73,7 +73,7 @@
                 <div class="flex-item"><a ng-click="AVALIACAO.goToLast()" class="btn default middle" style="height: 65px; width: 100%;"><h2 style="margin: 8px 0 0 0px;">>></h2></a></div>
             </div>
 
-            <div style="border: 1px solid #cccccc">
+            <div style="background-color: #fff;">
                 <div style="padding: 5% 34%;">
                     <img src="{{alunoSelecionadoHipotese.imagem}}" style="height: 150px; width: 150px; border-radius: 3px">
                 </div>
