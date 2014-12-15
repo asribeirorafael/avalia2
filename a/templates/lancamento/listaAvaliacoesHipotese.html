@@ -66,22 +66,35 @@
     </div>
     <div class="col-md-4" ng-repeat="avaliacao in avaliacoes">
         <div class="panel easy panel-default drag">
-            <div  ng-if="avaliacao.tipoAvaliacao == 1" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">Hipotese - {{'Avaliacao '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
-            <div  ng-if="avaliacao.tipoAvaliacao == 2" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">Diagnostica - {{'Avaliacao '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
-            <div  ng-if="avaliacao.tipoAvaliacao == 3" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">FADA - {{'Avaliacao '+avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+            <div  ng-if="avaliacao.tipoAvaliacao == 1" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">Hipotese - {{avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+            <div  ng-if="avaliacao.tipoAvaliacao == 2" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">Diagnostica - {{avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
+            <div  ng-if="avaliacao.tipoAvaliacao == 3" class="panel-heading TA{{avaliacao.tipoAvaliacao}}">FADA - {{avaliacao.periodo+'ºPeriodo de '+avaliacao.ano}}</div>
             <div class="avaliacoesCSS">
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 1"><a ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao)" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 1"><a ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+                <div class="TA{{avaliacao.tipoAvaliacao}}" style="height: 103px; float: left; width: 30px; margin-top: -30px;">
+                    <span ng-if="avaliacao.fechada == false" style="color: #fff; display: block; position: absolute; left: -2px; top: 110px; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">Em Aberto</span>
+                    <div ng-if="avaliacao.fechada == false" style="width: 20px; height: 20px; background-color: rgb(0, 152, 0); border-radius: 10px; border: 1.5px solid white; position: absolute; left: 22px;"></div>
+                    <span ng-if="avaliacao.fechada == true" style="color: #fff; display: block; position: absolute; left: 4px; top: 110px; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">Fechada</span>
+                    <div ng-if="avaliacao.fechada == true" style="width: 20px; height: 20px; background-color: rgb(176, 9, 0); border-radius: 10px; border: 1.5px solid white; position: absolute; left: 22px;"></div>
+                </div>
 
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 2"><a ng-click="" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 2"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 1">
+                    <a ng-if="avaliacao.fechada == false" ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao, 1)" class="btn btn-primary btn-lg btn-block default large">Lançar</a>
+                    <a ng-if="avaliacao.fechada == true" ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao, 2)" class="btn btn-primary btn-lg btn-block default large">Visualizar</a>
+                </div>
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 1"><a ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
 
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 3"><a ng-click="" class="btn btn-primary btn-lg btn-block default large">Lançar</a></div>
-                <div class="col-md-6" ng-if="avaliacao.tipoAvaliacao == 3"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 2">
+                    <a ng-if="avaliacao.fechada == false" ng-click="" class="btn btn-primary btn-lg btn-block default large">Lançar</a>
+                    <a ng-if="avaliacao.fechada == true" ng-click="" class="btn btn-primary btn-lg btn-block default large">Visualizar</a>
+                </div>
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 2"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 3">
+                    <a ng-if="avaliacao.fechada == false" ng-click="" class="btn btn-primary btn-lg btn-block default large">Lançar</a>
+                    <a ng-if="avaliacao.fechada == true" ng-click="" class="btn btn-primary btn-lg btn-block default large">Visualizar</a>
+                </div>
+                <div class="col-md-5" ng-if="avaliacao.tipoAvaliacao == 3"><a class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
             </div>
         </div>
     </div>
 </div>
-
-
-

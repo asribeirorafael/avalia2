@@ -14,17 +14,15 @@ var Objetos = (function() {
         this.logradouro = "";
         this.tipoLogradouro = "";
         this.coordenada = new Parse.GeoPoint();
-    };
-
+    }
     function Escola(){
         this.id = "";
         this.idProjeto = "";
         this.nomeEscola = "";
         this.nomeCurtoEscola = "";
         this.Endereco = new Objetos.Endereco();
-        this.Turmas = new Array();
-    };
-
+        this.Turmas = [];
+    }
     function Aluno(){
         this.id = "";
         this.idProjeto = "";
@@ -33,16 +31,14 @@ var Objetos = (function() {
         this.numero_RA = null;
         this.digito_RA = null;
         this.imagem = "";
-    };
-
+    }
     function Professor() {
         this.id = "";
         this.idProjeto = "";
         this.nome = "";
         this.dataNascimento = null;
         this.rd = null;
-    };
-
+    }
     function Turma(){
         this.id = "";
         this.idProjeto = "";
@@ -54,9 +50,8 @@ var Objetos = (function() {
         this.turno = "";
         this.Escola = new Objetos.Escola();
         this.Professor = new Objetos.Professor();
-        this.Alunos = new Array();
-    };
-
+        this.Alunos = [];
+    }
     function Avaliacao(){
         this.id = "";
         this.idProjeto = "";
@@ -65,8 +60,9 @@ var Objetos = (function() {
         this.serie = "";
         this.curso = "";
         this.tipoAvaliacao = "";
-    };
-
+        this.turma = "";
+        this.fechada = false;
+    }
     function ResultadoDiagnostico(){
         this.id = "";
         this.idProjeto = "";
@@ -80,8 +76,7 @@ var Objetos = (function() {
         this.nivelTema = "";
         this.nivelGenero = "";
         this.nivelCoesaoCoerencia = "";
-    };
-
+    }
     function ResultadoHipotese(){
         this.id = "";
         this.idProjeto = "";
@@ -92,8 +87,7 @@ var Objetos = (function() {
         this.Turma = "";
         this.Escola = "";
         this.nivelHipotese = "";
-    };
-
+    }
     function Usuario(){
         this.username = "";
         this.email = "";

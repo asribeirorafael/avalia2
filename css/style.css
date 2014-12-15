@@ -405,7 +405,7 @@ textarea 																			{ outline:none !important; }
 .panel.easy:hover 																	{ opacity:1; }
 .panel.easy .panel-body 															{ color:#899197;padding-bottom:2px;background: url("../images/back-shadow-style.png") repeat-x scroll left bottom #fff; }
 
-.panel.easy .avaliacoesCSS 												            { color:#899197;padding-bottom: 60px;margin-top: 30px;background: url("../images/back-shadow-style.png") repeat-x scroll left bottom #fff; }
+.panel.easy .avaliacoesCSS 												            { color:#899197;padding-bottom: 75px;margin-top: 30px;background: url("../images/back-shadow-style.png") repeat-x scroll left bottom #fff; }
 
 /*.draggable-wrapper { padding-bottom:30px; }*/
 
@@ -1487,7 +1487,7 @@ h3.form-title { text-transform:uppercase;color:#3f4551;font-size:14px;font-weigh
 
 .scroll-block { height:200px; }
 
-.sg-button.btn-group.open .dropdown-menu li { height:40px;border-bottom:1px solid #E7EBEB;line-height:40px; }
+.sg-button.btn-group.open .dropdown-menu li { height:40px;border-bottom:1px solid #E7EBEB;line-height:40px; cursor: pointer}
 .sg-button.btn-group.open .dropdown-menu { width:100%;padding-left:20px;padding-top:0;padding-bottom:0; }
 .sg-button.btn-group.open .dropdown-menu li a { padding-left:0;color:#37434F; }
 
