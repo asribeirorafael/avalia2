@@ -18,17 +18,17 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
                 //console.log("Estou saindo dessa página!!!");
             }
         })
-        .state('turmas', {
-            url: "/turmas/hipotese",
-            templateUrl: "templates/lancamento/listaTurmasHipotese.html",
-            controller: 'TurmasHipoteseController',
-            onEnter: function(){
-                Utils.ReturnPersistData();
-            },
-            onExit: function(){
-                //console.log("Estou saindo dessa página!!!");
-            }
-        })
+        //.state('turmas', {
+        //    url: "/turmas/hipotese",
+        //    templateUrl: "templates/lancamento/listaTurmasHipotese.html",
+        //    controller: 'TurmasHipoteseController',
+        //    onEnter: function(){
+        //        Utils.ReturnPersistData();
+        //    },
+        //    onExit: function(){
+        //        //console.log("Estou saindo dessa página!!!");
+        //    }
+        //})
         .state('tiposAvaliacoesLancamento', {
             url: "/turmas/:idTurma/avaliacoes",
             templateUrl: "templates/lancamento/tiposAvaliacoes.html",
@@ -133,7 +133,7 @@ provasApp.config(function($locationProvider, $stateProvider,  $urlRouterProvider
             templateUrl: "templates/administracao/listaTurmas.html",
             controller: 'TrocarTurmaController',
             onEnter: function(){
-                Utils.ReturnPersistData();
+                //Utils.ReturnPersistData();
             },
             onExit: function(){
                 //console.log("Estou saindo dessa página!!!");
@@ -249,6 +249,7 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
 
     escopoGlobal.idEscola = "";
     escopoGlobal.flagTipoAcaoProva = "";
+    escopoGlobal.porcentagem = 0;
 
     escopoGlobal.escolaSelecionada = "";
     escopoGlobal.turmaSelecionada = "";
@@ -270,6 +271,12 @@ provasApp.run(['$rootScope', '$compile', '$routeParams', function (escopoGlobal,
     escopoGlobal.gridOptions = {
         data: 'DataGrid'
     };
+    escopoGlobal.DataGrid2 = [];
+    escopoGlobal.gridOptions2 = {
+        data: 'DataGrid2'
+    };
+    escopoGlobal.dadosPaginados = new Array();
+    escopoGlobal.paginaSelecionada = 0;
 
     escopoGlobal.definirPagina = function (numeroPagina) {
         escopoGlobal.pagina = numeroPagina;

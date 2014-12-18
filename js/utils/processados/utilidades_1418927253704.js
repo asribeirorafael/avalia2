@@ -594,6 +594,9 @@ var Utils = (function() {
             },
             byPeriodo: function (user_a, user_b) {
                 return user_a.periodo > user_b.periodo;
+            },
+            bynameResultado: function (user_a, user_b) {
+                return user_a.Nome > user_b.Nome;
             }
         },
 
@@ -674,6 +677,8 @@ var Utils = (function() {
                 professor: globalScope().professor,
 
                 idEscola: globalScope().idEscola,
+                flagTipoAcaoProva: globalScope().flagTipoAcaoProva,
+                porcentagem: globalScope().porcentagem,
 
                 escolaSelecionada: globalScope().escolaSelecionada,
                 turmaSelecionada: globalScope().turmaSelecionada,
@@ -691,7 +696,10 @@ var Utils = (function() {
                 dadosBruto: globalScope().dadosBruto,
                 dadosAnaliseAvaliacao: globalScope().dadosAnaliseAvaliacao,
                 dadosAnaliseAvaliacaoAluno: globalScope().dadosAnaliseAvaliacaoAluno,
-                DataGrid: globalScope().DataGrid
+                DataGrid: globalScope().DataGrid,
+                DataGrid2: globalScope().DataGrid2,
+                dadosPaginados: globalScope().dadosPaginados,
+                paginaSelecionada: globalScope().paginaSelecionada
             };
 
             localStorage.setItem("GlobalScope", JSON.stringify(jSonPersist));
@@ -724,6 +732,8 @@ var Utils = (function() {
                 globalScope().professor = objetoPersist.professor;
 
                 globalScope().idEscola = objetoPersist.idEscola;
+                globalScope().flagTipoAcaoProva = objetoPersist.flagTipoAcaoProva;
+                globalScope().porcentagem = objetoPersist.porcentagem;
 
                 globalScope().escolaSelecionada = objetoPersist.escolaSelecionada;
                 globalScope().turmaSelecionada = objetoPersist.turmaSelecionada;
@@ -760,6 +770,9 @@ var Utils = (function() {
                 globalScope().dadosAnaliseAvaliacao = objetoPersist.dadosAnaliseAvaliacao;
                 globalScope().dadosAnaliseAvaliacaoAluno = objetoPersist.dadosAnaliseAvaliacaoAluno;
                 globalScope().DataGrid = objetoPersist.DataGrid;
+                globalScope().DataGrid2 = objetoPersist.DataGrid2;
+                globalScope().dadosPaginados = objetoPersist.dadosPaginados;
+                globalScope().paginaSelecionada = objetoPersist.paginaSelecionada;
 
                 localStorage.removeItem("GlobalScope");
             }
@@ -839,6 +852,7 @@ var Utils = (function() {
             jQuery("#chkbx3").prop("disabled", true);
             jQuery("#chkbx4").prop("disabled", true);
             jQuery("#chkbx5").prop("disabled", true);
+            jQuery("#fecharAvaliacao").attr("disabled", "disabled");
         },
 
         enabledQuestions: function(){
@@ -848,6 +862,28 @@ var Utils = (function() {
             jQuery("#chkbx4").prop("disabled", false);
             jQuery("#chkbx5").prop("disabled", false);
             jQuery("#fecharAvaliacao").removeAttr("disabled");
+        },
+
+        pagerData: function(itensPage,data){
+            var objectPage = new Array();
+            var pagerArray = new Array();
+            var j = 0;
+            for(var i = 0, lenD = data.length; i < lenD; i++){
+                pagerArray.push(data[i])
+
+                if(j == itensPage-1){
+                    objectPage.push(pagerArray);
+                    pagerArray = new Array();
+                    j = 0;
+                }else{
+                    j++;
+                }
+            }
+
+            if(pagerArray.length)
+                objectPage.push(pagerArray)
+
+            return objectPage;
         }
 
     }

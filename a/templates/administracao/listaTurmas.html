@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="col-md-12" style="display: block;" id="listaTurmas">
+<div class="col-md-12" style="display: none;" id="listaTurmas">
     <div class="col-md-4" ng-repeat="turma in turmas">
         <div class="panel easy panel-default drag" ui-sref="avaliacoesHipotese" ng-click="TURMA.selecionarTurmaCarometro(turma)">
             <div class="panel-heading T{{turma.serie.charAt(0)}}"><h3>{{turma.serie+' '+turma.turma}}</h3></div>

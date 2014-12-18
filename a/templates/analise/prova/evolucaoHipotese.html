@@ -28,42 +28,40 @@
             <h3>Não Existem Resultados para esta Turma.</h3>
         </div>
     </div>
-    <div>
-        <div ng-if="dadosAnaliseAvaliacao.length != 0">
-            <div style="float: right">
-                <a ng-click="UTILIDADE.Imprimir('evolucaoTurma')" class="btn default"><span class="fa fa-print"></span></a>
-            </div>
+    <div ng-if="dadosAnaliseAvaliacao.length != 0">
+        <div style="float: right">
+            <a ng-click="UTILIDADE.Imprimir('evolucaoTurma')" class="btn default"><span class="fa fa-print"></span></a>
+        </div>
 
-            <div id="evolucaoTurma" class="col-md-12" style="overflow: hidden; width: 100%; background: #fff">
-                <br/>
-                <div>
-                    <h2 style="text-align: center">Análise de Evolução - {{turmaSelecionada.serie+' '+turmaSelecionada.turma +' - '+ turmaSelecionada.curso}}</h2>
-                </div>
-                <div google-chart chart="GraficoEvolucaoHipotese" style="height:400px;"></div>
-                <div style="margin-top: 30px; position: relative">
-                    <table st-table="rowCollection" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Período</th>
-                            <th>Alfabético</th>
-                            <th>Silábico-Alfabético</th>
-                            <th>Silábico com Valor</th>
-                            <th>Silábico sem Valor</th>
-                            <th>Silábico</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="dado in dadosBruto">
-                            <td>{{dado[0].periodo}}</td>
-                            <td>{{dado[0].total}}</td>
-                            <td>{{dado[1].total}}</td>
-                            <td>{{dado[2].total}}</td>
-                            <td>{{dado[3].total}}</td>
-                            <td>{{dado[4].total}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div id="evolucaoTurma" class="col-md-12" style="overflow: hidden; background: #fff">
+            <br/>
+            <div>
+                <h2 style="text-align: center">Análise de Evolução - {{turmaSelecionada.serie+' '+turmaSelecionada.turma +' - '+ turmaSelecionada.curso}}</h2>
+            </div>
+            <div google-chart chart="GraficoEvolucaoHipotese" style="height:400px;"></div>
+            <div style="margin-top: 30px; position: relative">
+                <table st-table="rowCollection" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Período</th>
+                        <th>Alfabético</th>
+                        <th>Silábico-Alfabético</th>
+                        <th>Silábico com Valor</th>
+                        <th>Silábico sem Valor</th>
+                        <th>Silábico</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dado in dadosBruto">
+                        <td>{{dado[0].periodo}}</td>
+                        <td>{{dado[0].total}}</td>
+                        <td>{{dado[1].total}}</td>
+                        <td>{{dado[2].total}}</td>
+                        <td>{{dado[3].total}}</td>
+                        <td>{{dado[4].total}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

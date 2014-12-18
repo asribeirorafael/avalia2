@@ -4,8 +4,7 @@
 
 var AvaliaControllers = angular.module("AvaliaControllers", []);
 
-AvaliaControllers.controller("DashboardController", ['$scope','$http', function($scope, $http)
-{
+AvaliaControllers.controller("DashboardController", ['$scope','$http', function($scope, $http){
     globalScope().TURMA.getTurmasProfessorPage(function(res){
         globalScope().GraficoEvolucaoHipotese = {};
         globalScope().dadosAnaliseAvaliacao = [];
@@ -87,16 +86,37 @@ AvaliaControllers.controller("SelecionarAvaliacaoHipoteseController", ['$scope',
 
     AvaliacaoBusiness.getResultadoHipoteseAvaliacao(avaliacao.id, function(listaResultados) {
         var cont = 0;
+        var arrayPendentes = new Array();
+        globalScope().DataGrid2 = new Array();
+
         if(listaResultados.length != 0){
-            for(var i= 0, lenLR = listaResultados.length; i < lenLR; i++){
+            for(var i = 0, lenLR = listaResultados.length; i < lenLR; i++){
                 if(listaResultados[i].nivelHipotese != ""){
                     cont++;
+                }else{
+                    globalScope().DataGrid2.push({"Nome": listaResultados[i].Aluno.nome, "RA": listaResultados[i].Aluno.numero_RA+"-"+listaResultados[i].Aluno.digito_RA})
                 }
             }
+
+            globalScope().DataGrid2.sort(Utils.Ordenacao.bynameResultado);
+
+            globalScope().dadosPaginados = Utils.pagerData(5,globalScope().DataGrid2);
+
             var porcentagem = (cont/globalScope().turmaSelecionada.Alunos.length) * 100;
+            globalScope().porcentagem = porcentagem;
             jQuery('#avaliaProgress').css('width', porcentagem+'%');
+
+            globalScope().atualizarEscopo();
         }else{
+            globalScope().DataGrid2 = new Array();
+            for(var i= 0, lenLR = globalScope().turmaSelecionada.Alunos.length; i < lenLR; i++){
+                globalScope().DataGrid2.push({"Nome": globalScope().turmaSelecionada.Alunos[i].nome, "RA": globalScope().turmaSelecionada.Alunos[i].numero_RA+"-"+globalScope().turmaSelecionada.Alunos[i].digito_RA})
+            }
+
+            globalScope().porcentagem = 0;
             jQuery('#avaliaProgress').css('width', '0%');
+
+            globalScope().atualizarEscopo();
         }
     });
 
@@ -140,8 +160,8 @@ AvaliaControllers.controller("TurmasHipoteseController", function(){
     //Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-            jQuery('#listaTurmasHipotese').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
+        jQuery('#listaTurmasHipotese').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
@@ -149,8 +169,8 @@ AvaliaControllers.controller("TiposAvaliacoesTurmaController", function(){
     //Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-            jQuery('#tiposAvaliacoes').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
+        jQuery('#tiposAvaliacoes').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
@@ -158,8 +178,8 @@ AvaliaControllers.controller("TiposAvaliacoesTurmaAnaliseController", function()
     //Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-            jQuery('#tiposAvaliacoes').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
+        jQuery('#tiposAvaliacoes').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
@@ -167,39 +187,27 @@ AvaliaControllers.controller("TiposAvaliacoesAlunoAnaliseController", function()
     //Utils.ReturnPersistData();
 
     globalScope().TURMA.getTurmasProfessorPage(function(res){
-            jQuery('#tiposAvaliacoes').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
+        jQuery('#tiposAvaliacoes').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
     });
 });
 
 AvaliaControllers.controller("TrocarTurmaController", function(){
-    //Utils.ReturnPersistData();
+    Utils.ReturnPersistData();
 
-    var turma = globalScope().turmaSelecionada;
+    var usuario = JSON.parse(localStorage.getItem("User"));
 
-    var listaAlunos = [];
-    var i = 1;
-    turma.Alunos.forEach(function(idAluno){
-        PessoaBusiness.getAluno(idAluno, function(alunoRes){
-            listaAlunos.push(alunoRes);
-            if(turma.Alunos.length == i){
-                listaAlunos.sort(Utils.Ordenacao.byname);
-
-                globalScope().turmaSelecionada.Alunos = listaAlunos;
-
-                globalScope().atualizarEscopo();
-            }else{
-                i++;
-            }
-        });
+    TurmaBusiness.getTurmasProfessor(usuario.Pessoa.id ,function(res){
+        globalScope().turmas = res;
+        if(globalScope().turmas.length == 1){
+            jQuery('#listaTurmas').css('display', 'block');
+            jQuery('#floatingBarsG').css('display', 'none');
+            parent.location='#/turmas/'+ globalScope().turmaSelecionada.id +'/avaliacoes/tipos';
+        }else{
+            jQuery('#listaTurmas').css('display', 'block');
+            jQuery('#floatingBarsG').css('display', 'none');
+        }
     });
-
-    if(globalScope().turmas.length == 1){
-        parent.location='#/turmas/'+ turma.id +'/avaliacoes/tipos';
-    }else{
-        jQuery('#listaTurmas').css('display', 'block');
-        jQuery('#floatingBarsG').css('display', 'none');
-    }
 });
 
 AvaliaControllers.controller("SelecionarTurmaHipoteseController", function(){
@@ -303,7 +311,9 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
         globalScope().GraficoHipotesePizza.type = "PieChart";
         globalScope().GraficoHipotesePizza.options = {
-            'title': 'Porcentagem de Alunos por Nível'
+            'title': 'Porcentagem de Alunos por Nível',
+            'pieSliceText': 'label',
+            'legend': 'none'
         };
 
         globalScope().GraficoHipoteseColuna.data = {
@@ -328,7 +338,10 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
                 'gridlines': {
                     'count': 0
                 }
-            }
+            },
+            'legend': {
+            position: 'none'
+        }
         };
 
         globalScope().AVALIACAO.changeGroupBy("Nivel");
