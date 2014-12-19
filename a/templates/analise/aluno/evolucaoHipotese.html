@@ -23,27 +23,29 @@
     </div>
 </div>
 
+<div class="col-md-12">
+    <div style="position: absolute;z-index: 9999;right: 13px;">
+        <a ng-click="UTILIDADE.Imprimir('evolucaoAlunoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>
+    </div>
+
+    <div style="overflow: hidden; background: #fff" id="evolucaoAlunoRelatorio">
+        <div class="headRelatorio" id="headerAluno" style="display: none">
+            <div class="head2Relatorio">
+                <img src="{{alunoSelecionado.imagem}}" class="fotoRelatorio">
+            </div>
+            <div class="infoAlunoRelatorio">
+                <h2>{{alunoSelecionado.nome}}</h2>
+                <h3 class="h3Relatorio">Turma: {{turmaSelecionada.serie+' '+turmaSelecionada.turma +' - '+ turmaSelecionada.curso}}</h3>
+                <h3>Escola: {{turmaSelecionada.Escola.nomeEscola}}</h3>
+            </div>
+        </div>
+        <br />
+        <div style="overflow: hidden;margin-bottom: 15px;background: #fff; display: none;" id="tituloRelatorio">
+            <h3 class="tituloRelatorio">Relatório de Evolução do Aluno</h3>
+        </div>
+        <div google-chart chart="GraficoEvolucaoHipoteseAluno" id="EvolucaoAluno" style="height:400px; display: none" ></div>
+        <div google-chart chart="GraficoEvolucaoHipotese" id="EvolucaoTurma" style="height:400px; display: none"></div>
+    </div>
+</div>
 <!--background: #E8E8E8;-->
-<div style="float: right">
-    <a ng-click="UTILIDADE.Imprimir('evolucaoAlunoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>
-</div>
 
-
-<div class="col-md-12" style="overflow: hidden; background: #fff" id="evolucaoAlunoRelatorio">
-    <div class="headRelatorio" id="headerAluno" style="display: none">
-        <div class="head2Relatorio">
-            <img src="{{alunoSelecionado.imagem}}" class="fotoRelatorio">
-        </div>
-        <div class="infoAlunoRelatorio">
-            <h2>{{alunoSelecionado.nome}}</h2>
-            <h3 class="h3Relatorio">Turma: {{turmaSelecionada.serie+' '+turmaSelecionada.turma +' - '+ turmaSelecionada.curso}}</h3>
-            <h3>Escola: {{turmaSelecionada.Escola.nomeEscola}}</h3>
-        </div>
-    </div>
-    <br />
-    <div style="overflow: hidden;margin-bottom: 15px;background: #fff; display: none;" id="tituloRelatorio">
-        <h3 class="tituloRelatorio">Relatório de Evolução do Aluno</h3>
-    </div>
-    <div google-chart chart="GraficoEvolucaoHipoteseAluno" id="EvolucaoAluno" style="height:400px; display: none" ></div>
-    <div google-chart chart="GraficoEvolucaoHipotese" id="EvolucaoTurma" style="height:400px; display: none"></div>
-</div>

@@ -311,9 +311,9 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
         globalScope().GraficoHipotesePizza.type = "PieChart";
         globalScope().GraficoHipotesePizza.options = {
-            'title': 'Porcentagem de Alunos por Nível',
-            'pieSliceText': 'label',
-            'legend': 'none'
+            //'title': 'Porcentagem de Alunos por Nível',
+            //'pieSliceText': 'label',
+            'legend': 'bottom'
         };
 
         globalScope().GraficoHipoteseColuna.data = {

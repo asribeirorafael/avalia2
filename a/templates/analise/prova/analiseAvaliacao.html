@@ -33,17 +33,43 @@
         <!--<div style="float: right">-->
             <!--<a ng-click="UTILIDADE.Imprimir('analiseAvaliacaoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>-->
         <!--</div>-->
+        <div style="position: absolute;z-index: 9999;right: 13px;">
+            <a ng-click="UTILIDADE.Imprimir('analiseAvaliacaoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>
+        </div>
 
         <div id="analiseAvaliacaoRelatorio" class="col-md-12" style="overflow: hidden; background: #fff">
+            <br/>
             <div>
-                <div class="col-md-8" google-chart chart="GraficoHipotesePizza" style="height:400px;"></div>
-                <div class="col-md-4" google-chart chart="GraficoHipoteseColuna" style="height:400px;"></div>
+                <h2 style="text-align: center">Análise da Avaliação Hipótese - {{avaliacaoSelecionada.periodo+'ºPeriodo de '+avaliacaoSelecionada.ano}}</h2>
+            </div>
+            <div style="margin-top: -25px">
+                <div class="col-md-12" style="position: relative;top: 55px;z-index: 9999;font-size: 17px;font-weight: bold; text-align: center">Porcentagem de Alunos por Nível</div>
+                <div class="col-md-12" google-chart chart="GraficoHipotesePizza" style="height:400px;"></div>
+            </div>
+            <div>
+                <!--<span style="position: relative;left: 340px;top: 55px;z-index: 9999;font-size: 17px;font-weight: bold;">Quantidade de Alunos por Nível</span>-->
+                <div class="col-md-12" google-chart chart="GraficoHipoteseColuna" style="height:400px;"></div>
             </div>
             <div>
                 <div class="gridStyle" ng-grid="gridOptions"></div>
             </div>
+            <!--<div style="position: relative; height: 225px;">-->
+                <!--<table st-table="rowCollection" class="table table-striped" style="margin-bottom: 0px !important;">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>Nome</th>-->
+                        <!--<th>Nivel</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr ng-repeat="dado in DataGrid">-->
+                        <!--<td>{{dado.Nome}}</td>-->
+                        <!--<td>{{dado.Nivel}}</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
         </div>
-
 
     </div>
 
