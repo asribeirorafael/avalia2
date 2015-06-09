@@ -430,7 +430,6 @@ var AvaliacaoBusiness = (function(Objetos, AvaliacaoContract) {
                         ObjetoSS = new Objetos.AnaliseHipotese(),
                         ObjetoS = new Objetos.AnaliseHipotese();
 
-                    globalScope().avaliacaoSelecionada = listaResultados[0].Avaliacao;
 
                     for(var i = 0, LenLR = listaResultados.length;i < LenLR; i++ ){
                         var nivelEscrito = "";

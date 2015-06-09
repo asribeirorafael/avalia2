@@ -294,70 +294,63 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
     globalScope().DataGrid = [];
 
     AvaliacaoBusiness.gerarAnaliseAvaliacao($stateParams.idAvaliacao, function(){
-
-        if(globalScope().avaliacaoSelecionada.fechada){
-            globalScope().GraficoHipotesePizza.data = {
-                "cols": [
-                    {id: "t", label: "Topping", type: "string"},
-                    {id: "s", label: "Slices", type: "number"}
-                ],
-                "rows": [
-                    {c: globalScope().dadosAnaliseAvaliacao[0]},
-                    {c: globalScope().dadosAnaliseAvaliacao[1]},
-                    {c: globalScope().dadosAnaliseAvaliacao[2]},
-                    {c: globalScope().dadosAnaliseAvaliacao[3]},
-                    {c: globalScope().dadosAnaliseAvaliacao[4]}
-                ]};
+        globalScope().GraficoHipotesePizza.data = {
+            "cols": [
+                {id: "t", label: "Topping", type: "string"},
+                {id: "s", label: "Slices", type: "number"}
+            ],
+            "rows": [
+                {c: globalScope().dadosAnaliseAvaliacao[0]},
+                {c: globalScope().dadosAnaliseAvaliacao[1]},
+                {c: globalScope().dadosAnaliseAvaliacao[2]},
+                {c: globalScope().dadosAnaliseAvaliacao[3]},
+                {c: globalScope().dadosAnaliseAvaliacao[4]}
+            ]};
 
 
-            // $routeParams.chartType == BarChart or PieChart or ColumnChart...
-            globalScope().GraficoHipotesePizza.type = "PieChart";
-            globalScope().GraficoHipotesePizza.options = {
-                //'title': 'Porcentagem de Alunos por Nível',
-                //'pieSliceText': 'label',
-                'legend': 'bottom'
-            };
+        // $routeParams.chartType == BarChart or PieChart or ColumnChart...
+        globalScope().GraficoHipotesePizza.type = "PieChart";
+        globalScope().GraficoHipotesePizza.options = {
+            //'title': 'Porcentagem de Alunos por Nível',
+            //'pieSliceText': 'label',
+            'legend': 'bottom'
+        };
 
-            globalScope().GraficoHipoteseColuna.data = {
-                "cols": [
-                    {id: "n", label: "Nivel", type: "string"},
-                    {id: "a", label: "Total de Alunos", type: "number"}
-                ],
-                "rows": [
-                    {c: globalScope().dadosAnaliseAvaliacao[0]},
-                    {c: globalScope().dadosAnaliseAvaliacao[1]},
-                    {c: globalScope().dadosAnaliseAvaliacao[2]},
-                    {c: globalScope().dadosAnaliseAvaliacao[3]},
-                    {c: globalScope().dadosAnaliseAvaliacao[4]}
-                ]};
+        globalScope().GraficoHipoteseColuna.data = {
+            "cols": [
+                {id: "n", label: "Nivel", type: "string"},
+                {id: "a", label: "Total de Alunos", type: "number"}
+            ],
+            "rows": [
+                {c: globalScope().dadosAnaliseAvaliacao[0]},
+                {c: globalScope().dadosAnaliseAvaliacao[1]},
+                {c: globalScope().dadosAnaliseAvaliacao[2]},
+                {c: globalScope().dadosAnaliseAvaliacao[3]},
+                {c: globalScope().dadosAnaliseAvaliacao[4]}
+            ]};
 
 
-            // $routeParams.chartType == BarChart or PieChart or ColumnChart...
-            globalScope().GraficoHipoteseColuna.type = "ColumnChart";
-            globalScope().GraficoHipoteseColuna.options = {
-                'title': 'Quantidade de Alunos por Nível',
-                'vAxis': {
-                    'gridlines': {
-                        'count': 0
-                    }
-                },
-                'legend': {
-                    position: 'none'
+        // $routeParams.chartType == BarChart or PieChart or ColumnChart...
+        globalScope().GraficoHipoteseColuna.type = "ColumnChart";
+        globalScope().GraficoHipoteseColuna.options = {
+            'title': 'Quantidade de Alunos por Nível',
+            'vAxis': {
+                'gridlines': {
+                    'count': 0
                 }
-            };
-
-            globalScope().AVALIACAO.changeGroupBy("Nivel");
-
-            globalScope().atualizarEscopo();
-
-            jQuery('#analiseAvaliacao').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
-        }else{
-            jQuery('#analiseAvaliacao').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
+            },
+            'legend': {
+            position: 'none'
         }
-    });
+        };
 
+        globalScope().AVALIACAO.changeGroupBy("Nivel");
+
+        globalScope().atualizarEscopo();
+
+        jQuery('#analiseAvaliacao').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
+    });
 });
 
 AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){

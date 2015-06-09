@@ -23,13 +23,13 @@
 </div>
 
 <div class="col-md-12" style="display: none;" id="analiseAvaliacao">
-    <div ng-if="dadosAnaliseAvaliacao.length == 0">
+    <div ng-if="avaliacaoSelecionada.fechada == false">
         <div class="col-md-12">
-            <h3>Não Existem Resultados para esta Avaliação.</h3>
+            <h3>A Avaliação ainda não foi fechada.</h3>
         </div>
     </div>
 
-    <div ng-if="dadosAnaliseAvaliacao.length != 0">
+    <div ng-if="avaliacaoSelecionada.fechada == true">
         <!--<div style="float: right">-->
             <!--<a ng-click="UTILIDADE.Imprimir('analiseAvaliacaoRelatorio')" class="btn default"><span class="fa fa-print"></span></a>-->
         <!--</div>-->

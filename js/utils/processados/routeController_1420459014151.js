@@ -356,6 +356,7 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
             jQuery('#analiseAvaliacao').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
         }
+
     });
 
 });

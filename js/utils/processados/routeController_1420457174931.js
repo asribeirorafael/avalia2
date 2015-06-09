@@ -293,9 +293,11 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
     globalScope().dadosAnaliseAvaliacao = [];
     globalScope().DataGrid = [];
 
-    AvaliacaoBusiness.gerarAnaliseAvaliacao($stateParams.idAvaliacao, function(){
-
-        if(globalScope().avaliacaoSelecionada.fechada){
+    if(globalScope.avaliacaoSelecionada.fechada == false){
+        jQuery('#analiseAvaliacao').css('display', 'block');
+        jQuery('#floatingBarsG').css('display', 'none');
+    }else{
+        AvaliacaoBusiness.gerarAnaliseAvaliacao($stateParams.idAvaliacao, function(){
             globalScope().GraficoHipotesePizza.data = {
                 "cols": [
                     {id: "t", label: "Topping", type: "string"},
@@ -352,12 +354,8 @@ AvaliaControllers.controller("GraficoAnaliseHipoteseAvaliacao", function($stateP
 
             jQuery('#analiseAvaliacao').css('display', 'block');
             jQuery('#floatingBarsG').css('display', 'none');
-        }else{
-            jQuery('#analiseAvaliacao').css('display', 'block');
-            jQuery('#floatingBarsG').css('display', 'none');
-        }
-    });
-
+        });
+    }
 });
 
 AvaliaControllers.controller("EvolucaoTurmaController", function($stateParams){

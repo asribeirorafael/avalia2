@@ -81,7 +81,7 @@
                         <a ng-if="avaliacao.fechada == false" ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao, 1)" class="btn btn-primary btn-lg btn-block default large">Lançar</a>
                         <a ng-if="avaliacao.fechada == true" ui-sref="avaliacaoHipotese({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao, 2)" class="btn btn-primary btn-lg btn-block default large">Visualizar</a>
                     </div>
-                    <div style="margin: 0 5px 0 0;" class="flex-item" ng-if="avaliacao.tipoAvaliacao == 1"><a ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
+                    <div style="margin: 0 5px 0 0;" class="flex-item" ng-if="avaliacao.tipoAvaliacao == 1"><a ui-sref="avaliacaoAnalise({idTurma: '{{turmaSelecionada.id}}', idAvaliacao: '{{avaliacao.id}}'})" ng-click="AVALIACAO.selecionarAvaliacaoHipotese(avaliacao, 1)" class="btn btn-primary btn-lg btn-block default large">Análise</a></div>
 
                     <div style="margin: 0 5px 0 5px" class="flex-item" ng-if="avaliacao.tipoAvaliacao == 2">
                         <a ng-if="avaliacao.fechada == false" ng-click="" class="btn btn-primary btn-lg btn-block default large">Lançar</a>
